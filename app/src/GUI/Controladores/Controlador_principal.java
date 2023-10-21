@@ -3,6 +3,8 @@ package GUI.Controladores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JMenuItem;
+
 import GUI.Ventanas.Ventana_principal;
 
 public class Controlador_principal implements ActionListener {
@@ -31,6 +33,8 @@ public class Controlador_principal implements ActionListener {
 		if (e.getSource() == ventana.getSubmenu_eliminar_amenaza()) { eliminar_amenaza(); }
 		if (e.getSource() == ventana.getSubmenu_eliminar_salvaguarda()) { eliminar_salvaguarda(); }
 		if (e.getSource() == ventana.getSubmenu_configuracion_BBDD()) { configuracion_BBDD(); }
+		if (e.getSource() == ventana.getSubmenu_login()) { login(); }
+		if (e.getSource() == ventana.getSubmenu_logout()) { logout(); }
 	}
 
 	private void importar() { }
@@ -52,6 +56,8 @@ public class Controlador_principal implements ActionListener {
 	private void eliminar_amenaza() { }
 	private void eliminar_salvaguarda() { }
 	private void configuracion_BBDD() { }
+	private void login() { }
+	private void logout() { }
 
 }
 

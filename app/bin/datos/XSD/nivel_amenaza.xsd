@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xsd:annotation>
+		<xsd:documentation>version: magerit 3.0 (2011)</xsd:documentation>
+		<xsd:documentation>date: 19.11.2011</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="threat-announcement">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="tip" type="tipType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="tipType" mixed="true">
+		<xsd:sequence>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="asset" type="xsd:string" use="required"/>
+		<xsd:attribute name="threat" type="xsd:string" use="required"/>
+		<xsd:attribute name="level" type="levelType" use="required"/>
+	</xsd:complexType>
+	<xsd:simpleType name="levelType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="VR"/>
+			<xsd:enumeration value="U"/>
+			<xsd:enumeration value="P"/>
+			<xsd:enumeration value="VH"/>
+			<xsd:enumeration value="AC"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

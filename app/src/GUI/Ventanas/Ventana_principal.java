@@ -16,7 +16,7 @@ public class Ventana_principal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
     private JMenuBar menu_principal;
-    private JMenu menu_archivo,menu_activos,menu_amenazas,menu_salvaguardas,menu_BBDD;
+    private JMenu menu_archivo,menu_activos,menu_amenazas,menu_salvaguardas,menu_BBDD,menu_usuario;
     private JMenuItem submenu_importar,submenu_salir;
     private JMenuItem submenu_listar_activo,submenu_listar_amenaza,submenu_listar_salvaguarda;
     private JMenuItem submenu_ver_activo,submenu_ver_amenaza,submenu_ver_salvaguarda;
@@ -24,6 +24,7 @@ public class Ventana_principal extends JFrame {
     private JMenuItem submenu_modificar_activo,submenu_modificar_amenaza,submenu_modificar_salvaguarda;
     private JMenuItem submenu_eliminar_activo,submenu_eliminar_amenaza,submenu_eliminar_salvaguarda;
     private JMenuItem submenu_configuracion_BBDD,probar_conexion_BBDD;
+	private JMenuItem submenu_login,submenu_logout;
 	
 	public Ventana_principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,10 +43,13 @@ public class Ventana_principal extends JFrame {
         menu_archivo = new JMenu("Archivo");
         menu_archivo.setFont(new Font("Roboto", Font.BOLD, 14));
         menu_principal.add(menu_archivo);
-        submenu_importar = new JMenuItem("Importar");
-        menu_archivo.add(submenu_importar);
-        submenu_salir = new JMenuItem("Salir");
-        menu_archivo.add(submenu_salir);
+        
+        crear_submenu(menu_archivo,submenu_importar,"Importar");
+        // submenu_importar = new JMenuItem("Importar");
+        // menu_archivo.add(submenu_importar);
+        crear_submenu(menu_archivo,submenu_salir,"Salir");
+        // submenu_salir = new JMenuItem("Salir");
+        // menu_archivo.add(submenu_salir);
  
         // Menu activos
         menu_activos = new JMenu("Activos");
@@ -83,6 +87,13 @@ public class Ventana_principal extends JFrame {
 
         crear_submenu(menu_BBDD,submenu_configuracion_BBDD,"Configuración");
         crear_submenu(menu_BBDD,probar_conexion_BBDD,"Probar Conexión");
+        
+        // Menu usuarios
+        menu_usuario = new JMenu("Usuario");
+        menu_principal.add(menu_usuario);
+        crear_submenu(menu_usuario,submenu_login,"Login");
+        crear_submenu(menu_usuario,submenu_logout,"Logout");
+ 
 	}
 	
 	public void establecerManejador(Controlador_principal manejador) {
@@ -183,6 +194,14 @@ public class Ventana_principal extends JFrame {
 
 	public JMenuItem getSubmenu_configuracion_BBDD() {
 		return submenu_configuracion_BBDD;
+	}
+
+	public JMenuItem getSubmenu_login() {
+		return submenu_login;
+	}
+
+	public JMenuItem getSubmenu_logout() {
+		return submenu_logout;
 	}
 	
 
