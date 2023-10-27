@@ -10,8 +10,8 @@ public class Principal {
 	public static void main(String[] args) {
 		
 		System.out.println("Saludos");
-		GUI.Ventanas.Ventana_principal miVentana = new GUI.Ventanas.Ventana_principal();
-		GUI.Controladores.Controlador_principal manejador = new GUI.Controladores.Controlador_principal(miVentana);
+		GUI.Ventanas.ventanas.Ventana_principal miVentana = new GUI.Ventanas.ventanas.Ventana_principal();
+		GUI.Controladores.Controlador_acciones_principal manejador = new GUI.Controladores.Controlador_acciones_principal(miVentana);
 		miVentana.establecerManejador(manejador);
 	}
 
