@@ -6,13 +6,13 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JMenuItem;
 
-import GUI.Ventanas.Herencia.Ventana_listados;
 import GUI.Ventanas.ventanas.Ventana_crear_activo;
 import GUI.Ventanas.ventanas.Ventana_crear_amenaza;
 import GUI.Ventanas.ventanas.Ventana_crear_salvaguarda;
 import GUI.Ventanas.ventanas.Ventana_eliminar_activo;
 import GUI.Ventanas.ventanas.Ventana_eliminar_amenaza;
 import GUI.Ventanas.ventanas.Ventana_eliminar_salvaguarda;
+import GUI.Ventanas.ventanas.Ventana_listados;
 import GUI.Ventanas.ventanas.Ventana_modificar_activo;
 import GUI.Ventanas.ventanas.Ventana_modificar_amenaza;
 import GUI.Ventanas.ventanas.Ventana_modificar_salvaguarda;
@@ -20,20 +20,23 @@ import GUI.Ventanas.ventanas.Ventana_principal;
 import GUI.Ventanas.ventanas.Ventana_ver_activo;
 import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
 import GUI.Ventanas.ventanas.Ventana_ver_salvaguarda;
+import aplicacion.Principal;
 
 public class Controlador_acciones_principal implements ActionListener {
 	
 	private Ventana_principal ventana;
 	
 	public Controlador_acciones_principal(Ventana_principal ventana) {
-	this.ventana = ventana;
+		this.ventana = ventana;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventana.getSubmenu_importar()) { importar(); }
 		if (e.getSource() == ventana.getSubmenu_salir()) { salir(); }
-		if (e.getSource() == ventana.getSubmenu_listar_activo()) { listar_activo(); }
+		if (e.getSource() == ventana.getSubmenu_listar_activo()) {
+			Principal.gestor_ventanas.activar_ventana_listado_activos();
+		}
 		if (e.getSource() == ventana.getSubmenu_listar_amenaza()) { listar_amenaza(); }
 		if (e.getSource() == ventana.getSubmenu_listar_salvaguarda()) { listar_salvaguarda(); }
 		if (e.getSource() == ventana.getSubmenu_ver_activo()) { ver_activo(); }
@@ -59,15 +62,15 @@ public class Controlador_acciones_principal implements ActionListener {
 	private void salir() { }
 	private void listar_activo() { 
 		Ventana_listados ventana_lista_activos;
-		ventana_lista_activos = new Ventana_listados();
+		ventana_lista_activos = new Ventana_listados("activo");
 	}
 	private void listar_amenaza() { 
 		Ventana_listados ventana_lista_amenazas;
-		ventana_lista_amenazas = new Ventana_listados();
+		ventana_lista_amenazas = new Ventana_listados("amenaza");
 	}
 	private void listar_salvaguarda() {
 		Ventana_listados ventana_lista_salvaguardas;
-		ventana_lista_salvaguardas = new Ventana_listados();
+		ventana_lista_salvaguardas = new Ventana_listados("salvaguarda");
 	}
 	private void ver_activo() { 
 		Ventana_ver_activo ventana_ver_activo;

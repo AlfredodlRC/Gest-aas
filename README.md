@@ -10,7 +10,7 @@
         * Implementación de la base de datos
         * Diseño inicial de las pantalla
     - Semana 23/10-29/10
-        * Implementación de las pantallas
+        * Implementación de las pantallas de los activos
     - Semana 30/10-5/11
     - Semana 6/11-19/11
     - Semana 13/11-26/11
@@ -19,6 +19,7 @@
     - Semana 11/12-17/12
 
 ## Referencias
+
 [Magerit](https://administracionelectronica.gob.es/pae_Home/pae_Documentacion/pae_Metodolog/pae_Magerit.html).
 
 [Referencia general del objetivo del proyecto](https://pilar.ccn-cert.cni.es/index.php/metodologia/implementacion).
@@ -33,5 +34,5 @@
 
 [Control swing para horas](https://codigo--java.blogspot.com/2014/10/uso-basico-de-elementos-swing-con_8.html)
 
-
+[Tabbed panel](https://docs.oracle.com/javase/tutorial/uiswing/components/tabbedpane.html)
 

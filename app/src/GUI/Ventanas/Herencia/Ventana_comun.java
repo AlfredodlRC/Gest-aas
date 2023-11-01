@@ -18,11 +18,16 @@ public class Ventana_comun extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 4304796865813473200L;
+	
+	protected String elemento;
+	protected String accion;
+	
 	private JLabel lbl_tipo,lbl_codigo,lbl_nombe,lbl_descripcion,lbl_fecha;
 	private JTextField tb_codigo,tb_nombre;
 	private JTextArea tb_descripcion;
 	private JSpinner tb_fecha;
-	private JButton btn_cancelar, btn_accion;
+	private JButton btn_cancelar;
+	protected JButton btn_accion;
 	
 	public Ventana_comun() {
 		setTitle("Gestor AAS - Ventana ");
@@ -36,9 +41,10 @@ public class Ventana_comun extends JFrame {
 	}
 
 	private void inicializarComponentes() {
-		
+				
+		elemento = "";
+		accion = "";
 
-		
 		lbl_tipo = new JLabel("Tipo");
 		lbl_tipo.setBounds(10,20,60,30);
 		add(lbl_tipo);
@@ -100,5 +106,55 @@ public class Ventana_comun extends JFrame {
 		add(btn_accion);
 		
 	}
+
+	public JTextField getTb_codigo() {
+		return tb_codigo;
+	}
+
+	public void setTb_codigo(JTextField tb_codigo) {
+		this.tb_codigo = tb_codigo;
+	}
+
+	public JTextField getTb_nombre() {
+		return tb_nombre;
+	}
+
+	public void setTb_nombre(JTextField tb_nombre) {
+		this.tb_nombre = tb_nombre;
+	}
+
+	public JTextArea getTb_descripcion() {
+		return tb_descripcion;
+	}
+
+	public void setTb_descripcion(JTextArea tb_descripcion) {
+		this.tb_descripcion = tb_descripcion;
+	}
+
+	public JSpinner getTb_fecha() {
+		return tb_fecha;
+	}
+
+	public void setTb_fecha(JSpinner tb_fecha) {
+		this.tb_fecha = tb_fecha;
+	}
+
+	public JButton getBtn_cancelar() {
+		return btn_cancelar;
+	}
+
+	public void setBtn_cancelar(JButton btn_cancelar) {
+		this.btn_cancelar = btn_cancelar;
+	}
+
+	public JButton getBtn_accion() {
+		return btn_accion;
+	}
+
+	public void setBtn_accion(JButton btn_accion) {
+		this.btn_accion = btn_accion;
+	}
+	
+	
 	
 }

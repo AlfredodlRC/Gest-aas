@@ -5,8 +5,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class Controlador_acciones_ventanas implements ActionListener, ItemListener {
+import GUI.Ventanas.ventanas.Ventana_crear_activo;
+import GUI.Ventanas.ventanas.Ventana_principal;
 
+public class Controlador_acciones_crear_activo implements ActionListener, ItemListener {
+	
+	private Ventana_crear_activo ventana;
+	
+	public Controlador_acciones_crear_activo(Ventana_crear_activo ventana) {
+		this.ventana = ventana;
+	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

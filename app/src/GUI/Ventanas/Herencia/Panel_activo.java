@@ -163,5 +163,22 @@ public class Panel_activo extends JPanel {
 		activos_inferiores.setBounds(500, 170, 200, 120);
 		activos_inferiores.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		add(activos_inferiores);
+	}
+
+	public JList<String> getActivos_superiores() {
+		return activos_superiores;
+	}
+
+	public JList<String> getActivos_inferiores() {
+		return activos_inferiores;
+	}
+
+	public JTextField getTb_valor_repercutido() {
+		return tb_valor_repercutido;
+	}
+
+	public JTextField getTb_valor_acumulado() {
+		return tb_valor_acumulado;
 	}	
+	
 }

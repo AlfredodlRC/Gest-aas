@@ -159,6 +159,90 @@ public class Panel_activo_manipulacion extends Panel_activo {
 		add(btn_desagregar_activo_inferior);
 
 	}
+
+	public JSpinner getTb_economico() {
+		return tb_economico;
+	}
+
+	public JComboBox<String> getNivel_valor() {
+		return nivel_valor;
+	}
+
+	public JComboBox<String> getCriterio_1() {
+		return criterio_1;
+	}
+
+	public JComboBox<String> getCriterio_2() {
+		return criterio_2;
+	}
+
+	public JComboBox<String> getCriterio_3() {
+		return criterio_3;
+	}
+
+	public JComboBox<String> getCriterio_4() {
+		return criterio_4;
+	}
+
+	public JComboBox<String> getCriterio_5() {
+		return criterio_5;
+	}
+
+	public JComboBox<String> getCriterio_6() {
+		return criterio_6;
+	}
+
+	public JComboBox<String> getCriterio_7() {
+		return criterio_7;
+	}
+
+	public JComboBox<String> getCriterio_8() {
+		return criterio_8;
+	}
+
+	public JComboBox<String> getCriterio_9() {
+		return criterio_9;
+	}
+
+	public JComboBox<String> getCriterio_10() {
+		return criterio_10;
+	}
+
+	public JComboBox<String> getCriterio_11() {
+		return criterio_11;
+	}
+
+	public JComboBox<String> getCriterio_12() {
+		return criterio_12;
+	}
+
+	public JComboBox<String> getCriterio_13() {
+		return criterio_13;
+	}
+
+	public JComboBox<String> getCb_activo_superior() {
+		return cb_activo_superior;
+	}
+
+	public JButton getBtn_agregar_activo_superior() {
+		return btn_agregar_activo_superior;
+	}
+
+	public JButton getBtn_desagregar_activo_superior() {
+		return btn_desagregar_activo_superior;
+	}
+
+	public JComboBox<String> getCb_activo_inferior() {
+		return cb_activo_inferior;
+	}
+
+	public JButton getBtn_agregar_activo_inferior() {
+		return btn_agregar_activo_inferior;
+	}
+
+	public JButton getBtn_desagregar_activo_inferior() {
+		return btn_desagregar_activo_inferior;
+	}
 	
 
 }

@@ -119,4 +119,64 @@ public class Panel_activo_visualizacion extends Panel_activo {
 
 	}
 
+	public JTextField getTb_economico() {
+		return tb_economico;
+	}
+
+	public JTextField getNivel_valor() {
+		return nivel_valor;
+	}
+
+	public JTextField getCriterio_1() {
+		return criterio_1;
+	}
+
+	public JTextField getCriterio_2() {
+		return criterio_2;
+	}
+
+	public JTextField getCriterio_3() {
+		return criterio_3;
+	}
+
+	public JTextField getCriterio_4() {
+		return criterio_4;
+	}
+
+	public JTextField getCriterio_5() {
+		return criterio_5;
+	}
+
+	public JTextField getCriterio_6() {
+		return criterio_6;
+	}
+
+	public JTextField getCriterio_7() {
+		return criterio_7;
+	}
+
+	public JTextField getCriterio_8() {
+		return criterio_8;
+	}
+
+	public JTextField getCriterio_9() {
+		return criterio_9;
+	}
+
+	public JTextField getCriterio_10() {
+		return criterio_10;
+	}
+
+	public JTextField getCriterio_11() {
+		return criterio_11;
+	}
+
+	public JTextField getCriterio_12() {
+		return criterio_12;
+	}
+
+	public JTextField getCriterio_13() {
+		return criterio_13;
+	}
+
 }

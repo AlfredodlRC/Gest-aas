@@ -1,5 +1,7 @@
-package GUI.Ventanas.Herencia;
+package GUI.Ventanas.ventanas;
 
+
+import java.awt.HeadlessException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,17 +17,40 @@ public class Ventana_listados extends JFrame {
 	private JTable tabla_listado;
 	private JButton btn_ver,btn_modificar,btn_eliminar,btn_cerrar;
 	
+	private String elemento;
+	
+	
 	public Ventana_listados() {
-		setTitle("Gestor AAS - Listado");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		super();
+		elemento = "";
+		inicializar_ventana();
+		inicializarComponentes();
+		
+	}
+	
+	
+	public Ventana_listados(String elemento) throws HeadlessException {
+		
+		super();
+		this.elemento = elemento;
+		inicializar_ventana();
+		inicializarComponentes();
+	
+	}
+
+
+	private void inicializar_ventana() {
+
+		setTitle("Gestor AAS - Listado de " + elemento + "s");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(900, 500);
 		setLocationRelativeTo(null);
 		setLayout(null);
-		inicializarComponentes();
 		setVisible(true);
-
+		
 	}
-
+	
 	private void inicializarComponentes() {
 		tabla_listado = new JTable();
 		tabla_listado.setBounds(10, 10, 860, 400);
