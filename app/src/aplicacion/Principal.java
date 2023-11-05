@@ -1,8 +1,13 @@
 package aplicacion;
 
-import GUI.Controladores.Controlador_acciones_principal;
+import java.util.List;
+
 import GUI.Controladores.Gestor_ventanas;
-import GUI.Ventanas.ventanas.Ventana_principal;
+import Logica_negocio.Logica_de_negocio;
+import base_datos.Database;
+import base_datos.Gestor_BBDD;
+
+
 
 /** Descripción de la clase Principal
 *  
@@ -12,15 +17,14 @@ import GUI.Ventanas.ventanas.Ventana_principal;
 public class Principal {
 
 	public static Gestor_ventanas gestor_ventanas;
+	public static Gestor_BBDD gestor_base_datos;
+	public static Logica_de_negocio logica;
 	
 	public static void main(String[] args) {
 		
 		System.out.println("Saludos");
-		/*
-		Ventana_principal miVentana = new GUI.Ventanas.ventanas.Ventana_principal();
-		Controlador_acciones_principal manejador = new GUI.Controladores.Controlador_acciones_principal(miVentana);
-		miVentana.establecerManejador(manejador);
-		*/
+		logica = new Logica_de_negocio(); 
+		gestor_base_datos = new Gestor_BBDD();
 		gestor_ventanas = new Gestor_ventanas();
 	}
 
