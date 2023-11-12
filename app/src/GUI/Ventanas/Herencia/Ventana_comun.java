@@ -23,10 +23,10 @@ public class Ventana_comun extends JFrame {
 	protected String accion;
 	
 	private JLabel lbl_tipo,lbl_codigo,lbl_nombe,lbl_descripcion,lbl_fecha;
-	private JTextField tb_codigo,tb_nombre;
-	private JTextArea tb_descripcion;
-	private JSpinner tb_fecha;
-	private JButton btn_cancelar;
+	protected JTextField tb_codigo,tb_nombre;
+	protected JTextArea tb_descripcion;
+	protected JTextField tb_fecha;
+	protected JButton btn_cancelar;
 	protected JButton btn_accion;
 	
 	public Ventana_comun() {
@@ -76,21 +76,8 @@ public class Ventana_comun extends JFrame {
 		add(tb_nombre);
 
 		
-		tb_fecha = new JSpinner();
+		tb_fecha = new JTextField();
 		tb_fecha.setBounds(70,110,160,30);
-		
-		Calendar calendar = Calendar.getInstance();
-        Date inicio = calendar.getTime();
-        calendar.add(Calendar.YEAR, -100);
-        Date fechaAnterior = calendar.getTime();
-        calendar.add(Calendar.YEAR, 120);
-        Date fechaPosterior = calendar.getTime();
-        SpinnerDateModel fechaModel = new SpinnerDateModel(inicio, fechaAnterior, fechaPosterior, Calendar.YEAR);
-        
-        tb_fecha.setModel(fechaModel);
-        tb_fecha.setEditor(new JSpinner.DateEditor(tb_fecha, "dd/MM/yyyy"));
-		
-		
 		add(tb_fecha);
 		
 		tb_descripcion = new JTextArea();
@@ -131,11 +118,11 @@ public class Ventana_comun extends JFrame {
 		this.tb_descripcion = tb_descripcion;
 	}
 
-	public JSpinner getTb_fecha() {
+	public JTextField getTb_fecha() {
 		return tb_fecha;
 	}
 
-	public void setTb_fecha(JSpinner tb_fecha) {
+	public void setTb_fecha(JTextField tb_fecha) {
 		this.tb_fecha = tb_fecha;
 	}
 

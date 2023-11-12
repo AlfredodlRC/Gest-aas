@@ -9,7 +9,7 @@ public class Ventana_manipulacion extends Ventana_comun {
 	 */
 	private static final long serialVersionUID = -3052719473250117820L;
 	
-	private JComboBox<String> cb_tipo;
+	protected JComboBox<String> cb_tipo;
 
 	public Ventana_manipulacion() {
 		super();

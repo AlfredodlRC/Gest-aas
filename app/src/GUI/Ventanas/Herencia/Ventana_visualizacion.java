@@ -10,7 +10,7 @@ public class Ventana_visualizacion extends Ventana_comun {
 	 */
 	private static final long serialVersionUID = 6168427870920433751L;
 
-	private JTextField tb_tipo;
+	protected JTextField tb_tipo;
 
 	public Ventana_visualizacion() {
 		super();

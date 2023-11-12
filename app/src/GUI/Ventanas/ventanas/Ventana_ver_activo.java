@@ -1,12 +1,19 @@
 package GUI.Ventanas.ventanas;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JList;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import GUI.Controladores.Controlador_acciones_principal;
+import GUI.Controladores.Controlador_acciones_ver_activo;
 import GUI.Ventanas.Herencia.Panel_activo_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_mostrar;
+import aplicacion.Principal;
+import datos.POJOS.Activo_pojo;
 
 public class Ventana_ver_activo extends Ventana_mostrar {
 
@@ -23,7 +30,8 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		elemento = "activo";
 		accion = "ver";
 
-		btn_accion.setText(accion);
+		btn_accion.setText("cerrar");
+		btn_cancelar.setVisible(false);
 
 		setTitle("Gestor AAS - ver activo");
 		panel_datos = new Panel_activo_visualizacion();
@@ -32,15 +40,43 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		add(panel_datos);
 		
 	}
-
-	public JList<String> getActivos_superiores() {
-		return panel_datos.getActivos_superiores();
+	
+	public void establecerManejador(Controlador_acciones_ver_activo manejador) {
+	    btn_cancelar.addActionListener(manejador);
+	    btn_accion.addActionListener(manejador);
 	}
 
-	public JList<String> getActivos_inferiores() {
-		return panel_datos.getActivos_inferiores();
-	}
+	public void cargar_activo() {
+		Activo_pojo activo = Principal.logica.get_activo_actual();
+        SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
+		String texto_fecha;
+		texto_fecha = fmt.format( activo.getFecha_creacion().getTime());
+		System.out.println("cargando activo actual"+Principal.logica.get_activo_actual() );
+		
+		tb_codigo.setText(activo.getCodigo());
+		tb_nombre.setText(activo.getNombre());		
+		tb_descripcion.setText(activo.getDescripcion());
+		tb_fecha.setText(texto_fecha);
+		tb_tipo.setText(activo.getTipo());
+		panel_datos.getTb_economico().setText(activo.getValor_economico().toString());
+		panel_datos.getNivel_valor().setText(activo.getNivel_valoracion());
+		panel_datos.getCriterio_1().setText(activo.getCriterio_pi());
+		panel_datos.getCriterio_2().setText(activo.getCriterio_lpo());
+		panel_datos.getCriterio_3().setText(activo.getCriterio_si());
+		panel_datos.getCriterio_4().setText(activo.getCriterio_cei());
+		panel_datos.getCriterio_5().setText(activo.getCriterio_da());
+		panel_datos.getCriterio_6().setText(activo.getCriterio_po());
+		panel_datos.getCriterio_7().setText(activo.getCriterio_olm());
+		panel_datos.getCriterio_8().setText(activo.getCriterio_adm());
+		panel_datos.getCriterio_9().setText(activo.getCriterio_lg());
+		panel_datos.getCriterio_10().setText(activo.getCriterio_crm());
+		panel_datos.getCriterio_11().setText(activo.getCriterio_rto());
+		panel_datos.getCriterio_12().setText(activo.getCriterio_ibl_national());
+		panel_datos.getCriterio_13().setText(activo.getCriterio_ibl_ue());
+			
+	}
+	
 	public JTextField getTb_valor_repercutido() {
 		return panel_datos.getTb_valor_repercutido();
 	}
@@ -109,6 +145,14 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		return panel_datos.getCriterio_13();
 	}
 
+	public JList<String> getActivos_disponibles_inferiores() {
+		return panel_datos.getActivos_disponibles_inferiores();
+	}
+	
+	public JList<String> getActivos_inferiores() {
+		return panel_datos.getActivos_disponibles_inferiores();
+	}
+	
 
 	
 }

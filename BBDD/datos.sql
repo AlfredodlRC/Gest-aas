@@ -24,6 +24,22 @@ Abriría las puertas al fraude, incapacitaría a la Organización para perseguir
 ¿Qué importancia tendría que no quedara constancia del acceso a los datos?
 Abriría las puertas al fraude, incapacitaría a la Organización para perseguir delitos y podría suponer el incumplimiento de obligaciones legales.');
 
+
+INSERT INTO `gestor_activos_amenazas_salvaguardas`.`criterio_pi`
+(`PK`,`NIVEL`,`codigo`,`descripcion`)
+VALUES
+(1,6,'6.pi1','probablemente afecte gravemente a un grupo de individuos'),
+(2,6,'6.pi2','probablemente quebrante seriamente la ley o algún reglamento de protección de información personal'),
+(3,5,'5.pi','probablemente afecte gravemente a un individuo'),
+(4,5,'5.pi2','probablemente quebrante seriamente leyes o regulaciones'),
+(5,4,'4.pi1','probablemente afecte a un grupo de individuos'),
+(6,5,'4.pi2','probablemente quebrante leyes o regulaciones'),
+(7,3,'3.pi1','probablemente afecte a un individuo'),
+(8,3,'3.pi2','probablemente suponga el incumplimiento de una ley o regulación'),
+(9,2,'2.pi1','pudiera causar molestias a un individuo'),
+(10,2,'2.pi2','pudiera quebrantar de forma leve leyes o regulaciones'),
+(11,1,'1.pi1','pudiera causar molestias a un individuo');
+
 INSERT INTO criterio_po (pk,NIVEL,codigo, descripcion) VALUES 
 (1,6,'6.pi1','probablemente afecte gravemente a un grupo de individuos'),
 (2,6,'6.pi2','probablemente quebrante seriamente la ley o algún reglamento de protección de información personal'),

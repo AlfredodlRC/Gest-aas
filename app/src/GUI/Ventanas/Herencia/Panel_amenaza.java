@@ -24,6 +24,7 @@ public class Panel_amenaza extends JPanel {
 	private static final long serialVersionUID = 8619224390809051069L;
 
 	private JTabbedPane panel_tabulador;
+	
 	protected JComponent panel_tab_activos;
 	protected JList<String> activos_afectados;
 	protected JLabel lbl_degradacion_valor;

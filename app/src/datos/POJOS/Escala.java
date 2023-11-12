@@ -35,5 +35,10 @@ public class Escala {
 		this.magnitud = magnitud;
 	}
 
-
+	@Override
+	public String toString() {
+		String resultado;
+		resultado = "(" + abreviadura + ") " + magnitud;
+		return resultado;
+	}
 }

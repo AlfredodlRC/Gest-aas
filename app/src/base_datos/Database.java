@@ -40,9 +40,9 @@ public class Database {
 		return conexion;
 	}
 	
-	public List<List<Object>> realizar_lectura(String sql) {
-		List<List<Object>> resultado = new ArrayList<List<Object>>();
-		List<Object> fila;
+	public List<List<String>> realizar_lectura(String sql) {
+		List<List<String>> resultado = new ArrayList<List<String>>();
+		List<String> fila;
 		Connection conexion_lectura;
 		Integer numero_columnas;
 		Integer i;
@@ -56,10 +56,10 @@ public class Database {
 			System.out.println();
 			
 			while(rs.next()){
-				fila = new ArrayList<Object>();
+				fila = new ArrayList<String>();
 				numero_columnas = rs.getMetaData().getColumnCount();
 				for(i=0; i<numero_columnas;i++) {
-					fila.add(rs.getObject(i+1));				
+					fila.add(rs.getString(i+1));				
 				}
 				resultado.add(fila);
 				

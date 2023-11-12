@@ -43,5 +43,10 @@ public class Criterio {
 		this.tipo_criterio = tipo_criterio;
 	}
 	
-	
+	@Override
+	public String toString() {
+		String resultado;
+		resultado = "(" + codigo + ") " + descripcion;
+		return resultado;
+	}
 }

@@ -1,6 +1,7 @@
 package GUI.Ventanas.ventanas;
 
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -11,6 +12,7 @@ import javax.swing.JMenuItem;
 
 
 import GUI.Controladores.Controlador_acciones_principal;
+import aplicacion.Principal;
 
 public class Ventana_principal extends JFrame {
 
@@ -40,6 +42,7 @@ public class Ventana_principal extends JFrame {
 		setLocationRelativeTo(null);
 		setLayout(null);
 		inicializarComponentes();
+		recoger_datos();
 		setVisible(true);
 	}
 	
@@ -203,7 +206,61 @@ public class Ventana_principal extends JFrame {
 	    submenu_probar_conexion_BBDD.addActionListener(manejador);
 	    submenu_login.addActionListener(manejador);
 	    submenu_logout.addActionListener(manejador);
+	    cb_cod_activo.addActionListener(manejador);
+	    cb_cod_amenaza.addActionListener(manejador);
+	    cb_cod_salvaguarda.addActionListener(manejador);
 	}
+	
+	private void recoger_datos() {
+
+		establecer_activos();
+
+		establecer_amenazas();
+		
+		establecer_salvaguardas();
+		
+	}
+	
+	public void establecer_activos() {
+		
+		List<String> activos = Principal.logica.coger_lista_activos();
+		for(String elemento: activos) {
+			cb_cod_activo.addItem(elemento);
+		}
+		if (cb_cod_activo.getItemCount() > 0) {
+			cb_cod_activo.setSelectedIndex(0);
+			Principal.logica.set_activo_actual(getCB_cod_activo().getSelectedItem().toString());
+		}
+	}
+	
+	public void establecer_amenazas() {
+		
+		List<String> amenazas = Principal.logica.coger_lista_amenazas();
+		for(String elemento: amenazas) {
+			cb_cod_amenaza.addItem(elemento);
+		}
+		if (cb_cod_amenaza.getItemCount() > 0) {
+			cb_cod_amenaza.setSelectedIndex(0);
+			Principal.logica.set_amenaza_actual(getCB_cod_amenaza().getSelectedItem().toString());
+		}	
+	}
+	
+	public void establecer_salvaguardas() {
+
+		List<String> salvaguardas = Principal.logica.coger_lista_salvaguardas();
+		
+		for(String elemento: salvaguardas) {
+			cb_cod_salvaguarda.addItem(elemento);
+		}
+		
+		if (cb_cod_salvaguarda.getItemCount() > 0) {
+			cb_cod_salvaguarda.setSelectedIndex(0);
+			Principal.logica.set_salvaguarda_actual(getCB_cod_salvaguarda().getSelectedItem().toString());
+		}
+		
+
+	}
+
 	
 	private void configurar_submenu(JMenuItem elemento) {
 		elemento.setFont(new Font("Roboto", Font.BOLD, 18));
