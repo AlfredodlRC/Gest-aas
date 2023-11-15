@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 
+import GUI.Controladores.Controlador_acciones_ver_amenaza;
 import GUI.Ventanas.Herencia.Panel_amenaza_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_mostrar;
 
@@ -23,7 +24,8 @@ public class Ventana_ver_amenaza extends Ventana_mostrar {
 		elemento = "amenaza";
 		accion = "ver";
 
-		btn_accion.setText(accion);
+		btn_accion.setText("cerrar");
+		btn_cancelar.setVisible(false);
 
 		setTitle("Gestor AAS - ver amenaza");
 		panel_datos = new Panel_amenaza_visualizacion();
@@ -32,6 +34,16 @@ public class Ventana_ver_amenaza extends Ventana_mostrar {
 		add(panel_datos);
 	}
 
+	public void establecerManejador(Controlador_acciones_ver_amenaza manejador) {
+		
+	    btn_cancelar.addActionListener(manejador);
+	    btn_accion.addActionListener(manejador);
+	}
+
+	public void cargar_amenaza() {
+		
+	}
+	
 	public JList<String> getActivos_afectados() {
 		return panel_datos.getActivos_afectados();
 	}

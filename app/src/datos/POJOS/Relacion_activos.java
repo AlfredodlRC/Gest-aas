@@ -1,5 +1,7 @@
 package datos.POJOS;
 
+import java.util.Objects;
+
 public class Relacion_activos {
 
 	private String activo_superior;
@@ -40,6 +42,30 @@ public class Relacion_activos {
 	
 	public void setGrado(Double grado) {
 		this.grado = grado;
+	}
+
+	@Override
+	public String toString() {
+		return "Relacion_activos [activo_superior=" + activo_superior + ", activo_inferior=" + activo_inferior
+				+ ", grado=" + grado + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(activo_inferior, activo_superior, grado);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Relacion_activos other = (Relacion_activos) obj;
+		return Objects.equals(activo_inferior, other.activo_inferior)
+				&& Objects.equals(activo_superior, other.activo_superior) && Objects.equals(grado, other.grado);
 	}
 	
 	

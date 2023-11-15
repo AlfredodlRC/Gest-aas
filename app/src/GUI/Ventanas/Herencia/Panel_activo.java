@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
@@ -56,6 +57,19 @@ public class Panel_activo extends JPanel {
 
 	private void inicializarComponentes() {
 		Dimension lbl_tamanyo = new Dimension(100,30);
+		Point pos_criterio_1 = new Point(10,10);
+		Point pos_criterio_2 = new Point(10,45);
+		Point pos_criterio_3 = new Point(10,80);
+		Point pos_criterio_4 = new Point(10,115);
+		Point pos_criterio_5 = new Point(10,150);
+		Point pos_criterio_6 = new Point(10,185);
+		Point pos_criterio_7 = new Point(410,10);
+		Point pos_criterio_8 = new Point(410,45);
+		Point pos_criterio_9 = new Point(410,80);
+		Point pos_criterio_10 = new Point(410,115);
+		Point pos_criterio_11 = new Point(410,150);
+		Point pos_criterio_12 = new Point(410,185);
+		Point pos_criterio_13 = new Point(410,220);
 		
 		panel_tabulador = new JTabbedPane();
 
@@ -87,94 +101,97 @@ public class Panel_activo extends JPanel {
 
 		lbl_valor_economico = new JLabel("Valor económico");
 		lbl_valor_economico.setSize(lbl_tamanyo);
-		lbl_valor_economico.setLocation(10,20);
+		lbl_valor_economico.setLocation(10,80);
 		panel_tab_Valoracion.add(lbl_valor_economico);
+		
 		lbl_valor_nivel_valor = new JLabel("Nivel valoración");
 		lbl_valor_nivel_valor.setSize(lbl_tamanyo);
-		lbl_valor_nivel_valor.setLocation(10,80);
+		lbl_valor_nivel_valor.setLocation(10,180);
 		panel_tab_Valoracion.add(lbl_valor_nivel_valor);
+		
 		lbl_valor_repercutido = new JLabel("Repercutido");
 		lbl_valor_repercutido.setSize(lbl_tamanyo);
-		lbl_valor_repercutido.setLocation(10,140);
+		lbl_valor_repercutido.setLocation(210,80);
 		panel_tab_Valoracion.add(lbl_valor_repercutido);
+		
 		lbl_valor_acumulado = new JLabel("Acumulado");
 		lbl_valor_acumulado.setSize(lbl_tamanyo);
-		lbl_valor_acumulado.setLocation(10,200);
+		lbl_valor_acumulado.setLocation(410,80);
 		panel_tab_Valoracion.add(lbl_valor_acumulado);
 		
 		tb_valor_repercutido = new JTextField();
 		tb_valor_repercutido.setSize(lbl_tamanyo);
-		tb_valor_repercutido.setLocation(10,170);
+		tb_valor_repercutido.setLocation(210,120);
 		panel_tab_Valoracion.add(tb_valor_repercutido);
 
 		tb_valor_acumulado = new JTextField();
 		tb_valor_acumulado.setSize(lbl_tamanyo);
-		tb_valor_acumulado.setLocation(10,230);
+		tb_valor_acumulado.setLocation(410,120);
 		panel_tab_Valoracion.add(tb_valor_acumulado);
 
 		lbl_criterio_1 = new JLabel("carácter personal");
 		lbl_criterio_1.setSize(lbl_tamanyo);
-		lbl_criterio_1.setLocation(120,20);
+		lbl_criterio_1.setLocation(pos_criterio_1);
 		lbl_criterio_1.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_1);
 		lbl_criterio_2 = new JLabel("obligación legal");
 		lbl_criterio_2.setSize(lbl_tamanyo);
-		lbl_criterio_2.setLocation(230,20);
+		lbl_criterio_2.setLocation(pos_criterio_2);
 		lbl_criterio_2.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_2);
 		lbl_criterio_3 = new JLabel("seguridad");
 		lbl_criterio_3.setSize(lbl_tamanyo);
-		lbl_criterio_3.setLocation(340,20);
+		lbl_criterio_3.setLocation(pos_criterio_3);
 		lbl_criterio_3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_3);
 		lbl_criterio_4 = new JLabel("comercial");
 		lbl_criterio_4.setSize(lbl_tamanyo);
-		lbl_criterio_4.setLocation(450,20);
+		lbl_criterio_4.setLocation(pos_criterio_4);
 		lbl_criterio_4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_4);
 		lbl_criterio_5 = new JLabel("int. servicio");
 		lbl_criterio_5.setSize(lbl_tamanyo);
-		lbl_criterio_5.setLocation(560,20);
+		lbl_criterio_5.setLocation(pos_criterio_5);
 		lbl_criterio_5.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_5);
 		lbl_criterio_6 = new JLabel("orden público");
 		lbl_criterio_6.setSize(lbl_tamanyo);
-		lbl_criterio_6.setLocation(670,20);
+		lbl_criterio_6.setLocation(pos_criterio_6);
 		lbl_criterio_6.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_6);
 		lbl_criterio_7 = new JLabel("operaciones");
 		lbl_criterio_7.setSize(lbl_tamanyo);
-		lbl_criterio_7.setLocation(780,20);
+		lbl_criterio_7.setLocation(pos_criterio_7);
 		lbl_criterio_7.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_7);
 		lbl_criterio_8 = new JLabel("admin. y gestión");
 		lbl_criterio_8.setSize(lbl_tamanyo);
-		lbl_criterio_8.setLocation(170,80);
+		lbl_criterio_8.setLocation(pos_criterio_8);
 		lbl_criterio_8.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_8);
 		lbl_criterio_9 = new JLabel("reputación");
 		lbl_criterio_9.setSize(lbl_tamanyo);
-		lbl_criterio_9.setLocation(280,80);
+		lbl_criterio_9.setLocation(pos_criterio_9);
 		lbl_criterio_9.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_9);
 		lbl_criterio_10 = new JLabel("delitos");
 		lbl_criterio_10.setSize(lbl_tamanyo);
-		lbl_criterio_10.setLocation(390,80);
+		lbl_criterio_10.setLocation(pos_criterio_10);
 		lbl_criterio_10.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_10);
 		lbl_criterio_11 = new JLabel("t. recuperación");
 		lbl_criterio_11.setSize(lbl_tamanyo);
-		lbl_criterio_11.setLocation(500,80);
+		lbl_criterio_11.setLocation(pos_criterio_11);
 		lbl_criterio_11.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_11);
 		lbl_criterio_12 = new JLabel("info nacional");
 		lbl_criterio_12.setSize(lbl_tamanyo);
-		lbl_criterio_12.setLocation(610,80);
+		lbl_criterio_12.setLocation(pos_criterio_12);
 		lbl_criterio_12.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_12);
 		lbl_criterio_13 = new JLabel("info UE");
 		lbl_criterio_13.setSize(lbl_tamanyo);
-		lbl_criterio_13.setLocation(720,80);
+		lbl_criterio_13.setLocation(pos_criterio_13);
 		lbl_criterio_13.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_tab_Criterios.add(lbl_criterio_13);
 		

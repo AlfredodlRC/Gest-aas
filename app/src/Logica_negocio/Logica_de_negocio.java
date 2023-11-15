@@ -313,14 +313,9 @@ public class Logica_de_negocio {
 		
 	}
 
-	public List<String> coger_lista_relaciones_activos() {
+	public List<Relacion_activos> coger_lista_relaciones_activos() {
 		
-		List<String> resultado = new ArrayList<String>();
-		
-		for(Relacion_activos elemento: datos_aplicacion.getLista_relaciones_activos()) {
-			resultado.add(elemento.toString());
-		}
-		return resultado;
+		return datos_aplicacion.getLista_relaciones_activos();
 		
 	}
 

@@ -1,10 +1,13 @@
 package GUI.Ventanas.Herencia;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Point;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -36,10 +39,20 @@ public class Panel_activo_manipulacion extends Panel_activo {
 	private JList<String> activos_superiores;
 	private JButton btn_agregar_activo_superior;
 	private JButton btn_desagregar_activo_superior;
+
+	private JPanel panel_aceptacion_activo_superior;
+	private JSpinner tb_grado_superior;
+	private JButton btn_aceptar_activo_superior;
+	private JButton btn_cancelar_activo_superior;
 		
 	private JList<String> activos_inferiores;
 	private JButton btn_agregar_activo_inferior;
 	private JButton btn_desagregar_activo_inferior;
+
+	private JPanel panel_aceptacion_activo_inferior;
+	private JSpinner tb_grado_inferior;
+	private JButton btn_aceptar_activo_inferior;
+	private JButton btn_cancelar_activo_inferior;
 
 	
 	public Panel_activo_manipulacion() {
@@ -48,84 +61,103 @@ public class Panel_activo_manipulacion extends Panel_activo {
 	}
 	
 	public void establecer_componentes_manipulacion() {
+		
 		Dimension lbl_tamanyo = new Dimension(100,30);
+		Dimension crit_tamanyo = new Dimension(190,30);
 		Dimension btn_tamanyo = new Dimension(150,30);
-		SpinnerNumberModel spnrModelo = new SpinnerNumberModel(0,0,200000000,0.05);
+		Dimension cb_tamanyo = new Dimension(200,30);
+		Point pos_criterio_1 = new Point(110,10);
+		Point pos_criterio_2 = new Point(110,45);
+		Point pos_criterio_3 = new Point(110,80);
+		Point pos_criterio_4 = new Point(110,115);
+		Point pos_criterio_5 = new Point(110,150);
+		Point pos_criterio_6 = new Point(110,185);
+		Point pos_criterio_7 = new Point(510,10);
+		Point pos_criterio_8 = new Point(510,45);
+		Point pos_criterio_9 = new Point(510,80);
+		Point pos_criterio_10 = new Point(510,115);
+		Point pos_criterio_11 = new Point(510,150);
+		Point pos_criterio_12 = new Point(510,185);
+		Point pos_criterio_13 = new Point(510,220);
+
+		SpinnerNumberModel spnrModelo1 = new SpinnerNumberModel(0,0,200000000,0.05);
+		SpinnerNumberModel spnrModelo2 = new SpinnerNumberModel(0.5,0,1,0.05);
+		SpinnerNumberModel spnrModelo3 = new SpinnerNumberModel(0.5,0,1,0.05);
 		
 		tb_economico = new JSpinner();
 		tb_economico.setSize(lbl_tamanyo);
-		tb_economico.setLocation(10,50);
-		tb_economico.setModel(spnrModelo);
+		tb_economico.setLocation(10,120);
+		tb_economico.setModel(spnrModelo1);
 		panel_tab_Valoracion.add(tb_economico);
 
 		nivel_valor = new JComboBox<String>();
-		nivel_valor.setSize(lbl_tamanyo);
-		nivel_valor.setLocation(10,110);
+		nivel_valor.setSize(cb_tamanyo);
+		nivel_valor.setLocation(120,180);
 		panel_tab_Valoracion.add(nivel_valor);
 
 		criterio_1 = new JComboBox<String>();
-		criterio_1.setSize(lbl_tamanyo);
-		criterio_1.setLocation(120,50);
+		criterio_1.setSize(crit_tamanyo);
+		criterio_1.setLocation(pos_criterio_1);
 		panel_tab_Criterios.add(criterio_1);
 
 		criterio_2 = new JComboBox<String>();
-		criterio_2.setSize(lbl_tamanyo);
-		criterio_2.setLocation(230,50);
+		criterio_2.setSize(crit_tamanyo);
+		criterio_2.setLocation(pos_criterio_2);
 		panel_tab_Criterios.add(criterio_2);
 
 		criterio_3 = new JComboBox<String>();
-		criterio_3.setSize(lbl_tamanyo);
-		criterio_3.setLocation(340,50);
+		criterio_3.setSize(crit_tamanyo);
+		criterio_3.setLocation(pos_criterio_3);
 		panel_tab_Criterios.add(criterio_3);
 
 		criterio_4 = new JComboBox<String>();
-		criterio_4.setSize(lbl_tamanyo);
-		criterio_4.setLocation(450,50);
+		criterio_4.setSize(crit_tamanyo);
+		criterio_4.setLocation(pos_criterio_4);
 		panel_tab_Criterios.add(criterio_4);
 
 		criterio_5 = new JComboBox<String>();
-		criterio_5.setSize(lbl_tamanyo);
-		criterio_5.setLocation(560,50);
+		criterio_5.setSize(crit_tamanyo);
+		criterio_5.setLocation(pos_criterio_5);
 		panel_tab_Criterios.add(criterio_5);
 
 		criterio_6 = new JComboBox<String>();
-		criterio_6.setSize(lbl_tamanyo);
-		criterio_6.setLocation(670,50);
+		criterio_6.setSize(crit_tamanyo);
+		criterio_6.setLocation(pos_criterio_6);
 		panel_tab_Criterios.add(criterio_6);
 
 		criterio_7 = new JComboBox<String>();
-		criterio_7.setSize(lbl_tamanyo);
-		criterio_7.setLocation(780,50);
+		criterio_7.setSize(crit_tamanyo);
+		criterio_7.setLocation(pos_criterio_7);
 		panel_tab_Criterios.add(criterio_7);
 
 		criterio_8 = new JComboBox<String>();
-		criterio_8.setSize(lbl_tamanyo);
-		criterio_8.setLocation(170,110);
+		criterio_8.setSize(crit_tamanyo);
+		criterio_8.setLocation(pos_criterio_8);
 		panel_tab_Criterios.add(criterio_8);
 
 		criterio_9 = new JComboBox<String>();
-		criterio_9.setSize(lbl_tamanyo);
-		criterio_9.setLocation(280,110);
+		criterio_9.setSize(crit_tamanyo);
+		criterio_9.setLocation(pos_criterio_9);
 		panel_tab_Criterios.add(criterio_9);
 
 		criterio_10 = new JComboBox<String>();
-		criterio_10.setSize(lbl_tamanyo);
-		criterio_10.setLocation(390,110);
+		criterio_10.setSize(crit_tamanyo);
+		criterio_10.setLocation(pos_criterio_10);
 		panel_tab_Criterios.add(criterio_10);
 
 		criterio_11 = new JComboBox<String>();
-		criterio_11.setSize(lbl_tamanyo);
-		criterio_11.setLocation(500,110);
+		criterio_11.setSize(crit_tamanyo);
+		criterio_11.setLocation(pos_criterio_11);
 		panel_tab_Criterios.add(criterio_11);
 
 		criterio_12 = new JComboBox<String>();
-		criterio_12.setSize(lbl_tamanyo);
-		criterio_12.setLocation(610,110);
+		criterio_12.setSize(crit_tamanyo);
+		criterio_12.setLocation(pos_criterio_12);
 		panel_tab_Criterios.add(criterio_12);
 
 		criterio_13 = new JComboBox<String>();
-		criterio_13.setSize(lbl_tamanyo);
-		criterio_13.setLocation(720,110);
+		criterio_13.setSize(crit_tamanyo);
+		criterio_13.setLocation(pos_criterio_13);
 		panel_tab_Criterios.add(criterio_13);
 		
 		
@@ -135,7 +167,7 @@ public class Panel_activo_manipulacion extends Panel_activo {
 		
 		btn_agregar_activo_superior = new JButton("Agregar ->");
 		btn_agregar_activo_superior.setSize(btn_tamanyo);
-		btn_agregar_activo_superior.setLocation(300,100);
+		btn_agregar_activo_superior.setLocation(250,100);
 		panel_tab_Activos_superiores.add(btn_agregar_activo_superior);
 		
 		btn_desagregar_activo_superior = new JButton("<- Desagregar");
@@ -143,13 +175,38 @@ public class Panel_activo_manipulacion extends Panel_activo {
 		btn_desagregar_activo_superior.setLocation(380,180);
 		panel_tab_Activos_superiores.add(btn_desagregar_activo_superior);
 			
+		
+		panel_aceptacion_activo_superior = new JPanel();
+		panel_aceptacion_activo_superior.setBounds(420, 50, 180, 120);
+		panel_aceptacion_activo_superior.setBackground(Color.LIGHT_GRAY);
+		panel_aceptacion_activo_superior.setLayout(null);
+		panel_aceptacion_activo_superior.setVisible(false);
+
+		panel_tab_Activos_superiores.add(panel_aceptacion_activo_superior);
+			
+		tb_grado_superior = new JSpinner();
+		tb_grado_superior.setSize(btn_tamanyo);
+		tb_grado_superior.setLocation(15,10);
+		tb_grado_superior.setModel(spnrModelo2);
+		panel_aceptacion_activo_superior.add(tb_grado_superior);
+
+		btn_cancelar_activo_superior = new JButton("Cancelar");
+		btn_cancelar_activo_superior.setSize(btn_tamanyo);
+		btn_cancelar_activo_superior.setLocation(15,50);
+		panel_aceptacion_activo_superior.add(btn_cancelar_activo_superior);
+
+		btn_aceptar_activo_superior = new JButton("Aceptar");
+		btn_aceptar_activo_superior.setSize(btn_tamanyo);
+		btn_aceptar_activo_superior.setLocation(15,85);
+		panel_aceptacion_activo_superior.add(btn_aceptar_activo_superior);
+
 		activos_inferiores = new JList<String>();
 		activos_inferiores.setBounds(620, 50, 200, 200);
 		panel_tab_Activos_inferiores.add(activos_inferiores);
 		
 		btn_agregar_activo_inferior = new JButton("Agregar ->");
 		btn_agregar_activo_inferior.setSize(btn_tamanyo);
-		btn_agregar_activo_inferior.setLocation(300,100);
+		btn_agregar_activo_inferior.setLocation(250,100);
 		panel_tab_Activos_inferiores.add(btn_agregar_activo_inferior);
 		
 		btn_desagregar_activo_inferior = new JButton("<- Desagregar");
@@ -157,6 +214,32 @@ public class Panel_activo_manipulacion extends Panel_activo {
 		btn_desagregar_activo_inferior.setLocation(380,180);
 		panel_tab_Activos_inferiores.add(btn_desagregar_activo_inferior);
 
+		
+		panel_aceptacion_activo_inferior = new JPanel();
+		panel_aceptacion_activo_inferior.setBounds(420, 50, 180, 120);
+		panel_aceptacion_activo_inferior.setBackground(Color.LIGHT_GRAY);
+		panel_aceptacion_activo_inferior.setLayout(null);
+		panel_aceptacion_activo_inferior.setVisible(false);
+
+		panel_tab_Activos_inferiores.add(panel_aceptacion_activo_inferior);
+			
+		tb_grado_inferior = new JSpinner();
+		tb_grado_inferior.setSize(btn_tamanyo);
+		tb_grado_inferior.setLocation(15,10);
+		tb_grado_inferior.setModel(spnrModelo3);
+		panel_aceptacion_activo_inferior.add(tb_grado_inferior);
+
+		btn_cancelar_activo_inferior = new JButton("Cancelar");
+		btn_cancelar_activo_inferior.setSize(btn_tamanyo);
+		btn_cancelar_activo_inferior.setLocation(15,50);
+		panel_aceptacion_activo_inferior.add(btn_cancelar_activo_inferior);
+
+		btn_aceptar_activo_inferior = new JButton("Aceptar");
+		btn_aceptar_activo_inferior.setSize(btn_tamanyo);
+		btn_aceptar_activo_inferior.setLocation(15,85);
+		panel_aceptacion_activo_inferior.add(btn_aceptar_activo_inferior);
+
+		
 	}
 
 	public JSpinner getTb_economico() {
@@ -242,6 +325,37 @@ public class Panel_activo_manipulacion extends Panel_activo {
 	public JButton getBtn_desagregar_activo_inferior() {
 		return btn_desagregar_activo_inferior;
 	}
+
+	public JSpinner getTb_grado_superior() {
+		return tb_grado_superior;
+	}
+
+	public JButton getBtn_aceptar_activo_superior() {
+		return btn_aceptar_activo_superior;
+	}
+
+	public JButton getBtn_cancelar_activo_superior() {
+		return btn_cancelar_activo_superior;
+	}
+
+	public JSpinner getTb_grado_inferior() {
+		return tb_grado_inferior;
+	}
+
+	public JButton getBtn_aceptar_activo_inferior() {
+		return btn_aceptar_activo_inferior;
+	}
+
+	public JButton getBtn_cancelar_activo_inferior() {
+		return btn_cancelar_activo_inferior;
+	}
 	
+	public JPanel get_panel_confirmacion_activo_superior() {
+		return panel_aceptacion_activo_superior;
+	}
+	
+	public JPanel get_panel_confirmacion_activo_inferior() {
+		return panel_aceptacion_activo_inferior;
+	}
 
 }

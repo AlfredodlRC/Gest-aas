@@ -3,10 +3,14 @@ package GUI.Ventanas.ventanas;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
@@ -15,6 +19,7 @@ import GUI.Ventanas.Herencia.Panel_activo_manipulacion;
 import GUI.Ventanas.Herencia.Ventana_crear;
 import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
+import datos.POJOS.Relacion_activos;
 
 public class Ventana_crear_activo extends Ventana_crear {
 
@@ -24,6 +29,13 @@ public class Ventana_crear_activo extends Ventana_crear {
 	private static final long serialVersionUID = -6745262481224451116L;
 	
 	private Panel_activo_manipulacion panel_datos;
+
+	DefaultListModel<String> modelo_activos_disponibles_inferiores = new DefaultListModel<>();
+	DefaultListModel<String> modelo_activos_disponibles_superiores = new DefaultListModel<>();
+	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
+	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
+
+	Activo_pojo activo = new Activo_pojo();
 	
 	public Ventana_crear_activo() {
 		super();
@@ -31,19 +43,39 @@ public class Ventana_crear_activo extends Ventana_crear {
 		elemento = "activo";
 		accion = "crear";
 
-		btn_accion.setText(accion);
+		establecer_componentes_creacion();
 
 		setTitle("Gestor AAS - crear activo");
+		
+	}
+	
+	private void establecer_componentes_creacion() {
+
+		btn_accion.setText(accion);
+
 		panel_datos = new Panel_activo_manipulacion();
 		panel_datos.setLocation(5, 150);
 		panel_datos.setBackground(Color.LIGHT_GRAY);
 		add(panel_datos);
 		
+		this.getActivos_disponibles_inferiores().setModel(modelo_activos_disponibles_inferiores);
+		this.getActivos_disponibles_superiores().setModel(modelo_activos_disponibles_superiores);
+		this.getActivos_inferiores().setModel(modelo_activos_inferiores);
+		this.getActivos_superiores().setModel(modelo_activos_superiores);
+
 	}
 	
 	public void establecerManejador(Controlador_acciones_crear_activo manejador) {
 		btn_accion.addActionListener(manejador);
 		btn_cancelar.addActionListener(manejador);
+		panel_datos.getBtn_agregar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_agregar_activo_superior().addActionListener(manejador);
+		panel_datos.getBtn_desagregar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_desagregar_activo_superior().addActionListener(manejador);
+		panel_datos.getBtn_aceptar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_aceptar_activo_superior().addActionListener(manejador);
+		panel_datos.getBtn_cancelar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_cancelar_activo_superior().addActionListener(manejador);
 	}
 	
 	public void cargar_datos() {
@@ -144,6 +176,29 @@ public class Ventana_crear_activo extends Ventana_crear {
 		 * Falta cargar los activos tanto relacionados on el activo como los no relacionados
 		 */
 		System.out.println(Principal.logica.coger_lista_relaciones_activos());
+		boolean existe_superior;
+		boolean existe_inferior;
+		List<String> relacionables_activos = new ArrayList<String>();
+		List<String> activos_superiores = new ArrayList<String>();
+		List<String> activos_inferiores = new ArrayList<String>();
+		for(Relacion_activos elemento: Principal.logica.coger_lista_relaciones_activos()) {
+			System.out.println(elemento.getActivo_inferior());
+			System.out.println(elemento.getActivo_superior());
+			existe_superior = false;
+			existe_inferior = false;
+			for(String elemento_existente: relacionables_activos) {
+				if (elemento_existente == elemento.getActivo_superior()) { existe_superior = true;}
+				if (elemento_existente == elemento.getActivo_inferior()) { existe_inferior = true;}
+			}
+			if (existe_superior == false) { relacionables_activos.add(elemento.getActivo_superior()); }
+			if (existe_inferior == false) { relacionables_activos.add(elemento.getActivo_inferior()); }
+		}
+
+		for(String elemento: relacionables_activos) {
+			modelo_activos_disponibles_inferiores.addElement(elemento);
+			modelo_activos_disponibles_superiores.addElement(elemento);
+		}
+
 	}
 
 
@@ -222,11 +277,11 @@ public class Ventana_crear_activo extends Ventana_crear {
 	}
 	
 	public JList<String> getActivos_disponibles_superiores() {
-		return panel_datos.get_activos_inferiores();
+		return panel_datos.getActivos_disponibles_superiores();
 	}
 	
 	public JList<String> getActivos_inferiores() {
-		return panel_datos.getActivos_disponibles_inferiores();
+		return panel_datos.get_activos_inferiores();
 	}
 	
 	public JList<String> getActivos_superiores() {
@@ -249,12 +304,64 @@ public class Ventana_crear_activo extends Ventana_crear {
 		return panel_datos.getBtn_desagregar_activo_inferior();
 	}
 
+	public JSpinner getTB_grado_superior() {
+		return panel_datos.getTb_grado_superior();
+	}
+	
+	public JSpinner getTB_grado_inferior() {
+		return panel_datos.getTb_grado_inferior();
+	}
+	
+	public JButton getBtn_aceptar_activo_inferior() {
+		return panel_datos.getBtn_aceptar_activo_inferior();
+	}
+
+	public JButton getBtn_cancelar_activo_inferior() {
+		return panel_datos.getBtn_cancelar_activo_inferior();
+	}
+	
+	public JButton getBtn_aceptar_activo_superior() {
+		return panel_datos.getBtn_aceptar_activo_superior();
+	}
+
+	public JButton getBtn_cancelar_activo_superior() {
+		return panel_datos.getBtn_cancelar_activo_superior();
+	}
+	
+	public JPanel get_panel_confirmacion_activo_superior() {
+		return panel_datos.get_panel_confirmacion_activo_superior();
+	}
+	
+	public JPanel get_panel_confirmacion_activo_inferior() {
+		return panel_datos.get_panel_confirmacion_activo_inferior();
+	}
+
+
+	public DefaultListModel<String> getModelo_activos_disponibles_inferiores() {
+		return modelo_activos_disponibles_inferiores;
+	}
+
+	public DefaultListModel<String> getModelo_activos_disponibles_superiores() {
+		return modelo_activos_disponibles_superiores;
+	}
+
+	public DefaultListModel<String> getModelo_activos_inferiores() {
+		return modelo_activos_inferiores;
+	}
+
+	public DefaultListModel<String> getModelo_activos_superiores() {
+		return modelo_activos_superiores;
+	}
+
+	public Activo_pojo getActivo_vacio() {
+		return activo;
+	}
+	
 	public Activo_pojo getActivo() {
 		
 		String texto_cb;
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		
-		Activo_pojo activo = new Activo_pojo();
 		texto_cb = Principal.logica.coger_codigo_nombre((String) this.cb_tipo.getSelectedItem());
 		activo.setTipo(texto_cb);
 		activo.setCodigo(this.getTb_codigo().getText());
@@ -295,6 +402,7 @@ public class Ventana_crear_activo extends Ventana_crear {
 		activo.setCriterio_rto(texto_cb);
 		texto_cb = Principal.logica.coger_codigo_nombre((String) this.getCriterio_3().getSelectedItem());
 		activo.setCriterio_si(texto_cb);
+		
 		return activo;
 	}
 

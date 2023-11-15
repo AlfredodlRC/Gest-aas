@@ -1,9 +1,7 @@
 package datos.POJOS;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -32,8 +30,8 @@ public class Activo_pojo {
 	private String criterio_rto;
 	private String criterio_si;
 
-	//private List<String> lista_activos_superiores;
-	//private List<String> lista_activos_inferiores;
+	private List<Relacion_activos> lista_activos_superiores;
+	private List<Relacion_activos> lista_activos_inferiores;
 	//private List<String> lista_amenazas;
 	//private List<String> lista_salvaguardas;
 
@@ -49,21 +47,22 @@ public class Activo_pojo {
 		valor_acumulado = 0.0;
 		valor_repercutido = 0.0;
 		fecha_creacion = new Date();
-	}
+		criterio_adm = "";
+		criterio_cei = "";
+		criterio_crm = "";
+		criterio_da = "";
+		criterio_ibl_national = "";
+		criterio_ibl_ue = "";
+		criterio_lg = "";
+		criterio_lpo = "";
+		criterio_olm = "";
+		criterio_pi = "";
+		criterio_po = "";
+		criterio_rto = "";
+		criterio_si = "";
 
-
-	public Activo_pojo(String tipo, String codigo, String nombre, String descripcion, String nivel_valoracion,
-			Double valor_economico, Double valor_acumulado, Double valor_repercutido, Date fecha_creacion) {
-		super();
-		Tipo = tipo;
-		this.codigo = codigo;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.nivel_valoracion = nivel_valoracion;
-		this.valor_economico = valor_economico;
-		this.valor_acumulado = valor_acumulado;
-		this.valor_repercutido = valor_repercutido;
-		this.fecha_creacion = fecha_creacion;
+		lista_activos_superiores = new ArrayList<Relacion_activos>();
+		lista_activos_inferiores = new ArrayList<Relacion_activos>();
 	}
 
 
@@ -284,6 +283,15 @@ public class Activo_pojo {
 
 	public void setCriterio_si(String criterio_si) {
 		this.criterio_si = criterio_si;
+	}
+
+	public List<Relacion_activos> getLista_activos_superiores() {
+		return lista_activos_superiores;
+	}
+
+
+	public List<Relacion_activos> getLista_activos_inferiores() {
+		return lista_activos_inferiores;
 	}
 
 
