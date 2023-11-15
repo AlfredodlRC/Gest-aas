@@ -26,14 +26,14 @@ public class CRUD_Salvaguardas {
 		List<List<String>> activos;
 		String sql;
 		Salvaguarda_pojo salvaguarda;
-		GregorianCalendar fecha;
+
 
 		sql ="SELECT salvaguarda.cod,salvaguarda.nombre,salvaguarda.descripcion,salvaguarda.Fecha_creacion,tipo_salvaguarda.cod as tipo FROM salvaguarda JOIN tipo_salvaguarda ON salvaguarda.fk_tipo=tipo_salvaguarda.pk;";
 
 		activos = base_datos.realizar_lectura(sql);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.ENGLISH);
-		Date fecha_activo = new Date();
+		Date fecha = new Date();
 
 		for(List<String> fila: activos) {
 			System.out.println(fila);
@@ -43,13 +43,11 @@ public class CRUD_Salvaguardas {
 			salvaguarda.setDescripcion(fila.get(2));
 			salvaguarda.setTipo(fila.get(4));				
 			try {
-				fecha_activo = formatter.parse(fila.get(3).replace("T", " "));
+				fecha = formatter.parse(fila.get(3).replace("T", " "));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			fecha = new GregorianCalendar();
-			fecha.setTime(fecha_activo);
 			salvaguarda.setFecha_creacion(fecha);
 			resultado.add(salvaguarda);
 		}

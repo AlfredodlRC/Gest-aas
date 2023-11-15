@@ -1,6 +1,7 @@
 package datos.POJOS;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
@@ -10,7 +11,7 @@ public class Salvaguarda_pojo {
 	private String codigo;
 	private String nombre;
 	private String descripcion;
-	private Calendar fecha_creacion;
+	private Date fecha_creacion;
 	
 	
 	
@@ -20,10 +21,10 @@ public class Salvaguarda_pojo {
 		codigo = "";
 		nombre = "";
 		descripcion = "";
-		fecha_creacion = new GregorianCalendar();
+		fecha_creacion = new Date();
 	}
 
-	public Salvaguarda_pojo(String tipo, String codigo, String nombre, String descripcion, Calendar fecha_creacion) {
+	public Salvaguarda_pojo(String tipo, String codigo, String nombre, String descripcion, Date fecha_creacion) {
 		super();
 		Tipo = tipo;
 		this.codigo = codigo;
@@ -48,7 +49,7 @@ public class Salvaguarda_pojo {
 		return descripcion;
 	}
 
-	public Calendar getFecha_creacion() {
+	public Date getFecha_creacion() {
 		return fecha_creacion;
 	}
 
@@ -68,7 +69,7 @@ public class Salvaguarda_pojo {
 		this.descripcion = descripcion;
 	}
 
-	public void setFecha_creacion(Calendar fecha_creacion) {
+	public void setFecha_creacion(Date fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
 	}
 

@@ -53,5 +53,40 @@ public class CRUD_Amenazas {
 		return resultado;
 
 	}
+	
+	public Amenaza_pojo cargar_amenaza_codigo(String codigo) {
+		
+		Amenaza_pojo resultado = new Amenaza_pojo();
+		Database base_datos = new Database();
+		List<List<String>> amenazas;
+		String sql;
+		Date fecha;
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.ENGLISH);
+		Date fecha_amenaza = new Date();
+
+		sql = "SELECT amenaza.cod,amenaza.nombre,amenaza.descripcion,amenaza.fecha_creacion,tipo_amenaza.cod ";
+		sql += "FROM amenaza JOIN tipo_amenaza ON amenaza.fk_tipo=tipo_amenaza.pk WHERE amenaza.cod='"+codigo+"';"; 
+
+		amenazas = base_datos.realizar_lectura(sql);
+		if (amenazas.size() > 0) {
+			resultado.setCodigo(amenazas.get(0).get(0));
+			resultado.setNombre(amenazas.get(0).get(1));
+			resultado.setDescripcion(amenazas.get(0).get(2));
+			try {
+				fecha_amenaza = formatter.parse(amenazas.get(0).get(3).replace("T", " "));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			fecha = new Date();
+			fecha.setTime(fecha_amenaza.getTime());
+			resultado.setTipo(amenazas.get(0).get(4));				
+			resultado.setFecha_creacion(fecha);			
+		}
+		
+		return resultado;
+	}
+
 
 }

@@ -346,6 +346,11 @@ public class Logica_de_negocio {
 	// Establecer el activo actual desde la BBDD a partir del código
 	public void set_amenaza_actual(String cod_nom_amenaza) {
 		Amenaza_pojo amenaza = new Amenaza_pojo();
+		String codigo = coger_codigo_nombre(cod_nom_amenaza);
+
+		CRUD_Amenazas acceso_amenazas = new CRUD_Amenazas();
+			
+		amenaza = acceso_amenazas.cargar_amenaza_codigo(codigo);
 		datos_aplicacion.setAmenaza_actual(amenaza);
 	}
 
