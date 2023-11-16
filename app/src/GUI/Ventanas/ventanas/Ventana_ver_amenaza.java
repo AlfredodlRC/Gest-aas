@@ -10,7 +10,6 @@ import GUI.Controladores.Controlador_acciones_ver_amenaza;
 import GUI.Ventanas.Herencia.Panel_amenaza_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_mostrar;
 import aplicacion.Principal;
-import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 
 public class Ventana_ver_amenaza extends Ventana_mostrar {

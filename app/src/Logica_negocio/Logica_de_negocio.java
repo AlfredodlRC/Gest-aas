@@ -30,6 +30,7 @@ public class Logica_de_negocio {
 		cargar_salvaguardas();
 		cargar_tipo_activo();
 		cargar_relaciones_activos();
+		cargar_tipo_amenazas();
 	}
 
 	// funciones de cargar datos de la BBDD
@@ -188,6 +189,19 @@ public class Logica_de_negocio {
 		
 	}
 	
+	public void cargar_tipo_amenazas() {
+		
+		CRUD_Amenazas acceso_amenazas = new CRUD_Amenazas();
+		
+		List<Tipo_elemento> tipo_amenazas = new ArrayList<Tipo_elemento>();
+		
+		tipo_amenazas = acceso_amenazas.cargar_lista_tipo_amenazas();
+		
+		for(Tipo_elemento elemento: tipo_amenazas) {
+			datos_aplicacion.getLista_tipo_amenazas().add(elemento);
+		}
+	} 
+
 	// Funciones de entregar listas a las pantallas
 	
 	public List<Activo_pojo> coger_lista_datos_activos() {
@@ -218,6 +232,7 @@ public class Logica_de_negocio {
 		List<String> resultado = new ArrayList<String>();
 		
 		for(Amenaza_pojo elemento: datos_aplicacion.getLista_amenazas()) {
+			System.out.println(elemento);
 			resultado.add(elemento.toString());
 		}
 		return resultado;
@@ -319,6 +334,18 @@ public class Logica_de_negocio {
 		
 	}
 
+	public List<String> coger_lista_tipo_amenazas() {
+		
+		List<String> resultado = new ArrayList<String>();
+		
+		for(Tipo_elemento elemento: datos_aplicacion.getLista_tipo_amenazas()) {
+			resultado.add(elemento.toString());
+		}
+		return resultado;
+		
+	}
+
+
 
 	// Entregar el activo actual
 	public Activo_pojo get_activo_actual() {
@@ -347,7 +374,7 @@ public class Logica_de_negocio {
 	public void set_amenaza_actual(String cod_nom_amenaza) {
 		Amenaza_pojo amenaza = new Amenaza_pojo();
 		String codigo = coger_codigo_nombre(cod_nom_amenaza);
-
+		
 		CRUD_Amenazas acceso_amenazas = new CRUD_Amenazas();
 			
 		amenaza = acceso_amenazas.cargar_amenaza_codigo(codigo);
@@ -403,7 +430,7 @@ public class Logica_de_negocio {
 		String codigo;
 		CRUD_Activos acceso_activos;
 		
-		codigo = this.datos_aplicacion.getActivo_actual().getCodigo();
+		codigo = activo_nuevo.getCodigo();
 		
 		System.out.println("Creando el activo:"+codigo);
 		
@@ -449,4 +476,56 @@ public class Logica_de_negocio {
 		return resultado;
 	}
 	
+	//Función para crear una amenaza
+	public String crear_amenaza(Amenaza_pojo amenaza_nueva) {
+		String resultado = "";
+		String codigo;
+		CRUD_Amenazas acceso_amenazas;
+		
+		codigo = amenaza_nueva.getCodigo();
+		
+		System.out.println("Creando la amenaza:"+codigo);
+		
+		acceso_amenazas = new CRUD_Amenazas();
+		
+		resultado = acceso_amenazas.crear_amenaza(amenaza_nueva);
+		
+		datos_aplicacion.getLista_amenazas().add(amenaza_nueva);
+		
+		Principal.gestor_ventanas.recargar_lista_amenazas();
+
+		System.out.println("activo "+codigo+" creado con resultado:"+resultado);
+
+		return resultado;
+	}
+
+	// Función para modificar una amenaza
+	public String modificar_amenaza_actual(Amenaza_pojo amenaza_modificado,String codigo_original) {
+		String resultado = "";
+		String codigo;
+		CRUD_Amenazas acceso_amenazas;
+		
+		codigo = this.datos_aplicacion.getActivo_actual().getCodigo();
+		
+		System.out.println("Creando el activo:"+codigo);
+		
+		acceso_amenazas = new CRUD_Amenazas();
+		
+		resultado = acceso_amenazas.modificar_amenaza(codigo_original,amenaza_modificado);
+		
+		
+		for(int i=0;i<datos_aplicacion.getLista_activos().size();i++) {
+			if (datos_aplicacion.getLista_amenazas().get(i).getCodigo() == codigo_original) {
+				datos_aplicacion.getLista_amenazas().set(i, amenaza_modificado);
+			}
+		}
+		
+		Principal.gestor_ventanas.recargar_lista_activos();
+
+		System.out.println("activo "+codigo+" creado con resultado:"+resultado);
+
+	
+		return resultado;
+	}
+
 }

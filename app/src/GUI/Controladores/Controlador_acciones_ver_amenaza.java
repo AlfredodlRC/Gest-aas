@@ -2,8 +2,6 @@ package GUI.Controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
 import aplicacion.Principal;

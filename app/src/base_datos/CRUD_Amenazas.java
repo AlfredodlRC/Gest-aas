@@ -4,18 +4,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
+import datos.POJOS.Tipo_elemento;
 
 public class CRUD_Amenazas {
 
 	public CRUD_Amenazas() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 			
 	public List<Amenaza_pojo> cargar_lista_amenazas() {
@@ -43,7 +41,6 @@ public class CRUD_Amenazas {
 			try {
 				fecha = formatter.parse(String.valueOf(fila.get(3)).replace("T", " "));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			amenaza.setFecha_creacion(fecha);
@@ -76,7 +73,6 @@ public class CRUD_Amenazas {
 			try {
 				fecha_amenaza = formatter.parse(amenazas.get(0).get(3).replace("T", " "));
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			fecha = new Date();
@@ -88,5 +84,91 @@ public class CRUD_Amenazas {
 		return resultado;
 	}
 
+	public List<Tipo_elemento> cargar_lista_tipo_amenazas() {
+		
+		List<Tipo_elemento> resultado = new ArrayList<Tipo_elemento>();
 
+		Database base_datos = new Database();
+		List<List<String>> tipo_amenazas;
+		String sql;
+		Tipo_elemento tipo_activo;
+
+		
+		sql = "select cod,nombre from tipo_amenaza;";
+		
+		tipo_amenazas = base_datos.realizar_lectura(sql);
+		
+		for(List<String> fila: tipo_amenazas) {
+			tipo_activo = new Tipo_elemento();
+			tipo_activo.setCodigo(fila.get(0));
+			tipo_activo.setNombre(fila.get(1));
+			resultado.add(tipo_activo);
+		}
+		return resultado;
+
+	}
+	
+	public String crear_amenaza(Amenaza_pojo amenaza) {
+		String resultado = "";
+		Database base_datos = new Database();
+		String sql_pk;
+		String sql_degradacion;
+		String sql_amenaza;
+		boolean resultado_creacion;
+		
+		List<List<String>> pks;
+		String pk_amenaza;
+		String pk_degradacion;
+		
+		sql_pk = "select max(pk)+1 from amenaza;";			
+		pks = base_datos.realizar_lectura(sql_pk);
+		pk_amenaza = pks.get(0).get(0);
+		
+		sql_pk = "select max(pk)+1 from degradacion;";			
+		pks = base_datos.realizar_lectura(sql_pk);
+		pk_degradacion = pks.get(0).get(0);
+
+		sql_amenaza = "INSERT INTO amenaza (PK,cod,nombre,descripcion,fk_tipo,fecha_creacion) VALUES ("
+				+ pk_amenaza + ",'"
+				+ amenaza.getCodigo() + "','"
+				+ amenaza.getNombre() + "','"
+				+ amenaza.getDescripcion() + "',"
+				+ "(select pk from tipo_amenaza where cod='" + amenaza.getTipo() + "')"
+				+ ",current_timestamp());";
+		System.out.println(sql_amenaza);
+		sql_degradacion = "";
+
+		
+		resultado_creacion = base_datos.realizar_creacion(sql_amenaza);
+		//resultado_creacion = base_datos.realizar_creacion(sql_degradacion);
+		
+		
+		return resultado;
+	}
+
+	public String modificar_amenaza(String codigo,Amenaza_pojo amenaza) {
+		String resultado = "";
+		Database base_datos = new Database();
+		String sql_amenaza;
+		String sql_pk;
+		String pk_amenaza;
+		List<List<String>> pks;
+		boolean resultado_modificacion = true;
+
+		sql_pk = "select pk from amenaza where cod='" + codigo + "';";			
+		pks = base_datos.realizar_lectura(sql_pk);
+		pk_amenaza = pks.get(0).get(0);
+		
+		sql_amenaza = "UPDATE amenaza SET "
+				+ "cod = '" + amenaza.getCodigo() + "', "
+				+ "nombre = '" + amenaza.getNombre() + "', "
+				+ "descripcion = '" + amenaza.getDescripcion() + "', "
+				+ "fk_tipo = (select pk from tipo_amenaza where cod='" + amenaza.getTipo() + "') "
+				+ "WHERE PK = "+pk_amenaza+";";
+
+		System.out.println(sql_amenaza);
+		resultado_modificacion = base_datos.realizar_modificacion(sql_amenaza);
+		
+		return resultado;
+	}
 }

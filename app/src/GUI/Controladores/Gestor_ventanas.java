@@ -14,7 +14,6 @@ import GUI.Ventanas.ventanas.Ventana_modificar_salvaguarda;
 import GUI.Ventanas.ventanas.Ventana_ver_activo;
 import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
 import GUI.Ventanas.ventanas.Ventana_ver_salvaguarda;
-import aplicacion.Principal;
 
 public class Gestor_ventanas {
 
@@ -42,6 +41,8 @@ public class Gestor_ventanas {
 
 	private Controlador_acciones_listado manejador_listado_amenaza; 
 	private Controlador_acciones_ver_amenaza manejador_ver_amenaza;
+	private Controlador_acciones_crear_amenaza manejador_crear_amenaza;
+	private Controlador_acciones_modificar_amenaza manejador_modificar_amenaza;
 	
 	private Ventana_listados ventana_listado_salvaguarda;
 	private Ventana_ver_salvaguarda ventana_ver_salvaguarda;
@@ -185,19 +186,37 @@ public class Gestor_ventanas {
 	}
 	
 	public void activar_ventana_crear_amenaza() {
-		if (ventana_crear_amenaza == null) {
-			ventana_crear_amenaza = new Ventana_crear_amenaza();
-		} else {
-			ventana_crear_amenaza.toFront();
+			System.out.println("activar ventana crear activo");
+			if (ventana_crear_amenaza == null) {
+				ventana_crear_amenaza = new Ventana_crear_amenaza();
+				manejador_crear_amenaza = new Controlador_acciones_crear_amenaza(ventana_crear_amenaza);
+				ventana_crear_amenaza.establecerManejador(manejador_crear_amenaza);
+			} else {
+				ventana_crear_amenaza.toFront();
+			}	
+			ventana_crear_amenaza.setVisible(true);
+			ventana_crear_amenaza.cargar_datos();
 		}
-	}
+
+		public void desactivar_ventana_crear_amenaza() {
+			ventana_crear_amenaza.setVisible(false);
+		}
 	
 	public void activar_ventana_modificar_amenaza() {
+		System.out.println("activar ventana modificar amenaza");
 		if (ventana_modificar_amenaza == null) {
 			ventana_modificar_amenaza = new Ventana_modificar_amenaza();
+			manejador_modificar_amenaza = new Controlador_acciones_modificar_amenaza(ventana_modificar_amenaza);
+			ventana_modificar_amenaza.establecerManejador(manejador_modificar_amenaza);
 		} else {
 			ventana_modificar_amenaza.toFront();
-		}
+		}	
+		ventana_modificar_amenaza.setVisible(true);
+		ventana_modificar_amenaza.cargar_datos();
+	}
+
+	public void desactivar_ventana_modificar_amenaza() {
+		ventana_modificar_amenaza.setVisible(false);
 	}
 	
 	public void activar_ventana_eliminar_amenaza() {

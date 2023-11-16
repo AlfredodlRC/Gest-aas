@@ -29,7 +29,7 @@ public class Controlador_acciones_modificar_activo implements ActionListener, It
 			if (resultado_modificar.isEmpty() == true) {
 				Principal.gestor_ventanas.desactivar_ventana_modificar_activo();
 			} else {
-				JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_modificar,"Error al crear activo", JOptionPane.ERROR_MESSAGE);	
+				JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_modificar,"Error al modificar activo", JOptionPane.ERROR_MESSAGE);	
 			}
 		}
 
