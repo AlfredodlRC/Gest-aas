@@ -171,4 +171,19 @@ public class CRUD_Amenazas {
 		
 		return resultado;
 	}
+	
+	public String eliminar_amenaza(String codigo) {
+		String resultado = "";
+		Database base_datos = new Database();
+		String sql_activo;
+		boolean resultado_consulta;
+
+
+		sql_activo = "DELETE FROM amenaza WHERE cod='"+codigo+"';";
+		System.out.println(sql_activo);
+		resultado_consulta = base_datos.realizar_eliminacion(sql_activo);
+
+		return resultado;
+	}
+
 }

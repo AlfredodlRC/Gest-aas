@@ -527,5 +527,28 @@ public class Logica_de_negocio {
 	
 		return resultado;
 	}
+	
+	// Función para eliminar la amenaza actual
+	public String eliminar_amenaza_actual() {
+		String resultado = "";
+		String codigo;
+		CRUD_Amenazas acceso_amenazas;
+		
+		codigo = this.datos_aplicacion.getAmenaza_actual().getCodigo();
+		
+		System.out.println("Eliminado el activo:"+codigo);
+		
+		acceso_amenazas = new CRUD_Amenazas();
+		
+		resultado = acceso_amenazas.eliminar_amenaza(codigo);
+		
+		datos_aplicacion.getLista_amenazas().remove(this.datos_aplicacion.getAmenaza_actual());
+		Principal.gestor_ventanas.recargar_lista_activos();
+
+		System.out.println("amenaza "+codigo+" eliminado con resultado:"+resultado);
+
+		
+		return resultado;
+	}
 
 }

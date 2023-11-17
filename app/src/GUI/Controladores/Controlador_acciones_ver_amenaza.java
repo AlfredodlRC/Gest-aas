@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
 import aplicacion.Principal;
 
-public class Controlador_acciones_ver_amenaza  implements ActionListener {
+public class Controlador_acciones_ver_amenaza implements ActionListener {
 
 	Ventana_ver_amenaza ventana;
 

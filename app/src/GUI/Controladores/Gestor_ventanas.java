@@ -43,6 +43,7 @@ public class Gestor_ventanas {
 	private Controlador_acciones_ver_amenaza manejador_ver_amenaza;
 	private Controlador_acciones_crear_amenaza manejador_crear_amenaza;
 	private Controlador_acciones_modificar_amenaza manejador_modificar_amenaza;
+	private Controlador_acciones_eliminar_amenaza manejador_eliminar_amenaza;
 	
 	private Ventana_listados ventana_listado_salvaguarda;
 	private Ventana_ver_salvaguarda ventana_ver_salvaguarda;
@@ -220,11 +221,21 @@ public class Gestor_ventanas {
 	}
 	
 	public void activar_ventana_eliminar_amenaza() {
+		System.out.println("activar ventana eliminar amenaza");
 		if (ventana_eliminar_amenaza == null) {
 			ventana_eliminar_amenaza = new Ventana_eliminar_amenaza();
+			manejador_eliminar_amenaza = new Controlador_acciones_eliminar_amenaza(ventana_eliminar_amenaza);
+			ventana_eliminar_amenaza.establecerManejador(manejador_eliminar_amenaza);
 		} else {
 			ventana_eliminar_amenaza.toFront();
-		}
+		}	
+		ventana_eliminar_amenaza.setVisible(true);
+		ventana_eliminar_amenaza.cargar_amenaza();
+	}
+
+	public void desactivar_ventana_eliminar_amenaza() {
+		System.out.println("desactivar ventana eliminar amenaza");
+		ventana_eliminar_amenaza.setVisible(false);
 	}
 
 	public void activar_ventada_listado_salvaguarda() {
