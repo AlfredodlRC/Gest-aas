@@ -396,11 +396,11 @@ public class CRUD_Activos {
 			sql_pk = "(select pk from activo where cod='"+codigo+"')";
 			
 			sql_activo = "UPDATE activo SET "
-					+ "`cod` = " + activo.getCodigo() + ", "
-					+ "`nombre` = " + activo.getNombre() + ", "
-					+ "`descripcion` = " + activo.getDescripcion() + ", "
-					+ "`fk_tipo` = (select pk from tipo_activo where cod='" + activo.getTipo() + "') "
-					+ "WHERE `PK` = " + sql_pk + ";";
+					+ "cod='" + activo.getCodigo() + "', "
+					+ "nombre='" + activo.getNombre() + "', "
+					+ "descripcion ='" + activo.getDescripcion() + "', "
+					+ "fk_tipo = (select pk from tipo_activo where cod='" + activo.getTipo() + "') "
+					+ "WHERE PK = " + sql_pk + ";";
 			
 			sql_valor_criterio = "INSERT INTO valor_criterio ";
 			sql_valor_criterio += "(PK,fk_crm,fk_si,fk_pi,fk_rto,fk_lg,fk_adm,fk_olm,fk_lpo,fk_ibl_national,fk_ibl_ue,fk_cei,fk_da,fk_po)";

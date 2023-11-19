@@ -7,6 +7,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.WindowListener;
 
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import GUI.Ventanas.ventanas.Ventana_crear_activo;
 import GUI.Ventanas.ventanas.Ventana_crear_amenaza;
@@ -104,7 +105,17 @@ public class Controlador_acciones_principal implements ActionListener {
 	private void salir() { }
 	
 	private void configuracion_BBDD() { }
-	private void probar_conexion_BBDD() { }
+	private void probar_conexion_BBDD() { 
+		boolean resultado;
+		
+		resultado = Principal.logica.probar_base_datos();
+		
+		if (resultado == true) {
+			JOptionPane.showMessageDialog(null,"La conexión a la base de datos es correcta.","Conexión existente", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null,"Existe un fallo al conectarse a la base de datos.","Fallo en la conexión", JOptionPane.ERROR_MESSAGE);
+		}
+	}
 	private void login() { }
 	private void logout() { }
 

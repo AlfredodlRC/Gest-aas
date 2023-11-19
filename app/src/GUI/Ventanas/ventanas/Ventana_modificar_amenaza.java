@@ -15,6 +15,7 @@ import GUI.Ventanas.Herencia.Ventana_modificar;
 import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
+import datos.POJOS.Salvaguarda_pojo;
 
 public class Ventana_modificar_amenaza extends Ventana_modificar {
 
@@ -27,7 +28,8 @@ public class Ventana_modificar_amenaza extends Ventana_modificar {
 
 	private String codigo_original;
 	
-
+	Amenaza_pojo amenaza;
+	
 	public Ventana_modificar_amenaza() {
 		super();
 		
@@ -35,6 +37,8 @@ public class Ventana_modificar_amenaza extends Ventana_modificar {
 		accion = "modificar";
 		
 		codigo_original = Principal.logica.get_amenaza_actual().getCodigo();
+		
+		amenaza = new Amenaza_pojo();
 		
 		btn_accion.setText(accion);
 
@@ -125,8 +129,11 @@ public class Ventana_modificar_amenaza extends Ventana_modificar {
 		return codigo_original;
 	}
 
+	public Amenaza_pojo getAmenaza_vacio() {
+		return amenaza;
+	}
+	
 	public Amenaza_pojo getAmenaza() {
-		Amenaza_pojo amenaza = new Amenaza_pojo();
 	
 		String texto_cb = "";
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");

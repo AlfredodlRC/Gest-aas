@@ -35,7 +35,7 @@ public class Ventana_crear_activo extends Ventana_crear {
 	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
 	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
 
-	Activo_pojo activo = new Activo_pojo();
+	Activo_pojo activo;
 	
 	public Ventana_crear_activo() {
 		super();
@@ -43,6 +43,8 @@ public class Ventana_crear_activo extends Ventana_crear {
 		elemento = "activo";
 		accion = "crear";
 
+		activo = new Activo_pojo();
+		
 		establecer_componentes_creacion();
 
 		setTitle("Gestor AAS - crear activo");
@@ -79,7 +81,7 @@ public class Ventana_crear_activo extends Ventana_crear {
 	}
 	
 	public void cargar_datos() {
-		Activo_pojo activo = new Activo_pojo();
+		//Activo_pojo activo = new Activo_pojo();
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
 		String texto_fecha;
@@ -353,7 +355,7 @@ public class Ventana_crear_activo extends Ventana_crear {
 		return modelo_activos_superiores;
 	}
 
-	public Activo_pojo getActivo_vacio() {
+	public Activo_pojo getActivo_actual() {
 		return activo;
 	}
 	

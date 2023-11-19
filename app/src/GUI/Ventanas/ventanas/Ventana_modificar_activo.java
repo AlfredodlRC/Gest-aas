@@ -29,7 +29,9 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 	private Panel_activo_manipulacion panel_datos;
 
 	private String codigo_original;
-	
+
+	Activo_pojo activo;
+
 	public Ventana_modificar_activo() {
 		super();
 
@@ -38,6 +40,9 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		
 		codigo_original = Principal.logica.get_activo_actual().getCodigo();
 
+		activo = new Activo_pojo();
+
+		
 		btn_accion.setText(accion);
 
 		setTitle("Gestor AAS - manipular activo");
@@ -308,13 +313,16 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 	public String getCodigo_original() {
 		return codigo_original;
 	}
+
+	public Activo_pojo getActivo_vacio() {
+		return activo;
+	}
 	
 	public Activo_pojo getActivo() {
 		
 		String texto_cb;
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		
-		Activo_pojo activo = new Activo_pojo();
 		texto_cb = Principal.logica.coger_codigo_nombre((String) this.cb_tipo.getSelectedItem());
 		activo.setTipo(texto_cb);
 		activo.setCodigo(this.getTb_codigo().getText());

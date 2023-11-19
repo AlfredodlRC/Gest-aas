@@ -28,11 +28,15 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 	
 	private Panel_amenaza_manipulacion panel_datos;
 	
+	private Amenaza_pojo amenaza;
+	
 	public Ventana_crear_amenaza() {
 		super();
 		
 		elemento = "amenaza";
 		accion = "crear";
+		
+		amenaza= new Amenaza_pojo();
 
 		btn_accion.setText(accion);
 
@@ -51,11 +55,11 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 	}
 	
 	public void cargar_datos() {
-		Activo_pojo activo = new Activo_pojo();
+		Amenaza_pojo amenaza = new Amenaza_pojo();
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
 		String texto_fecha;
-		texto_fecha = fmt.format( activo.getFecha_creacion().getTime());
+		texto_fecha = fmt.format(amenaza.getFecha_creacion().getTime());
 		System.out.println("cargando activo actual"+Principal.logica.get_activo_actual() );
 		
 		cargar_lista_datos();
@@ -73,9 +77,12 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 		}
 		
 	}
+
+	public Amenaza_pojo getAmenaza_actual() {
+		return amenaza;
+	}
 	
 	public Amenaza_pojo getAmenaza() {
-		Amenaza_pojo amenaza = new Amenaza_pojo();
 		SimpleDateFormat formato;
 		String texto_cb;
 		

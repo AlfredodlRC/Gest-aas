@@ -95,12 +95,12 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 			return;
 		}
 
-		for(Relacion_activos elemento: ventana.getActivo_vacio().getLista_activos_inferiores()) {
+		for(Relacion_activos elemento: ventana.getActivo_actual().getLista_activos_inferiores()) {
 			if (elemento.getActivo_inferior() == valor) {
-				indice = ventana.getActivo_vacio().getLista_activos_inferiores().indexOf(elemento);
+				indice = ventana.getActivo_actual().getLista_activos_inferiores().indexOf(elemento);
 			}
 		}
-		ventana.getActivo_vacio().getLista_activos_superiores().remove(indice);
+		ventana.getActivo_actual().getLista_activos_superiores().remove(indice);
 
 		ventana.getModelo_activos_inferiores().removeElement(valor);
 		ventana.getModelo_activos_disponibles_inferiores().addElement(valor);
@@ -125,12 +125,12 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 			return;
 		}
 
-		for(Relacion_activos elemento: ventana.getActivo_vacio().getLista_activos_superiores()) {
+		for(Relacion_activos elemento: ventana.getActivo_actual().getLista_activos_superiores()) {
 			if (elemento.getActivo_inferior() == valor) {
-				indice = ventana.getActivo_vacio().getLista_activos_superiores().indexOf(elemento);
+				indice = ventana.getActivo_actual().getLista_activos_superiores().indexOf(elemento);
 			}
 		}
-		ventana.getActivo_vacio().getLista_activos_superiores().remove(indice);
+		ventana.getActivo_actual().getLista_activos_superiores().remove(indice);
 
 
 		ventana.getModelo_activos_superiores().removeElement(valor);
@@ -156,7 +156,7 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		nueva_relacion.setActivo_inferior(valor);
 		nueva_relacion.setActivo_superior(null);
 		nueva_relacion.setGrado((Double) ventana.getTB_grado_inferior().getValue());
-		ventana.getActivo_vacio().getLista_activos_inferiores().add(nueva_relacion);
+		ventana.getActivo_actual().getLista_activos_inferiores().add(nueva_relacion);
 
 		ventana.getModelo_activos_inferiores().addElement(valor);
 		ventana.getModelo_activos_disponibles_inferiores().removeElement(valor);
@@ -187,7 +187,7 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		nueva_relacion.setActivo_inferior(null);
 		nueva_relacion.setActivo_superior(valor);
 		nueva_relacion.setGrado((Double) ventana.getTB_grado_superior().getValue());
-		ventana.getActivo_vacio().getLista_activos_superiores().add(nueva_relacion);
+		ventana.getActivo_actual().getLista_activos_superiores().add(nueva_relacion);
 
 		ventana.getModelo_activos_superiores().addElement(valor);
 		ventana.getModelo_activos_disponibles_inferiores().removeElement(valor);

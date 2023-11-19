@@ -44,7 +44,9 @@ public class Persistencia_datos {
 	private List<Tipo_elemento> lista_tipo_amenazas;
 	
 	private List<Relacion_activos> lista_relaciones_activos;
-	
+
+	private List<Tipo_elemento> lista_tipo_salvaguardas;
+
 	
 	public Persistencia_datos() {
 		super();
@@ -80,6 +82,8 @@ public class Persistencia_datos {
 		lista_tipo_amenazas = new ArrayList<Tipo_elemento>();
 
 		lista_relaciones_activos = new ArrayList<Relacion_activos>();
+		
+		lista_tipo_salvaguardas = new ArrayList<Tipo_elemento>();
 	}
 
 	public List<Activo_pojo> getLista_activos() {
@@ -212,6 +216,14 @@ public class Persistencia_datos {
 
 	public void setLista_tipo_amenazas(List<Tipo_elemento> lista_tipo_amenazas) {
 		this.lista_tipo_activos = lista_tipo_amenazas;
+	}
+
+	public List<Tipo_elemento> getLista_tipo_salvaguardas() {
+		return lista_tipo_salvaguardas;
+	}
+
+	public void setLista_tipo_salvaguardas(List<Tipo_elemento> lista_tipo_salvaguardas) {
+		this.lista_tipo_salvaguardas = lista_tipo_salvaguardas;
 	}
 
 

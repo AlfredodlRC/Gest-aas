@@ -40,6 +40,29 @@ public class Database {
 		return conexion;
 	}
 	
+	private boolean cerrar_conexion(Connection conexion) {
+		boolean resultado;
+		try {
+			conexion.close();
+			resultado = true;
+		} catch (SQLException e) {
+			resultado = false;
+			e.printStackTrace();
+		}
+		return resultado;
+	}
+	
+	public boolean probar_conexion() {
+		boolean resultado = true;
+		Connection conexion = crear_conexion();
+		if (conexion == null) {
+			resultado = false;
+		} else {
+			resultado = cerrar_conexion(conexion);
+		}
+		return resultado;
+	}
+	
 	public List<List<String>> realizar_lectura(String sql) {
 		List<List<String>> resultado = new ArrayList<List<String>>();
 		List<String> fila;
@@ -69,11 +92,7 @@ public class Database {
 			e.printStackTrace();
 		}
 		
-		try {
-			conexion_lectura.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		cerrar_conexion(conexion_lectura);
 
 		return resultado;
 	}
@@ -97,12 +116,7 @@ public class Database {
 			e.printStackTrace();
 		}
 
-		try {
-			conexion_creacion.close();
-		} catch (SQLException e) {
-			resultado = false;
-			e.printStackTrace();
-		}
+		cerrar_conexion(conexion_creacion);
 
 		return resultado;
 	}
@@ -126,13 +140,8 @@ public class Database {
 			e.printStackTrace();
 		}
 
-		try {
-			conexion_modificacion.close();
-		} catch (SQLException e) {
-			resultado = false;
-			e.printStackTrace();
-		}
-
+		cerrar_conexion(conexion_modificacion);
+		
 		return resultado;
 	}
 	
@@ -155,12 +164,7 @@ public class Database {
 			e.printStackTrace();
 		}
 
-		try {
-			conexion_eliminacion.close();
-		} catch (SQLException e) {
-			resultado = false;
-			e.printStackTrace();
-		}
+		cerrar_conexion(conexion_eliminacion);
 
 		return resultado;
 	}

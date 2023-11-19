@@ -7,6 +7,7 @@ import aplicacion.Principal;
 import base_datos.CRUD_Activos;
 import base_datos.CRUD_Amenazas;
 import base_datos.CRUD_Salvaguardas;
+import base_datos.Database;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 import datos.POJOS.Criterio;
@@ -31,6 +32,7 @@ public class Logica_de_negocio {
 		cargar_tipo_activo();
 		cargar_relaciones_activos();
 		cargar_tipo_amenazas();
+		cargar_tipo_salvaguardas();
 	}
 
 	// funciones de cargar datos de la BBDD
@@ -202,6 +204,21 @@ public class Logica_de_negocio {
 		}
 	} 
 
+	public void cargar_tipo_salvaguardas() {
+		
+		CRUD_Salvaguardas acceso_salvaguardas = new CRUD_Salvaguardas();
+		
+		List<Tipo_elemento> tipo_salvaguardas = new ArrayList<Tipo_elemento>();
+		
+		tipo_salvaguardas = acceso_salvaguardas.cargar_lista_tipo_salvaguardas();
+		
+		for(Tipo_elemento elemento: tipo_salvaguardas) {
+			datos_aplicacion.getLista_tipo_salvaguardas().add(elemento);
+		}
+		System.out.println("lista cargada de la BBDD");
+		System.out.println(datos_aplicacion.getLista_tipo_amenazas());
+	}
+
 	// Funciones de entregar listas a las pantallas
 	
 	public List<Activo_pojo> coger_lista_datos_activos() {
@@ -345,6 +362,21 @@ public class Logica_de_negocio {
 		
 	}
 
+	public List<String> coger_lista_tipo_salvaguardas() {
+		
+		List<String> resultado = new ArrayList<String>();
+		System.out.println("lista entregada");
+		System.out.println(datos_aplicacion.getLista_tipo_salvaguardas());
+		for(Tipo_elemento elemento: datos_aplicacion.getLista_tipo_salvaguardas()) {
+			resultado.add(elemento.toString());
+		}
+		System.out.println("lista entregada--");
+		System.out.println(resultado);
+		
+		return resultado;
+		
+	}
+
 
 
 	// Entregar el activo actual
@@ -389,6 +421,13 @@ public class Logica_de_negocio {
 	// Establecer la salvaguarda actual desde la BBDD a partir del código
 	public void set_salvaguarda_actual(String cod_nom_salvaguarda) {
 		Salvaguarda_pojo salvaguarda = new Salvaguarda_pojo();
+		
+		String codigo = coger_codigo_nombre(cod_nom_salvaguarda);
+
+		CRUD_Salvaguardas acceso_salvaguardas = new CRUD_Salvaguardas();
+			
+		salvaguarda = acceso_salvaguardas.cargar_salvaguarda_codigo(codigo);
+
 		datos_aplicacion.setSalvaguarda_actual(salvaguarda);
 	}
 
@@ -522,7 +561,7 @@ public class Logica_de_negocio {
 		
 		Principal.gestor_ventanas.recargar_lista_activos();
 
-		System.out.println("activo "+codigo+" creado con resultado:"+resultado);
+		System.out.println("amenaza "+codigo+" modificado con resultado:"+resultado);
 
 	
 		return resultado;
@@ -550,5 +589,91 @@ public class Logica_de_negocio {
 		
 		return resultado;
 	}
+
+	//Función para crear una salvaguarda
+	public String crear_salvaguarda(Salvaguarda_pojo salvaguarda_nueva) {
+		String resultado = "";
+		String codigo;
+		CRUD_Salvaguardas acceso_salvaguardas;
+		
+		codigo = salvaguarda_nueva.getCodigo();
+		
+		System.out.println("Creando la salvaguarda:"+codigo);
+		
+		acceso_salvaguardas = new CRUD_Salvaguardas();
+		
+		resultado = acceso_salvaguardas.crear_salvaguarda(salvaguarda_nueva);
+		
+		datos_aplicacion.getLista_salvaguardas().add(salvaguarda_nueva);
+		
+		Principal.gestor_ventanas.recargar_lista_salvaguardas();
+
+		System.out.println("salvaguarda "+codigo+" creada con resultado:"+resultado);
+
+		return resultado;
+	}
+
+	// Función para modificar la salvaguarda actual
+	public String modificar_salvaguarda_actual(String codigo_original,Salvaguarda_pojo salvaguarda_modificado) {
+		String resultado = "";
+		String codigo;
+		CRUD_Salvaguardas acceso_salvaguardas;
+		
+		codigo = this.datos_aplicacion.getSalvaguarda_actual().getCodigo();
+		
+		System.out.println("Modificando la salvaguarda:"+codigo);
+		
+		acceso_salvaguardas = new CRUD_Salvaguardas();
+		
+		resultado = acceso_salvaguardas.modificar_salvaguarda(codigo_original,salvaguarda_modificado);
+		
+		
+		for(int i=0;i<datos_aplicacion.getLista_salvaguardas().size();i++) {
+			if (datos_aplicacion.getLista_salvaguardas().get(i).getCodigo() == codigo_original) {
+				datos_aplicacion.getLista_salvaguardas().set(i, salvaguarda_modificado);
+			}
+		}
+		
+		Principal.gestor_ventanas.recargar_lista_activos();
+
+		System.out.println("salvaguarda "+codigo+" modificado con resultado:"+resultado);
+	
+		return resultado;
+	}
+	
+	// Función para eliminar la salvaguarda actual
+	public String eliminar_salvaguarda_actual() {
+		String resultado = "";
+		String codigo;
+		CRUD_Salvaguardas acceso_salvaguardas;
+		
+		codigo = this.datos_aplicacion.getSalvaguarda_actual().getCodigo();
+		
+		System.out.println("Eliminado la salvaguarda:"+codigo);
+		
+		acceso_salvaguardas = new CRUD_Salvaguardas();
+		
+		resultado = acceso_salvaguardas.eliminar_salvaguarda(codigo);
+		
+		datos_aplicacion.getLista_amenazas().remove(this.datos_aplicacion.getAmenaza_actual());
+		Principal.gestor_ventanas.recargar_lista_activos();
+
+		System.out.println("amenaza "+codigo+" eliminado con resultado:"+resultado);
+
+		
+		return resultado;
+	}
+	
+
+	//Función para probar la conexión a la base de datos
+	public boolean probar_base_datos() {
+		boolean resultado;
+		Database base_datos = new Database();
+	
+		resultado = base_datos.probar_conexion();
+	
+		return resultado;
+	}
+	
 
 }

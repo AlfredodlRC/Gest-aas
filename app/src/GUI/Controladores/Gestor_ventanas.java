@@ -52,6 +52,10 @@ public class Gestor_ventanas {
 	private Ventana_eliminar_salvaguarda ventana_eliminar_salvaguarda;
 	
 	private Controlador_acciones_listado manejador_listado_salvaguarda; 
+	private Controlador_acciones_ver_salvaguarda manejador_ver_salvaguarda;
+	private Controlador_acciones_crear_salvaguarda manejador_crear_salvaguarda;
+	private Controlador_acciones_modificar_salvaguarda manejador_modificar_salvaguarda;
+	private Controlador_acciones_eliminar_salvaguarda manejador_eliminar_salvaguarda;
 
 	
 	public Gestor_ventanas() {
@@ -250,35 +254,76 @@ public class Gestor_ventanas {
 	
 		
 	public void activar_ventana_ver_salvaguarda() {
+		System.out.println("activar ventana ver salvaguarda");
 		if (ventana_ver_salvaguarda == null) {
 			ventana_ver_salvaguarda = new Ventana_ver_salvaguarda();
+			manejador_ver_salvaguarda = new Controlador_acciones_ver_salvaguarda(ventana_ver_salvaguarda);
+			ventana_ver_salvaguarda.establecerManejador(manejador_ver_salvaguarda);
 		} else {
 			ventana_ver_salvaguarda.toFront();
-		}
+		}	
+		ventana_ver_salvaguarda.setVisible(true);
+		ventana_ver_salvaguarda.cargar_salvaguarda();
+	}
+
+	public void desactivar_ventana_ver_salvaguarda() {
+		System.out.println("desactivar ventana ver salvaguarda");
+		ventana_ver_salvaguarda.setVisible(false);
 	}
 	
 	public void activar_ventana_crear_salvaguarda() {
+		System.out.println("activar ventana crear salvaguarda");
 		if (ventana_crear_salvaguarda == null) {
 			ventana_crear_salvaguarda = new Ventana_crear_salvaguarda();
+			manejador_crear_salvaguarda = new Controlador_acciones_crear_salvaguarda(ventana_crear_salvaguarda);
+			ventana_crear_salvaguarda.establecerManejador(manejador_crear_salvaguarda);
 		} else {
 			ventana_crear_salvaguarda.toFront();
-		}
+		}	
+		ventana_crear_salvaguarda.setVisible(true);
+		ventana_crear_salvaguarda.cargar_datos();
+	}
+
+	public void desactivar_ventana_crear_salvaguarda() {
+		System.out.println("desactivar ventana crear salvaguarda");
+		ventana_crear_salvaguarda.setVisible(false);
 	}
 	
+	
 	public void activar_ventana_modificar_salvaguarda() {
+		System.out.println("activar ventana modificar salvaguarda");
 		if (ventana_modificar_salvaguarda == null) {
 			ventana_modificar_salvaguarda = new Ventana_modificar_salvaguarda();
+			manejador_modificar_salvaguarda = new Controlador_acciones_modificar_salvaguarda(ventana_modificar_salvaguarda);
+			ventana_modificar_salvaguarda.establecerManejador(manejador_modificar_salvaguarda);
 		} else {
 			ventana_modificar_salvaguarda.toFront();
-		}
+		}	
+		ventana_modificar_salvaguarda.setVisible(true);
+		ventana_modificar_salvaguarda.cargar_datos();
+	}
+
+	public void desactivar_ventana_modificar_salvaguarda() {
+		System.out.println("desactivar ventana modificar salvaguarda");
+		ventana_modificar_salvaguarda.setVisible(false);
 	}
 	
 	public void activar_ventana_eliminar_salvaguarda() {
+		System.out.println("activar ventana eliminar salvaguarda");
 		if (ventana_eliminar_salvaguarda == null) {
 			ventana_eliminar_salvaguarda = new Ventana_eliminar_salvaguarda();
+			manejador_eliminar_salvaguarda = new Controlador_acciones_eliminar_salvaguarda(ventana_eliminar_salvaguarda);
+			ventana_eliminar_salvaguarda.establecerManejador(manejador_eliminar_salvaguarda);
 		} else {
 			ventana_eliminar_salvaguarda.toFront();
-		}		
+		}	
+		ventana_eliminar_salvaguarda.setVisible(true);
+		ventana_eliminar_salvaguarda.cargar_salvaguarda();
+	}
+
+	public void desactivar_ventana_eliminar_salvaguarda() {
+		System.out.println("desactivar ventana eliminar salvaguarda");
+		ventana_eliminar_salvaguarda.setVisible(false);
 	}
 	
 }
