@@ -102,13 +102,18 @@ public class Controlador_acciones_principal implements ActionListener {
 	
 	private void importar() { }
 	
-	private void salir() { }
+	private void salir() { 
+		ventana.dispose();
+	}
 	
-	private void configuracion_BBDD() { }
+	private void configuracion_BBDD() {
+		Principal.gestor_ventanas.activar_ventana_configuracion_bbdd();
+	}
+
 	private void probar_conexion_BBDD() { 
 		boolean resultado;
 		
-		resultado = Principal.logica.probar_base_datos();
+		resultado = Principal.gestor_base_datos.probar_base_datos();
 		
 		if (resultado == true) {
 			JOptionPane.showMessageDialog(null,"La conexión a la base de datos es correcta.","Conexión existente", JOptionPane.INFORMATION_MESSAGE);
@@ -116,6 +121,7 @@ public class Controlador_acciones_principal implements ActionListener {
 			JOptionPane.showMessageDialog(null,"Existe un fallo al conectarse a la base de datos.","Fallo en la conexión", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
 	private void login() { }
 	private void logout() { }
 

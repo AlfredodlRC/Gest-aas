@@ -11,6 +11,7 @@ import base_datos.Database;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 import datos.POJOS.Criterio;
+import datos.POJOS.Database_pojo;
 import datos.POJOS.Escala;
 import datos.POJOS.Relacion_activos;
 import datos.POJOS.Salvaguarda_pojo;
@@ -665,15 +666,5 @@ public class Logica_de_negocio {
 	}
 	
 
-	//Función para probar la conexión a la base de datos
-	public boolean probar_base_datos() {
-		boolean resultado;
-		Database base_datos = new Database();
-	
-		resultado = base_datos.probar_conexion();
-	
-		return resultado;
-	}
-	
 
 }

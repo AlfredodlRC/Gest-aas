@@ -8,31 +8,51 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import datos.POJOS.Database_pojo;
+
 public class Database {
 
-	private String host;
-	private String base_datos;
-	private String usuario;
-	private String contrasenya;
+	private Database_pojo datos_bbdd;
+
 	private String cadena_conexion;
 
 	int numero_filas_afectadas;
 
 	public Database() {
 		super();
-		host = "localhost";
-		base_datos = "gestor_activos_amenazas_salvaguardas";
-		usuario = "root";
-		contrasenya = "Alfredo";
-		cadena_conexion = "jdbc:mysql://" + host + "/" +   base_datos;
+
+		datos_bbdd = new Database_pojo();
+		
+		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + "/" + datos_bbdd.getBase_datos();
 	}
+
 	
+	
+	public Database(Database_pojo datos_bbdd) {
+		super();
+
+		this.datos_bbdd = datos_bbdd;
+		
+		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + "/" + datos_bbdd.getBase_datos();
+	}
+
+
+
+	public Database_pojo getDatos_bbdd() {
+		return datos_bbdd;
+	}
+
+	public void setDatos_bbdd(Database_pojo datos_bbdd) {
+		this.datos_bbdd = datos_bbdd;
+	}
+
+
 	private Connection crear_conexion() {
 
 		Connection conexion = null;
 		
 		try {
-			conexion = DriverManager.getConnection(cadena_conexion,usuario,contrasenya);
+			conexion = DriverManager.getConnection(cadena_conexion,datos_bbdd.getUsuario(),datos_bbdd.getContrasenya());
 		} catch (SQLException e) {
 			System.out.println("No se pudo crear una conexión con la base de datos");
 		}

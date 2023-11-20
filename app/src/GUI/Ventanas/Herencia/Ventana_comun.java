@@ -30,6 +30,8 @@ public class Ventana_comun extends JFrame {
 	protected JButton btn_accion;
 	
 	public Ventana_comun() {
+		super();
+		
 		setTitle("Gestor AAS - Ventana ");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(920, 550);

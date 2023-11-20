@@ -2,6 +2,7 @@ package GUI.Controladores;
 
 import GUI.Ventanas.ventanas.Ventana_principal;
 import GUI.Ventanas.ventanas.Ventana_listados;
+import GUI.Ventanas.ventanas.Ventana_configuracion_bbdd;
 import GUI.Ventanas.ventanas.Ventana_crear_activo;
 import GUI.Ventanas.ventanas.Ventana_crear_amenaza;
 import GUI.Ventanas.ventanas.Ventana_crear_salvaguarda;
@@ -57,6 +58,9 @@ public class Gestor_ventanas {
 	private Controlador_acciones_modificar_salvaguarda manejador_modificar_salvaguarda;
 	private Controlador_acciones_eliminar_salvaguarda manejador_eliminar_salvaguarda;
 
+	
+	private Ventana_configuracion_bbdd ventana_configuracion_bbdd;
+	private Controlador_acciones_configuraccion_bbdd manejador_configuraccion_bbdd;
 	
 	public Gestor_ventanas() {
 		super();
@@ -325,5 +329,25 @@ public class Gestor_ventanas {
 		System.out.println("desactivar ventana eliminar salvaguarda");
 		ventana_eliminar_salvaguarda.setVisible(false);
 	}
+	
+	public void activar_ventana_configuracion_bbdd() {
+		System.out.println("activar ventana configuracion BBDD");
+		if (ventana_configuracion_bbdd == null) {
+			ventana_configuracion_bbdd = new Ventana_configuracion_bbdd();
+			manejador_configuraccion_bbdd = new Controlador_acciones_configuraccion_bbdd(ventana_configuracion_bbdd);
+			ventana_configuracion_bbdd.establecerManejador(manejador_configuraccion_bbdd);
+		} else {
+			ventana_configuracion_bbdd.toFront();
+		}	
+		ventana_configuracion_bbdd.setVisible(true);
+		ventana_configuracion_bbdd.cargar_datos();
+	}
+
+	public void desactivar_ventana_configuracion_bbdd() {
+		System.out.println("desactivar ventana configuracion BBDD");
+		ventana_configuracion_bbdd.setVisible(false);
+	}
+	
+	
 	
 }

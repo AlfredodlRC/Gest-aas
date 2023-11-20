@@ -6,6 +6,7 @@ import java.util.List;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 import datos.POJOS.Criterio;
+import datos.POJOS.Database_pojo;
 import datos.POJOS.Escala;
 import datos.POJOS.Relacion_activos;
 import datos.POJOS.Salvaguarda_pojo;
@@ -47,7 +48,6 @@ public class Persistencia_datos {
 
 	private List<Tipo_elemento> lista_tipo_salvaguardas;
 
-	
 	public Persistencia_datos() {
 		super();
 		
@@ -84,6 +84,7 @@ public class Persistencia_datos {
 		lista_relaciones_activos = new ArrayList<Relacion_activos>();
 		
 		lista_tipo_salvaguardas = new ArrayList<Tipo_elemento>();
+		
 	}
 
 	public List<Activo_pojo> getLista_activos() {
