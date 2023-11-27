@@ -125,6 +125,46 @@ public class CRUD_Activos {
 			
 		}
 		
+		public List<Activo_pojo> cargar_lista_activos_por_tipo_amenaza(String codigo) {
+			List<Activo_pojo> resultado = new ArrayList<Activo_pojo>();
+
+			Database base_datos = new Database();
+			List<List<String>> activos;
+			String sql;
+			Activo_pojo activo;
+			GregorianCalendar fecha;
+
+			
+			sql = "SELECT activo.cod,activo.nombre,activo.descripcion,activo.Fecha_creacion,tipo_activo.cod as tipo";
+			sql += " FROM activo JOIN tipo_activo ON activo.fk_tipo=tipo_activo.pk;";
+
+			activos = base_datos.realizar_lectura(sql);
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm", Locale.ENGLISH);
+			Date fecha_activo = new Date();
+
+			for(List<String> fila: activos) {
+				activo = new Activo_pojo();
+				activo.setCodigo(fila.get(0));
+				activo.setNombre(fila.get(1));
+				activo.setDescripcion(fila.get(2));
+				activo.setTipo(fila.get(4));				
+				try {
+					fecha_activo = formatter.parse(fila.get(3).replace("T", " "));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				fecha = new GregorianCalendar();
+				fecha.setTime(fecha_activo);
+				activo.setFecha_creacion(fecha.getTime());
+				resultado.add(activo);
+			}
+
+			return resultado;
+			
+		}
+		
 		public Activo_pojo cargar_activo_codigo(String codigo) {
 			
 			Activo_pojo resultado = new Activo_pojo();
@@ -168,7 +208,8 @@ public class CRUD_Activos {
 			sql += " JOIN criterio_po ON valor_criterio.fk_adm=criterio_po.PK";
 			sql += " JOIN criterio_rto ON valor_criterio.fk_adm=criterio_rto.PK";
 			sql += " JOIN criterio_si ON valor_criterio.fk_adm=criterio_si.PK";
-			sql += " WHERE activo.cod LIKE '" + codigo + "';";
+			sql += " WHERE activo.cod LIKE '" + codigo + "'";
+			sql += " and valoracion.fecha_creacion=(select max(Fecha_creacion) from valoracion where activo.pk=valoracion.fk_activo);";
 
 			activos = base_datos.realizar_lectura(sql);
 			if (activos.size() > 0) {
@@ -206,35 +247,6 @@ public class CRUD_Activos {
 			return resultado;
 		}
 		
-		public String eliminar_activo(String codigo) {
-			String resultado = "";
-			Database base_datos = new Database();
-			String sql_pk;
-			String sql_valor_criterio;
-			String sql_valoracion;
-			String sql_dependencia;
-			String sql_activo;
-			boolean resultado_consulta;
-			/* 
-			 * Hay que eliminar de las tablas:
-			 *  valor_criterio
-			 *  valoracion
-			 *  rel_dependencia_activos
-			 *  activo
-			 */
-			sql_pk = "(select pk from activo where cod='"+codigo+"')";
-			sql_valor_criterio = "DELETE FROM valor_criterio WHERE pk=(select fk_criterio from valoracion where fk_activo="+sql_pk+");";
-			sql_valoracion = "DELETE FROM valoracion WHERE fk_activo="+sql_pk+";";
-			sql_dependencia = "DELETE FROM rel_dependencia_activos WHERE fk_inferior="+sql_pk+" or fk_superior="+sql_pk+";";
-			sql_activo = "DELETE FROM activo WHERE cod='"+codigo+"';";
-			resultado_consulta = base_datos.realizar_eliminacion(sql_dependencia);
-			resultado_consulta = base_datos.realizar_eliminacion(sql_valoracion);
-			resultado_consulta = base_datos.realizar_eliminacion(sql_valor_criterio);
-			resultado_consulta = base_datos.realizar_eliminacion(sql_activo);
-
-			return resultado;
-		}
-
 		public List<Tipo_elemento> cargar_lista_tipo_activos() {
 			
 			List<Tipo_elemento> resultado = new ArrayList<Tipo_elemento>();
@@ -376,7 +388,7 @@ public class CRUD_Activos {
 			String pk_valoracion;
 			String pk_valor_criterio;
 
-			boolean resultado_modificacion = true;
+			int resultado_modificacion = 0;
 			/* 
 			 * Hay que modificar en las tablas:
 			 *  rel_dependencia_activos
@@ -425,13 +437,76 @@ public class CRUD_Activos {
 			sql_valoracion += ",(select pk from escala_valor where abreviadura='"+activo.getNivel_valoracion()+"'),pk_valor_criterio>);";
 
 			
-			//sql_dependencia = "UPDATE rel_dependencia_activos SET fk_superior = <{fk_superior: }>, fk_inferior = <{fk_inferior: }>,`grado` = <{grado: }> WHERE ;";
 
 			resultado_modificacion = base_datos.realizar_modificacion(sql_activo);
 			resultado_modificacion = base_datos.realizar_modificacion(sql_valoracion);
 			resultado_modificacion = base_datos.realizar_modificacion(sql_valor_criterio);
 
-			//resultado_modificacion = base_datos.realizar_modificacion(sql_dependencia);
+			
+			for(Relacion_activos elemento_superior: activo.getLista_activos_superiores()) {
+				sql_dependencia = "UPDATE rel_dependencia_activos SET ";
+				sql_dependencia += "fk_superior = select * from activo where cod='" + elemento_superior.getActivo_superior() + "',";
+				sql_dependencia += "fk_inferior = select * from activo where cod='" + activo.getCodigo() + "'";
+				sql_dependencia += ",grado = " + elemento_superior.getGrado();
+				sql_dependencia += " WHERE ;";
+				resultado_modificacion = base_datos.realizar_modificacion(sql_dependencia);
+				if (resultado_modificacion == -1) {
+					sql_dependencia = "INSERT INTO rel_dependencia_activos"
+							+ "(fk_superior,"
+							+ "fk_inferior,"
+							+ "grado)"
+							+ "VALUES"
+							+ "fk_superior = select * from activo where cod='" + elemento_superior.getActivo_superior() + "',"
+							+ "fk_inferior = select * from activo where cod='" + activo.getCodigo() + "',"
+							+ elemento_superior.getGrado();
+					base_datos.realizar_creacion(sql_dependencia);
+				}
+			}	
+			for(Relacion_activos elemento_inferior: activo.getLista_activos_superiores()) {
+				sql_dependencia = "UPDATE rel_dependencia_activos SET ";
+				sql_dependencia += "fk_superior = (select * from activo where cod='" + activo.getCodigo() + "'),";
+				sql_dependencia += "fk_inferior = (select * from activo where cod='" + elemento_inferior.getActivo_inferior() + "'),";
+				sql_dependencia += "grado = " + elemento_inferior.getGrado() + " WHERE ";
+				sql_dependencia += "fk_superior = (select * from activo where cod='" + activo.getCodigo() + "') and ";
+				sql_dependencia += "fk_inferior = (select * from activo where cod='" + elemento_inferior.getActivo_inferior() + "'),";
+				resultado_modificacion = base_datos.realizar_modificacion(sql_dependencia);
+				if (resultado_modificacion == -1) {
+					sql_dependencia = "INSERT INTO rel_dependencia_activos (fk_superior,fk_inferior,grado) VALUES ("
+								+ "fk_superior = select * from activo where cod='" + activo.getCodigo() + "',"
+								+ "fk_inferior = select * from activo where cod='" + elemento_inferior.getActivo_inferior() + "',"
+								+ elemento_inferior.getGrado() + ");";
+					base_datos.realizar_creacion(sql_dependencia);
+				}
+			}
+
+			return resultado;
+		}
+
+		public String eliminar_activo(String codigo) {
+			String resultado = "";
+			Database base_datos = new Database();
+			String sql_pk;
+			String sql_valor_criterio;
+			String sql_valoracion;
+			String sql_dependencia;
+			String sql_activo;
+			boolean resultado_consulta;
+			/* 
+			 * Hay que eliminar de las tablas:
+			 *  valor_criterio
+			 *  valoracion
+			 *  rel_dependencia_activos
+			 *  activo
+			 */
+			sql_pk = "(select pk from activo where cod='"+codigo+"')";
+			sql_valor_criterio = "DELETE FROM valor_criterio WHERE pk=(select fk_criterio from valoracion where fk_activo="+sql_pk+");";
+			sql_valoracion = "DELETE FROM valoracion WHERE fk_activo="+sql_pk+";";
+			sql_dependencia = "DELETE FROM rel_dependencia_activos WHERE fk_inferior="+sql_pk+" or fk_superior="+sql_pk+";";
+			sql_activo = "DELETE FROM activo WHERE cod='"+codigo+"';";
+			resultado_consulta = base_datos.realizar_eliminacion(sql_dependencia);
+			resultado_consulta = base_datos.realizar_eliminacion(sql_valoracion);
+			resultado_consulta = base_datos.realizar_eliminacion(sql_valor_criterio);
+			resultado_consulta = base_datos.realizar_eliminacion(sql_activo);
 
 			return resultado;
 		}

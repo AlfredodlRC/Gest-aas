@@ -153,7 +153,7 @@ public class CRUD_Amenazas {
 		String sql_pk;
 		String pk_amenaza;
 		List<List<String>> pks;
-		boolean resultado_modificacion = true;
+		int resultado_modificacion;
 
 		sql_pk = "select pk from amenaza where cod='" + codigo + "';";			
 		pks = base_datos.realizar_lectura(sql_pk);

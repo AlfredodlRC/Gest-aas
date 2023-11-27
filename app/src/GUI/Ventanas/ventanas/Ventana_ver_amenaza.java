@@ -49,6 +49,7 @@ public class Ventana_ver_amenaza extends Ventana_mostrar {
 
 		String texto_fecha;
 		texto_fecha = fmt.format( amenaza.getFecha_creacion().getTime());
+
 		System.out.println("cargando activo actual"+Principal.logica.get_activo_actual() );
 		
 		tb_codigo.setText(amenaza.getCodigo());
@@ -59,7 +60,7 @@ public class Ventana_ver_amenaza extends Ventana_mostrar {
 	}
 	
 	public JList<String> getActivos_afectados() {
-		return panel_datos.getActivos_afectados();
+		return panel_datos.getActivos();
 	}
 
 	public JSpinner getTb_degradacion_valor() {
@@ -71,7 +72,7 @@ public class Ventana_ver_amenaza extends Ventana_mostrar {
 	}
 
 	public JList<String> getSalvaguardas_afectan() {
-		return panel_datos.getSalvaguardas_afectan();
+		return panel_datos.getSalvaguardas();
 	}
 
 	public JSpinner getTb_eficiencia_valor() {

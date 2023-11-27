@@ -1,8 +1,8 @@
 package datos.POJOS;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Objects;
 
 public class Amenaza_pojo {
@@ -11,6 +11,8 @@ public class Amenaza_pojo {
 	private String nombre;
 	private String descripcion;
 	private Date fecha_creacion;
+	private List<Degradacion_amenaza_pojo> degradaciones;
+	private List<Eficiencia_amenaza_pojo> eficiencias;
 	
 	public Amenaza_pojo() {
 		super();
@@ -19,6 +21,8 @@ public class Amenaza_pojo {
 		nombre = "";
 		descripcion = "";
 		fecha_creacion = new Date();
+		degradaciones = new ArrayList<Degradacion_amenaza_pojo>();
+		eficiencias = new ArrayList<Eficiencia_amenaza_pojo>();
 	}
 
 	public Amenaza_pojo(String tipo, String codigo, String nombre, String descripcion, Date fecha_creacion) {
@@ -68,6 +72,14 @@ public class Amenaza_pojo {
 
 	public void setFecha_creacion(Date fecha_creacion) {
 		this.fecha_creacion = fecha_creacion;
+	}
+
+	public List<Degradacion_amenaza_pojo> getDegradaciones() {
+		return degradaciones;
+	}
+
+	public List<Eficiencia_amenaza_pojo> getEficiencias() {
+		return eficiencias;
 	}
 
 	@Override

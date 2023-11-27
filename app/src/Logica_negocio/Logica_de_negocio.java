@@ -19,7 +19,7 @@ import datos.POJOS.Tipo_elemento;
 
 public class Logica_de_negocio {
 
-	Persistencia_datos datos_aplicacion;
+	private Persistencia_datos datos_aplicacion;
 
 	
 	public Logica_de_negocio() {
@@ -39,12 +39,9 @@ public class Logica_de_negocio {
 	// funciones de cargar datos de la BBDD
 	public void cargar_criterios() {
 		
-		CRUD_Activos acceso_activos;
 		List<Criterio> criterios = new ArrayList<Criterio>();
 		
-		acceso_activos = new CRUD_Activos();
-		
-		criterios = acceso_activos.cargar_criterios();
+		criterios = Principal.gestor_base_datos.coger_todos_criterios();
 
 		for(Criterio elemento: criterios) {
 			switch (elemento.getTipo_criterio()) {
@@ -96,12 +93,9 @@ public class Logica_de_negocio {
 
 	public void cargar_escalas() {
 		
-		CRUD_Activos acceso_activos;
 		List<Escala> escalas = new ArrayList<Escala>();
 		
-		acceso_activos = new CRUD_Activos();
-		
-		escalas = acceso_activos.cargar_escalas();
+		escalas = Principal.gestor_base_datos.coger_todas_escalas();
 
 		for(Escala elemento: escalas) {
 			switch (elemento.getTipo_escala()) {
@@ -126,11 +120,9 @@ public class Logica_de_negocio {
 
 	public void cargar_activos() {
 
-		CRUD_Activos acceso_activos = new CRUD_Activos();
-		
 		List<Activo_pojo> activos = new ArrayList<Activo_pojo>();
 		
-		activos = acceso_activos.cargar_lista_activos();
+		activos = Principal.gestor_base_datos.coger_lista_activos();
 		
 		for(Activo_pojo elemento: activos) {
 			datos_aplicacion.getLista_activos().add(elemento);
@@ -140,11 +132,9 @@ public class Logica_de_negocio {
 
 	public void cargar_amenazas() {
 
-		CRUD_Amenazas acceso_amenazas = new CRUD_Amenazas();
-		
 		List<Amenaza_pojo> amenazas = new ArrayList<Amenaza_pojo>();
 		
-		amenazas = acceso_amenazas.cargar_lista_amenazas();
+		amenazas = Principal.gestor_base_datos.coger_lista_amenazas();
 		
 		for(Amenaza_pojo elemento: amenazas) {
 			datos_aplicacion.getLista_amenazas().add(elemento);
@@ -154,11 +144,9 @@ public class Logica_de_negocio {
 
 	public void cargar_salvaguardas() {
 
-		CRUD_Salvaguardas acceso_salvaguardas = new CRUD_Salvaguardas();
-		
 		List<Salvaguarda_pojo> salvaguardas = new ArrayList<Salvaguarda_pojo>();
 		
-		salvaguardas = acceso_salvaguardas.cargar_lista_salvaguardas();
+		salvaguardas = Principal.gestor_base_datos.coger_listas_salvaguardas();
 		
 		for(Salvaguarda_pojo elemento: salvaguardas) {
 			datos_aplicacion.getLista_salvaguardas().add(elemento);
@@ -167,11 +155,9 @@ public class Logica_de_negocio {
 	
 	public void cargar_tipo_activo() {
 		
-		CRUD_Activos acceso_activos = new CRUD_Activos();
-		
 		List<Tipo_elemento> tipo_activos = new ArrayList<Tipo_elemento>();
 		
-		tipo_activos = acceso_activos.cargar_lista_tipo_activos();
+		tipo_activos = Principal.gestor_base_datos.coger_lista_tipo_activos();
 		
 		for(Tipo_elemento elemento: tipo_activos) {
 			datos_aplicacion.getLista_tipo_activos().add(elemento);
@@ -180,11 +166,9 @@ public class Logica_de_negocio {
 	
 	public void cargar_relaciones_activos() {
 
-		CRUD_Activos acceso_activos = new CRUD_Activos();
-		
 		List<Relacion_activos> tipo_activos = new ArrayList<Relacion_activos>();
 		
-		tipo_activos = acceso_activos.cargar_relaciones_activos();
+		tipo_activos = Principal.gestor_base_datos.coger_lista_relaciones_activos();
 		
 		for(Relacion_activos elemento: tipo_activos) {
 			datos_aplicacion.getLista_relaciones_activos().add(elemento);
@@ -194,11 +178,9 @@ public class Logica_de_negocio {
 	
 	public void cargar_tipo_amenazas() {
 		
-		CRUD_Amenazas acceso_amenazas = new CRUD_Amenazas();
-		
 		List<Tipo_elemento> tipo_amenazas = new ArrayList<Tipo_elemento>();
 		
-		tipo_amenazas = acceso_amenazas.cargar_lista_tipo_amenazas();
+		tipo_amenazas = Principal.gestor_base_datos.coger_lista_tipo_amenazas();
 		
 		for(Tipo_elemento elemento: tipo_amenazas) {
 			datos_aplicacion.getLista_tipo_amenazas().add(elemento);
@@ -207,17 +189,13 @@ public class Logica_de_negocio {
 
 	public void cargar_tipo_salvaguardas() {
 		
-		CRUD_Salvaguardas acceso_salvaguardas = new CRUD_Salvaguardas();
-		
 		List<Tipo_elemento> tipo_salvaguardas = new ArrayList<Tipo_elemento>();
 		
-		tipo_salvaguardas = acceso_salvaguardas.cargar_lista_tipo_salvaguardas();
+		tipo_salvaguardas = Principal.gestor_base_datos.coger_lista_tipo_salvaguardas();
 		
 		for(Tipo_elemento elemento: tipo_salvaguardas) {
 			datos_aplicacion.getLista_tipo_salvaguardas().add(elemento);
 		}
-		System.out.println("lista cargada de la BBDD");
-		System.out.println(datos_aplicacion.getLista_tipo_amenazas());
 	}
 
 	// Funciones de entregar listas a las pantallas
@@ -389,11 +367,9 @@ public class Logica_de_negocio {
 	public void set_activo_actual(String cod_nom_activo) {
 		
 		Activo_pojo activo = new Activo_pojo();
-		String codigo = coger_codigo_nombre(cod_nom_activo);
-
-		CRUD_Activos acceso_activos = new CRUD_Activos();
+		String codigo = this.coger_codigo_nombre(cod_nom_activo);
 			
-		activo = acceso_activos.cargar_activo_codigo(codigo);
+		activo = Principal.gestor_base_datos.coger_activo(codigo);
 
 		datos_aplicacion.setActivo_actual(activo);
 	}
@@ -405,12 +381,12 @@ public class Logica_de_negocio {
 
 	// Establecer el activo actual desde la BBDD a partir del código
 	public void set_amenaza_actual(String cod_nom_amenaza) {
+		
 		Amenaza_pojo amenaza = new Amenaza_pojo();
 		String codigo = coger_codigo_nombre(cod_nom_amenaza);
 		
-		CRUD_Amenazas acceso_amenazas = new CRUD_Amenazas();
-			
-		amenaza = acceso_amenazas.cargar_amenaza_codigo(codigo);
+		amenaza = Principal.gestor_base_datos.coger_amenaza(codigo);
+
 		datos_aplicacion.setAmenaza_actual(amenaza);
 	}
 
@@ -421,13 +397,11 @@ public class Logica_de_negocio {
 
 	// Establecer la salvaguarda actual desde la BBDD a partir del código
 	public void set_salvaguarda_actual(String cod_nom_salvaguarda) {
-		Salvaguarda_pojo salvaguarda = new Salvaguarda_pojo();
 		
+		Salvaguarda_pojo salvaguarda = new Salvaguarda_pojo();
 		String codigo = coger_codigo_nombre(cod_nom_salvaguarda);
-
-		CRUD_Salvaguardas acceso_salvaguardas = new CRUD_Salvaguardas();
 			
-		salvaguarda = acceso_salvaguardas.cargar_salvaguarda_codigo(codigo);
+		salvaguarda = Principal.gestor_base_datos.coger_salvaguarda(codigo);
 
 		datos_aplicacion.setSalvaguarda_actual(salvaguarda);
 	}
@@ -445,15 +419,13 @@ public class Logica_de_negocio {
 		
 		String resultado = "";
 		String codigo;
-		CRUD_Activos acceso_activos;
 		
 		codigo = this.datos_aplicacion.getActivo_actual().getCodigo();
 		
 		System.out.println("Eliminado el activo:"+codigo);
 		
-		acceso_activos = new CRUD_Activos();
 		
-		resultado = acceso_activos.eliminar_activo(codigo);
+		resultado = Principal.gestor_base_datos.eliminar_activo(codigo);
 		
 		datos_aplicacion.getLista_activos().remove(this.datos_aplicacion.getActivo_actual());
 		Principal.gestor_ventanas.recargar_lista_activos();
@@ -468,15 +440,13 @@ public class Logica_de_negocio {
 	public String crear_activo(Activo_pojo activo_nuevo) {
 		String resultado = "";
 		String codigo;
-		CRUD_Activos acceso_activos;
 		
 		codigo = activo_nuevo.getCodigo();
 		
 		System.out.println("Creando el activo:"+codigo);
 		
-		acceso_activos = new CRUD_Activos();
 		
-		resultado = acceso_activos.crear_activo(activo_nuevo);
+		resultado = Principal.gestor_base_datos.crear_activo(activo_nuevo);
 		
 		datos_aplicacion.getLista_activos().add(activo_nuevo);
 		
@@ -491,15 +461,12 @@ public class Logica_de_negocio {
 	public String modificar_activo_actual(Activo_pojo activo_modificado,String codigo_original) {
 		String resultado = "";
 		String codigo;
-		CRUD_Activos acceso_activos;
 		
 		codigo = this.datos_aplicacion.getActivo_actual().getCodigo();
 		
 		System.out.println("Creando el activo:"+codigo);
 		
-		acceso_activos = new CRUD_Activos();
-		
-		resultado = acceso_activos.modificar_activo(codigo_original,activo_modificado);
+		resultado = Principal.gestor_base_datos.modificar_activo(codigo_original,activo_modificado);
 		
 		
 		for(int i=0;i<datos_aplicacion.getLista_activos().size();i++) {
@@ -520,15 +487,12 @@ public class Logica_de_negocio {
 	public String crear_amenaza(Amenaza_pojo amenaza_nueva) {
 		String resultado = "";
 		String codigo;
-		CRUD_Amenazas acceso_amenazas;
 		
 		codigo = amenaza_nueva.getCodigo();
 		
 		System.out.println("Creando la amenaza:"+codigo);
-		
-		acceso_amenazas = new CRUD_Amenazas();
-		
-		resultado = acceso_amenazas.crear_amenaza(amenaza_nueva);
+				
+		resultado = Principal.gestor_base_datos.crear_amenaza(amenaza_nueva);
 		
 		datos_aplicacion.getLista_amenazas().add(amenaza_nueva);
 		
@@ -543,15 +507,12 @@ public class Logica_de_negocio {
 	public String modificar_amenaza_actual(Amenaza_pojo amenaza_modificado,String codigo_original) {
 		String resultado = "";
 		String codigo;
-		CRUD_Amenazas acceso_amenazas;
 		
 		codigo = this.datos_aplicacion.getActivo_actual().getCodigo();
 		
 		System.out.println("Creando el activo:"+codigo);
 		
-		acceso_amenazas = new CRUD_Amenazas();
-		
-		resultado = acceso_amenazas.modificar_amenaza(codigo_original,amenaza_modificado);
+		resultado = Principal.gestor_base_datos.modificar_amenaza(amenaza_modificado, codigo_original);
 		
 		
 		for(int i=0;i<datos_aplicacion.getLista_activos().size();i++) {
@@ -646,15 +607,13 @@ public class Logica_de_negocio {
 	public String eliminar_salvaguarda_actual() {
 		String resultado = "";
 		String codigo;
-		CRUD_Salvaguardas acceso_salvaguardas;
 		
 		codigo = this.datos_aplicacion.getSalvaguarda_actual().getCodigo();
 		
 		System.out.println("Eliminado la salvaguarda:"+codigo);
 		
-		acceso_salvaguardas = new CRUD_Salvaguardas();
 		
-		resultado = acceso_salvaguardas.eliminar_salvaguarda(codigo);
+		resultado = Principal.gestor_base_datos.eliminar_salvaguarda(codigo);
 		
 		datos_aplicacion.getLista_amenazas().remove(this.datos_aplicacion.getAmenaza_actual());
 		Principal.gestor_ventanas.recargar_lista_activos();

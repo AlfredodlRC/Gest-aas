@@ -37,9 +37,10 @@ public class Principal {
 
 		System.out.println("Saludos");
 
+		gestor_base_datos = new Gestor_BBDD();
+
 		logica = new Logica_de_negocio();
 
-		gestor_base_datos = new Gestor_BBDD();
 		gestor_ventanas = new Gestor_ventanas();
 	}
 

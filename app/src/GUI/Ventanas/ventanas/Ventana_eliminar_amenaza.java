@@ -60,7 +60,7 @@ public class Ventana_eliminar_amenaza extends Ventana_eliminar {
 	}
 
 	public JList<String> getActivos_afectados() {
-		return panel_datos.getActivos_afectados();
+		return panel_datos.getActivos();
 	}
 
 	public JSpinner getTb_degradacion_valor() {
@@ -72,7 +72,7 @@ public class Ventana_eliminar_amenaza extends Ventana_eliminar {
 	}
 
 	public JList<String> getSalvaguardas_afectan() {
-		return panel_datos.getSalvaguardas_afectan();
+		return panel_datos.getSalvaguardas();
 	}
 
 	public JSpinner getTb_eficiencia_valor() {

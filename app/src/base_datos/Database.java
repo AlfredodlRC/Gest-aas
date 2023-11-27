@@ -141,8 +141,8 @@ public class Database {
 		return resultado;
 	}
 	
-	public boolean realizar_modificacion(String sql) {
-		boolean resultado;
+	public int realizar_modificacion(String sql) {
+		int resultado;
 		Connection conexion_modificacion;
 		PreparedStatement ps;
 		
@@ -153,10 +153,10 @@ public class Database {
 		try {
 			ps = conexion_modificacion.prepareStatement(sql);
 			numero_filas_afectadas = ps.executeUpdate();
-			resultado = true;
+			resultado = numero_filas_afectadas;
 		} catch (SQLException e) {
 			System.out.println("Error al modificar: ");
-			resultado = false;
+			resultado = -1;
 			e.printStackTrace();
 		}
 

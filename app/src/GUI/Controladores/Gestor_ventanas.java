@@ -302,14 +302,15 @@ public class Gestor_ventanas {
 			ventana_modificar_salvaguarda.establecerManejador(manejador_modificar_salvaguarda);
 		} else {
 			ventana_modificar_salvaguarda.toFront();
+			ventana_modificar_salvaguarda.cargar_datos();
 		}	
 		ventana_modificar_salvaguarda.setVisible(true);
-		ventana_modificar_salvaguarda.cargar_datos();
 	}
 
 	public void desactivar_ventana_modificar_salvaguarda() {
 		System.out.println("desactivar ventana modificar salvaguarda");
-		ventana_modificar_salvaguarda.setVisible(false);
+		//ventana_modificar_salvaguarda.setVisible(false);
+		ventana_modificar_salvaguarda.dispose();
 	}
 	
 	public void activar_ventana_eliminar_salvaguarda() {

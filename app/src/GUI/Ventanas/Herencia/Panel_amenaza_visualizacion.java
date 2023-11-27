@@ -32,12 +32,12 @@ public class Panel_amenaza_visualizacion extends Panel_amenaza {
 		tb_degradacion_fecuencia.setLocation(550,150);
 		tb_degradacion_fecuencia.setEnabled(false);
 		
-    	lbl_eficiencia_valor.setLocation(390,70);
+    	lbl_eficiencia_valor.setLocation(550,40);
 		
 		tb_eficiencia_valor.setLocation(550,70);
 		tb_eficiencia_valor.setEnabled(false);
 
-		lbl_eficiencia_fecuencia.setLocation(390,150);
+		lbl_eficiencia_fecuencia.setLocation(550,120);
 		
 		tb_eficiencia_fecuencia.setLocation(550,150);
 		tb_eficiencia_fecuencia.setEnabled(false);

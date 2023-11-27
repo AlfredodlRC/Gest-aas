@@ -143,7 +143,7 @@ public class CRUD_Salvaguardas {
 		String resultado = "";
 		Database base_datos = new Database();
 		String sql_salvaguarda;
-		boolean resultado_modificacion = true;
+		int resultado_modificacion;
 		List<List<String>> pks;
 		String pk_salvaguarda;
 		String sql_pk;

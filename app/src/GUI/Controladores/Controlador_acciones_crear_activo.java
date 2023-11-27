@@ -186,6 +186,7 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		nueva_relacion = new Relacion_activos();
 		nueva_relacion.setActivo_inferior(null);
 		nueva_relacion.setActivo_superior(valor);
+		System.out.println(valor);
 		nueva_relacion.setGrado((Double) ventana.getTB_grado_superior().getValue());
 		ventana.getActivo_actual().getLista_activos_superiores().add(nueva_relacion);
 
