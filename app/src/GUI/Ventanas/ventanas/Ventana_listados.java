@@ -74,6 +74,7 @@ public class Ventana_listados extends JFrame {
 		
 		tabla_listado = new JTable(tabla_datos);
 		tabla_listado.setBounds(10, 10, 860, 400);
+		tabla_listado.setEnabled(false);
 		
 		JScrollPane sc = new JScrollPane(tabla_listado);
 		sc.setBounds(10, 10, 860, 400);

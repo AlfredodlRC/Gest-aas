@@ -344,13 +344,9 @@ public class Logica_de_negocio {
 	public List<String> coger_lista_tipo_salvaguardas() {
 		
 		List<String> resultado = new ArrayList<String>();
-		System.out.println("lista entregada");
-		System.out.println(datos_aplicacion.getLista_tipo_salvaguardas());
 		for(Tipo_elemento elemento: datos_aplicacion.getLista_tipo_salvaguardas()) {
 			resultado.add(elemento.toString());
 		}
-		System.out.println("lista entregada--");
-		System.out.println(resultado);
 		
 		return resultado;
 		
@@ -368,9 +364,10 @@ public class Logica_de_negocio {
 		
 		Activo_pojo activo = new Activo_pojo();
 		String codigo = this.coger_codigo_nombre(cod_nom_activo);
+		
 			
 		activo = Principal.gestor_base_datos.coger_activo(codigo);
-
+		System.out.println(activo.getCodigo());
 		datos_aplicacion.setActivo_actual(activo);
 	}
 

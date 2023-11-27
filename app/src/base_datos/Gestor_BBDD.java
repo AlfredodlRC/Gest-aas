@@ -148,7 +148,7 @@ public class Gestor_BBDD {
 	
 	public Activo_pojo coger_activo(String codigo) {
 		Activo_pojo resultado = null;
-		
+		System.out.println(codigo);
 		resultado = acciones_activos.cargar_activo_codigo(codigo);
 		
 		return resultado;

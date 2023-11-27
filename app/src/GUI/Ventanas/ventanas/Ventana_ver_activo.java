@@ -3,6 +3,7 @@ package GUI.Ventanas.ventanas;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
@@ -14,6 +15,7 @@ import GUI.Ventanas.Herencia.Panel_activo_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_mostrar;
 import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
+import datos.POJOS.Relacion_activos;
 
 public class Ventana_ver_activo extends Ventana_mostrar {
 
@@ -23,13 +25,21 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 	private static final long serialVersionUID = 5497666672167069220L;
 	
 	private Panel_activo_visualizacion panel_datos;
-	
+
+	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
+	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
+
 	public Ventana_ver_activo() {
 		super();
 
 		elemento = "activo";
 		accion = "ver";
 
+		establecerComponentes();
+		
+	}
+	
+	private void establecerComponentes() {
 		btn_accion.setText("cerrar");
 		btn_cancelar.setVisible(false);
 
@@ -38,6 +48,29 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		panel_datos.setLocation(5, 150);
 		panel_datos.setBackground(Color.LIGHT_GRAY);
 		add(panel_datos);
+		
+		this.tb_codigo.setEnabled(false);
+		this.tb_descripcion.setEnabled(false);
+		this.tb_nombre.setEnabled(false);
+		this.tb_tipo.setEnabled(false);
+		this.tb_fecha.setEnabled(false);
+		this.panel_datos.getNivel_valor().setEnabled(false);
+		this.panel_datos.getTb_economico().setEnabled(false);
+		this.panel_datos.getTb_valor_acumulado().setEnabled(false);
+		this.panel_datos.getTb_valor_repercutido().setEnabled(false);
+		this.panel_datos.getCriterio_1().setEnabled(false);
+		this.panel_datos.getCriterio_2().setEnabled(false);
+		this.panel_datos.getCriterio_3().setEnabled(false);
+		this.panel_datos.getCriterio_4().setEnabled(false);
+		this.panel_datos.getCriterio_5().setEnabled(false);
+		this.panel_datos.getCriterio_6().setEnabled(false);
+		this.panel_datos.getCriterio_7().setEnabled(false);
+		this.panel_datos.getCriterio_8().setEnabled(false);
+		this.panel_datos.getCriterio_9().setEnabled(false);
+		this.panel_datos.getCriterio_10().setEnabled(false);
+		this.panel_datos.getCriterio_11().setEnabled(false);
+		this.panel_datos.getCriterio_12().setEnabled(false);
+		this.panel_datos.getCriterio_13().setEnabled(false);
 		
 	}
 	
@@ -74,7 +107,22 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		panel_datos.getCriterio_11().setText(activo.getCriterio_rto());
 		panel_datos.getCriterio_12().setText(activo.getCriterio_ibl_national());
 		panel_datos.getCriterio_13().setText(activo.getCriterio_ibl_ue());
-			
+		
+		panel_datos.getActivos_disponibles_superiores().setModel(modelo_activos_superiores);
+		panel_datos.getActivos_disponibles_inferiores().setModel(modelo_activos_inferiores);
+
+		
+		for (Relacion_activos elemento: Principal.logica.coger_lista_relaciones_activos()) {
+			if (activo.getCodigo().contains(elemento.getActivo_inferior())) {
+				modelo_activos_superiores.addElement(elemento.getActivo_superior() + " - grado: " + (elemento.getGrado()*100) + "%");
+			}
+			if (activo.getCodigo().contains(elemento.getActivo_superior())) {
+				modelo_activos_inferiores.addElement(elemento.getActivo_inferior() + " - grado: " + (elemento.getGrado()*100) + "%");
+			}
+			System.out.println(elemento.getActivo_superior()+" -- " + activo.getCodigo());
+			System.out.println(elemento.getActivo_inferior()+" -- " + activo.getCodigo());
+		}
+
 	}
 	
 	public JTextField getTb_valor_repercutido() {
@@ -145,8 +193,8 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		return panel_datos.getCriterio_13();
 	}
 
-	public JList<String> getActivos_disponibles_inferiores() {
-		return panel_datos.getActivos_disponibles_inferiores();
+	public JList<String> getActivos_superiores() {
+		return panel_datos.getActivos_disponibles_superiores();
 	}
 	
 	public JList<String> getActivos_inferiores() {

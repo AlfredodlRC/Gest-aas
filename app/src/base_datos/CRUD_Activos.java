@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Criterio;
 import datos.POJOS.Escala;
@@ -210,8 +211,8 @@ public class CRUD_Activos {
 			sql += " JOIN criterio_si ON valor_criterio.fk_adm=criterio_si.PK";
 			sql += " WHERE activo.cod LIKE '" + codigo + "'";
 			sql += " and valoracion.fecha_creacion=(select max(Fecha_creacion) from valoracion where activo.pk=valoracion.fk_activo);";
-
 			activos = base_datos.realizar_lectura(sql);
+			System.out.println(activos);
 			if (activos.size() > 0) {
 				resultado.setCodigo(activos.get(0).get(0));
 				resultado.setNombre(activos.get(0).get(1));
@@ -281,9 +282,9 @@ public class CRUD_Activos {
 			Relacion_activos relacion_activos;
 
 			
-			sql = "SELECT activo_superior.cod,activo_inferior.cod,grado FROM rel_dependencia_activos"; 
-			sql += " JOIN activo as activo_superior ON rel_dependencia_activos.fk_superior=activo_superior.pk";
-			sql += " JOIN activo as activo_inferior ON rel_dependencia_activos.fk_inferior=activo_inferior.pk;";
+			sql = "SELECT (select cod from activo where pk=rel_dependencia_activos.fk_inferior),";
+			sql += "(select cod from activo where pk=rel_dependencia_activos.fk_superior),grado";
+			sql += " FROM rel_dependencia_activos;";
 			relaciones_activos = base_datos.realizar_lectura(sql);
 			for(List<String> fila: relaciones_activos) {
 				relacion_activos = new Relacion_activos();
@@ -302,15 +303,14 @@ public class CRUD_Activos {
 			String resultado = "";
 			Database base_datos = new Database();
 			String sql_pk;
-			String sql_valor_criterio;
-			String sql_valoracion;
-			String sql_dependencia;
-			String sql_activo;
+			String sql;
 			boolean resultado_creacion;
 			List<List<String>> pks;
 			String pk_activo;
 			String pk_valoracion;
 			String pk_valor_criterio;
+			List<String> lista_sql = new ArrayList<String>();
+			
 			/* 
 			 * Hay que crear en las tablas:
 			 *  activo
@@ -320,57 +320,76 @@ public class CRUD_Activos {
 			 */
 			sql_pk = "select max(pk)+1 from activo;";			
 			pks = base_datos.realizar_lectura(sql_pk);
-			pk_activo = pks.get(0).get(0);
+			if (pks.get(0).get(0) != null) {
+				pk_activo = pks.get(0).get(0);
+			} else {
+				pk_activo = "1";
+			}
 			
 			sql_pk = "select max(pk)+1 from valoracion;";
 			pks = base_datos.realizar_lectura(sql_pk);
-			pk_valoracion = pks.get(0).get(0);
-
+			if (pks.get(0).get(0) != null) {
+				pk_valoracion = pks.get(0).get(0);
+			} else {
+				pk_valoracion = "1";
+			}
+			
 			sql_pk = "select max(pk)+1 from valor_criterio;";
 			pks = base_datos.realizar_lectura(sql_pk);
-			pk_valor_criterio = pks.get(0).get(0);
+			if (pks.get(0).get(0) != null) {
+				pk_valor_criterio = pks.get(0).get(0);
+			} else {
+				pk_valor_criterio = "1";
+			}
 			
-			sql_activo = "INSERT INTO  activo (pk,cod,nombre,descripcion,fk_tipo,Fecha_creacion) VALUES ";
-			sql_activo += "(" + pk_activo + ",'" + activo.getCodigo() + "','" + activo.getNombre() + "','" + activo.getDescripcion();
-			sql_activo += "',(select pk from tipo_activo where cod='" + activo.getTipo() + "'),current_timestamp());";
+			sql = "INSERT INTO  activo (pk,cod,nombre,descripcion,fk_tipo,Fecha_creacion) VALUES ";
+			sql += "(" + pk_activo + ",'" + activo.getCodigo() + "','" + activo.getNombre() + "','" + activo.getDescripcion();
+			sql += "',(select pk from tipo_activo where cod='" + activo.getTipo() + "'),current_timestamp());";
 			
-			sql_valor_criterio = "INSERT INTO valor_criterio ";
-			sql_valor_criterio += "(PK,fk_crm,fk_si,fk_pi,fk_rto,fk_lg,fk_adm,fk_olm,fk_lpo,fk_ibl_national,fk_ibl_ue,fk_cei,fk_da,fk_po)";
-			sql_valor_criterio += "VALUES ("+ pk_valor_criterio + ",";
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_crm() + "')";//+ "<{fk_crm: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_si() + "')";//+ "<{fk_si: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_pi() + "')";//	+ "<{fk_pi: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_rto() + "')";//	+ "<{fk_rto: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_lg() + "')";//	+ "<{fk_lg: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_adm() + "')";//	+ "<{fk_adm: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_olm() + "')";//	+ "<{fk_olm: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_lpo() + "')";//	+ "<{fk_lpo: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_ibl_national() + "')";//	+ "<{fk_ibl_national: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_ibl_ue() + "')";//	+ "<{fk_ibl_ue: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_cei() + "')";//	+ "<{fk_cei: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_da() + "')";//	+ "<{fk_da: }>,\r\n"
-			sql_valor_criterio += "(select pk from criterio_adm where codigo='" + activo.getCriterio_po() + "')";//	+ "<{fk_po: }>);\r\n"
-			sql_valor_criterio += ");";
+			lista_sql.add(sql);
 			
-			sql_valoracion = "INSERT INTO valoracion (PK,fecha_creacion,economica,fk_activo,fk_escala,fk_criterio)";
-			sql_valoracion += "VALUES (" + pk_valoracion + ",current_timestamp()," + activo.getValor_economico() + "," + pk_activo;
-			sql_valoracion += ",(select pk from escala_valor where abreviadura='"+activo.getNivel_valoracion()+"'),pk_valor_criterio>);";
+			sql = "INSERT INTO valor_criterio ";
+			sql += "(PK,fk_crm,fk_si,fk_pi,fk_rto,fk_lg,fk_adm,fk_olm,fk_lpo,fk_ibl_national,fk_ibl_ue,fk_cei,fk_da,fk_po)";
+			sql += "VALUES ("+ pk_valor_criterio + ",";
+			sql += "(select pk from criterio_crm where codigo='" + activo.getCriterio_crm() + "'),";
+			sql += "(select pk from criterio_si where codigo='" + activo.getCriterio_si() + "'),";
+			sql += "(select pk from criterio_pi where codigo='" + activo.getCriterio_pi() + "'),";
+			sql += "(select pk from criterio_rto where codigo='" + activo.getCriterio_rto() + "'),";
+			sql += "(select pk from criterio_lg where codigo='" + activo.getCriterio_lg() + "'),";
+			sql += "(select pk from criterio_adm where codigo='" + activo.getCriterio_adm() + "'),";
+			sql += "(select pk from criterio_olm where codigo='" + activo.getCriterio_olm() + "'),";
+			sql += "(select pk from criterio_lpo where codigo='" + activo.getCriterio_lpo() + "'),";
+			sql += "(select pk from criterio_ibl_national where codigo='" + activo.getCriterio_ibl_national() + "'),";
+			sql += "(select pk from criterio_ibl_ue where codigo='" + activo.getCriterio_ibl_ue() + "'),";
+			sql += "(select pk from criterio_cei where codigo='" + activo.getCriterio_cei() + "'),";
+			sql += "(select pk from criterio_da where codigo='" + activo.getCriterio_da() + "'),";
+			sql += "(select pk from criterio_po where codigo='" + activo.getCriterio_po() + "')";
+			sql += ");";
+			
+			lista_sql.add(sql);
+			
+			sql = "INSERT INTO valoracion (PK,fecha_creacion,economica,fk_activo,fk_escala,fk_criterio)";
+			sql += "VALUES (" + pk_valoracion + ",current_timestamp()," + activo.getValor_economico() + "," + pk_activo;
+			sql += ",(select pk from escala_valor where abreviadura='"+activo.getNivel_valoracion()+"')," + pk_valor_criterio + ");";
 
-			resultado_creacion = base_datos.realizar_creacion(sql_activo);
-			resultado_creacion = base_datos.realizar_creacion(sql_valor_criterio);
-			resultado_creacion = base_datos.realizar_creacion(sql_valoracion);
+			lista_sql.add(sql);
+			
 			
 			for(Relacion_activos elemento: activo.getLista_activos_inferiores()) {
-				sql_dependencia = "INSERT INTO rel_dependencia_activos (fk_superior,fk_inferior,grado) VALUES (" + pk_activo;
-				sql_dependencia += ",(select pk from activo where cod='" + elemento.getActivo_inferior() + "')," + elemento.getGrado() + ");";
-				resultado_creacion = base_datos.realizar_creacion(sql_dependencia);
+				sql = "INSERT INTO rel_dependencia_activos (fk_superior,fk_inferior,grado) VALUES (" + pk_activo;
+				sql += ",(select pk from activo where cod='" + Principal.logica.coger_codigo_nombre(elemento.getActivo_inferior()); 
+				sql +=  "')," + elemento.getGrado() + ");";
+				lista_sql.add(sql);
 			}
 
 			for(Relacion_activos elemento: activo.getLista_activos_superiores()) {
-				sql_dependencia = "INSERT INTO rel_dependencia_activos (fk_inferior,fk_superior,grado) VALUES (" + pk_activo;
-				sql_dependencia += ",(select pk from activo where cod='" + elemento.getActivo_inferior() + "')," + elemento.getGrado() + ");";
-				resultado_creacion = base_datos.realizar_creacion(sql_dependencia);
+				sql = "INSERT INTO rel_dependencia_activos (fk_inferior,fk_superior,grado) VALUES (" + pk_activo;
+				sql += ",(select pk from activo where cod='" + Principal.logica.coger_codigo_nombre(elemento.getActivo_superior());
+				sql += "')," + elemento.getGrado() + ");";
+				lista_sql.add(sql);
 			}
+
+			resultado_creacion = base_datos.realizar_lote(lista_sql);
 
 			return resultado;
 		}
@@ -491,22 +510,25 @@ public class CRUD_Activos {
 			String sql_dependencia;
 			String sql_activo;
 			boolean resultado_consulta;
+			List<String> lista_sql = new ArrayList<String>();
+
 			/* 
 			 * Hay que eliminar de las tablas:
+			 *  degradacion
+			 *  eficiencia
 			 *  valor_criterio
 			 *  valoracion
 			 *  rel_dependencia_activos
 			 *  activo
 			 */
 			sql_pk = "(select pk from activo where cod='"+codigo+"')";
-			sql_valor_criterio = "DELETE FROM valor_criterio WHERE pk=(select fk_criterio from valoracion where fk_activo="+sql_pk+");";
-			sql_valoracion = "DELETE FROM valoracion WHERE fk_activo="+sql_pk+";";
-			sql_dependencia = "DELETE FROM rel_dependencia_activos WHERE fk_inferior="+sql_pk+" or fk_superior="+sql_pk+";";
-			sql_activo = "DELETE FROM activo WHERE cod='"+codigo+"';";
-			resultado_consulta = base_datos.realizar_eliminacion(sql_dependencia);
-			resultado_consulta = base_datos.realizar_eliminacion(sql_valoracion);
-			resultado_consulta = base_datos.realizar_eliminacion(sql_valor_criterio);
-			resultado_consulta = base_datos.realizar_eliminacion(sql_activo);
+			lista_sql.add("delete from eficiencia where fk_activo="+sql_pk+";");
+			lista_sql.add("delete from degradacion where fk_activo="+sql_pk+";");
+			lista_sql.add("DELETE FROM valoracion WHERE fk_activo="+sql_pk+";");
+			lista_sql.add("DELETE FROM valor_criterio WHERE pk=(select fk_criterio from valoracion where fk_activo="+sql_pk+");");
+			lista_sql.add("DELETE FROM rel_dependencia_activos WHERE fk_inferior="+sql_pk+" or fk_superior="+sql_pk+";");
+			lista_sql.add("DELETE FROM activo WHERE cod='"+codigo+"';");
+			resultado_consulta = base_datos.realizar_lote(lista_sql);
 
 			return resultado;
 		}

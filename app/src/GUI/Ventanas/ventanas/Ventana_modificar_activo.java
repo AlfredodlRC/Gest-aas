@@ -3,8 +3,11 @@ package GUI.Ventanas.ventanas;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -17,6 +20,7 @@ import GUI.Ventanas.Herencia.Panel_activo_manipulacion;
 import GUI.Ventanas.Herencia.Ventana_modificar;
 import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
+import datos.POJOS.Relacion_activos;
 
 public class Ventana_modificar_activo extends Ventana_modificar {
 
@@ -29,6 +33,12 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 	private Panel_activo_manipulacion panel_datos;
 
 	private String codigo_original;
+
+	DefaultListModel<String> modelo_activos_disponibles_inferiores = new DefaultListModel<>();
+	DefaultListModel<String> modelo_activos_disponibles_superiores = new DefaultListModel<>();
+	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
+	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
+
 
 	Activo_pojo activo;
 
@@ -50,11 +60,25 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		panel_datos.setLocation(5, 150);
 		panel_datos.setBackground(Color.LIGHT_GRAY);
 		add(panel_datos);
+		
+		this.getActivos_disponibles_inferiores().setModel(modelo_activos_disponibles_inferiores);
+		this.getActivos_disponibles_superiores().setModel(modelo_activos_disponibles_superiores);
+		this.getActivos_inferiores().setModel(modelo_activos_inferiores);
+		this.getActivos_superiores().setModel(modelo_activos_superiores);
+
 	}
 
 	public void establecerManejador(Controlador_acciones_modificar_activo manejador) {
 		btn_accion.addActionListener(manejador);
 		btn_cancelar.addActionListener(manejador);
+		panel_datos.getBtn_agregar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_agregar_activo_superior().addActionListener(manejador);
+		panel_datos.getBtn_desagregar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_desagregar_activo_superior().addActionListener(manejador);
+		panel_datos.getBtn_aceptar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_aceptar_activo_superior().addActionListener(manejador);
+		panel_datos.getBtn_cancelar_activo_inferior().addActionListener(manejador);
+		panel_datos.getBtn_cancelar_activo_superior().addActionListener(manejador);
 	}
 	
 
@@ -207,6 +231,12 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		 * Falta cargar los activos tanto relacionados on el activo como los no relacionados
 		 */
 		System.out.println(Principal.logica.coger_lista_relaciones_activos());
+
+		for(Relacion_activos elemento: Principal.logica.coger_lista_relaciones_activos()) {
+		}
+
+
+
 	}
 
 
@@ -313,6 +343,23 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 	public String getCodigo_original() {
 		return codigo_original;
 	}
+
+	public DefaultListModel<String> getModelo_activos_disponibles_inferiores() {
+		return modelo_activos_disponibles_inferiores;
+	}
+
+	public DefaultListModel<String> getModelo_activos_disponibles_superiores() {
+		return modelo_activos_disponibles_superiores;
+	}
+
+	public DefaultListModel<String> getModelo_activos_inferiores() {
+		return modelo_activos_inferiores;
+	}
+
+	public DefaultListModel<String> getModelo_activos_superiores() {
+		return modelo_activos_superiores;
+	}
+
 
 	public Activo_pojo getActivo_vacio() {
 		return activo;

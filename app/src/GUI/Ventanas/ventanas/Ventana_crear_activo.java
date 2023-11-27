@@ -174,29 +174,8 @@ public class Ventana_crear_activo extends Ventana_crear {
 			this.getCriterio_13().addItem(elemento);
 		}
 			
-		/*
-		 * Falta cargar los activos tanto relacionados on el activo como los no relacionados
-		 */
-		System.out.println(Principal.logica.coger_lista_relaciones_activos());
-		boolean existe_superior;
-		boolean existe_inferior;
-		List<String> relacionables_activos = new ArrayList<String>();
-		List<String> activos_superiores = new ArrayList<String>();
-		List<String> activos_inferiores = new ArrayList<String>();
-		for(Relacion_activos elemento: Principal.logica.coger_lista_relaciones_activos()) {
-			System.out.println(elemento.getActivo_inferior());
-			System.out.println(elemento.getActivo_superior());
-			existe_superior = false;
-			existe_inferior = false;
-			for(String elemento_existente: relacionables_activos) {
-				if (elemento_existente == elemento.getActivo_superior()) { existe_superior = true;}
-				if (elemento_existente == elemento.getActivo_inferior()) { existe_inferior = true;}
-			}
-			if (existe_superior == false) { relacionables_activos.add(elemento.getActivo_superior()); }
-			if (existe_inferior == false) { relacionables_activos.add(elemento.getActivo_inferior()); }
-		}
-
-		for(String elemento: relacionables_activos) {
+		System.out.println(Principal.logica.coger_lista_activos());
+		for(String elemento: Principal.logica.coger_lista_activos()) {
 			modelo_activos_disponibles_inferiores.addElement(elemento);
 			modelo_activos_disponibles_superiores.addElement(elemento);
 		}

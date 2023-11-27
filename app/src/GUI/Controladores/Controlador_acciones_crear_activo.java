@@ -24,7 +24,6 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String resultado_crear;
 		
 		if (e.getSource() == ventana.getBtn_cancelar()) { 
 			Principal.gestor_ventanas.desactivar_ventana_crear_activo();

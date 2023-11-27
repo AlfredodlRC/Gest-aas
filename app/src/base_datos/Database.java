@@ -16,7 +16,9 @@ public class Database {
 
 	private String cadena_conexion;
 
-	int numero_filas_afectadas;
+	private int numero_filas_afectadas;
+	
+	private String mensaje_error;
 
 	public Database() {
 		super();
@@ -55,6 +57,7 @@ public class Database {
 			conexion = DriverManager.getConnection(cadena_conexion,datos_bbdd.getUsuario(),datos_bbdd.getContrasenya());
 		} catch (SQLException e) {
 			System.out.println("No se pudo crear una conexión con la base de datos");
+			this.mensaje_error = "No se pudo crear una conexión con la base de datos:" + e.getMessage();
 		}
 		
 		return conexion;
@@ -62,24 +65,31 @@ public class Database {
 	
 	private boolean cerrar_conexion(Connection conexion) {
 		boolean resultado;
+		
+		this.mensaje_error ="";
+		
 		try {
 			conexion.close();
 			resultado = true;
 		} catch (SQLException e) {
 			resultado = false;
+			this.mensaje_error = "Error al cerrar la conexión: " + e.getMessage();
 			e.printStackTrace();
 		}
+		
 		return resultado;
 	}
 	
 	public boolean probar_conexion() {
 		boolean resultado = true;
 		Connection conexion = crear_conexion();
+		
 		if (conexion == null) {
 			resultado = false;
 		} else {
 			resultado = cerrar_conexion(conexion);
 		}
+		
 		return resultado;
 	}
 	
@@ -89,6 +99,8 @@ public class Database {
 		Connection conexion_lectura;
 		Integer numero_columnas;
 		Integer i;
+		
+		this.mensaje_error = "";
 		
 		conexion_lectura = crear_conexion();
 		
@@ -109,6 +121,7 @@ public class Database {
 			}
 		} catch (SQLException e) {
 			System.out.println("Error al ejecutar lectura");
+			this.mensaje_error = "Error al ejecutar lectura: " + e.getMessage();
 			e.printStackTrace();
 		}
 		
@@ -122,6 +135,8 @@ public class Database {
 		Connection conexion_creacion;
 		PreparedStatement ps;
 		
+		this.mensaje_error = "";
+		
 		numero_filas_afectadas = 0;
 
 		conexion_creacion = crear_conexion();
@@ -132,7 +147,8 @@ public class Database {
 			resultado = true;
 		} catch (SQLException e) {
 			System.out.println("Error al insertar: ");
-			resultado = false;
+			this.mensaje_error = "Error al insertar: " + e.getMessage();
+						resultado = false;
 			e.printStackTrace();
 		}
 
@@ -146,6 +162,8 @@ public class Database {
 		Connection conexion_modificacion;
 		PreparedStatement ps;
 		
+		this.mensaje_error = "";
+		
 		numero_filas_afectadas = 0;
 
 		conexion_modificacion = crear_conexion();
@@ -156,6 +174,7 @@ public class Database {
 			resultado = numero_filas_afectadas;
 		} catch (SQLException e) {
 			System.out.println("Error al modificar: ");
+			this.mensaje_error = "Error al modificar: " + e.getMessage();
 			resultado = -1;
 			e.printStackTrace();
 		}
@@ -170,6 +189,8 @@ public class Database {
 		Connection conexion_eliminacion;
 		PreparedStatement ps;
 
+		this.mensaje_error = "";
+		
 		numero_filas_afectadas = 0;
 
 		conexion_eliminacion = crear_conexion();
@@ -180,11 +201,56 @@ public class Database {
 			resultado = true;
 		} catch (SQLException e) {
 			System.out.println("Error al eliminar: ");
+			this.mensaje_error = "Error al eliminar: " + e.getMessage();
 			resultado = false;
 			e.printStackTrace();
 		}
 
 		cerrar_conexion(conexion_eliminacion);
+
+		return resultado;
+	}
+	
+	public boolean realizar_lote(List<String> lista_sql) {
+		boolean resultado;
+		Connection conexion_lote;
+		PreparedStatement ps;
+		boolean resultado_sql;
+
+
+		conexion_lote = crear_conexion();
+		try {
+			conexion_lote.setAutoCommit(false);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		this.mensaje_error = "";
+				
+		try {
+			for(String elemento: lista_sql) {
+				System.out.println(elemento);
+				ps = conexion_lote.prepareStatement(elemento);
+				resultado_sql = ps.execute();
+			}
+			conexion_lote.commit();
+			resultado = true;
+		} catch (SQLException e) {
+			try {
+				conexion_lote.rollback();
+			} catch (SQLException e1) {
+				System.out.println("Error al ejecutar el lote: ");
+				this.mensaje_error = "Error al ejecutar el lote" + e1.getMessage();		
+				e1.printStackTrace();
+			}
+			resultado = false;
+			System.out.println("Error al ejecutar el lote: ");
+			this.mensaje_error = "Error al ejecutar el lote" + e.getMessage();
+			e.printStackTrace();
+		}
+
+		cerrar_conexion(conexion_lote);
 
 		return resultado;
 	}
