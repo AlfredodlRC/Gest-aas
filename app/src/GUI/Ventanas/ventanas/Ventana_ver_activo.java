@@ -5,11 +5,8 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import GUI.Controladores.Controlador_acciones_principal;
 import GUI.Controladores.Controlador_acciones_ver_activo;
 import GUI.Ventanas.Herencia.Panel_activo_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_mostrar;

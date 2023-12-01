@@ -2,13 +2,10 @@ package GUI.Controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-import GUI.Ventanas.ventanas.Ventana_crear_amenaza;
 import GUI.Ventanas.ventanas.Ventana_modificar_amenaza;
 import aplicacion.Principal;
 import datos.POJOS.Degradacion_amenaza_pojo;
@@ -33,7 +30,8 @@ public class Controlador_acciones_modificar_amenaza implements ActionListener {
 		if (e.getSource() == ventana.getBtn_cancelar()) { 
 			Principal.gestor_ventanas.desactivar_ventana_modificar_amenaza();
 		}
-		if (e.getSource() == ventana.getBtn_accion()) { 
+		if (e.getSource() == ventana.getBtn_accion()) {
+			modificar_amenaza();
 		}
 		if (e.getSource() == ventana.getBtn_valorar_degradacion()) {
 			anyadir_degradacion();

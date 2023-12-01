@@ -3,7 +3,6 @@ package GUI.Ventanas.ventanas;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 
-import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 

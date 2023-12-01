@@ -5,11 +5,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 import GUI.Ventanas.ventanas.Ventana_crear_activo;
-import GUI.Ventanas.ventanas.Ventana_principal;
 import aplicacion.Principal;
 import datos.POJOS.Relacion_activos;
 

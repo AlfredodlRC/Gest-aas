@@ -3,8 +3,6 @@ package base_datos;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 import datos.POJOS.Criterio;
@@ -158,11 +156,6 @@ public class Gestor_BBDD {
 		Amenaza_pojo resultado = null;
 		
 		resultado = acciones_amenazas.cargar_amenaza_codigo(codigo);
-		System.out.println(resultado.getCodigo());
-		System.out.println(resultado.getNombre());
-		System.out.println(resultado.getDescripcion());
-		System.out.println(resultado.getTipo());
-		
 		
 		return resultado;
 	}
@@ -193,15 +186,16 @@ public class Gestor_BBDD {
 	public String eliminar_activo(String codigo) {
 		String resultado = "";
 		
+		
 		resultado = acciones_activos.eliminar_activo(codigo);
 		
 		return resultado;
 	}
 	
-	public String crear_amenaza(Amenaza_pojo amenaja) {
+	public String crear_amenaza(Amenaza_pojo amenaza) {
 		String resultado = "";
 		
-		resultado = acciones_amenazas.crear_amenaza(amenaja);
+		resultado = acciones_amenazas.crear_amenaza(amenaza);
 				
 		return resultado;
 	}
@@ -214,13 +208,38 @@ public class Gestor_BBDD {
 		return resultado;
 	}	
 	
-	public String eliminar_salvaguarda(String codigo) {
+	public String eliminar_amenaza(String codigo) {
 		String resultado = "";
 
 		resultado = acciones_amenazas.eliminar_amenaza(codigo);
 		
 		return resultado;
 	}
+
 	
+	public String crear_salvaguarda(Salvaguarda_pojo salvaguarda) {
+		String resultado = "";
+		
+		resultado = acciones_salvaguardas.crear_salvaguarda(salvaguarda);
+				
+		return resultado;
+	}
+	
+	public String modificar_amenaza(Salvaguarda_pojo salvaguarda_modificado,String codigo_original) {
+		String resultado = "";
+
+		resultado = acciones_salvaguardas.modificar_salvaguarda(codigo_original, salvaguarda_modificado);
+		
+		return resultado;
+	}	
+	
+	public String eliminar_salvaguarda(String codigo) {
+		String resultado = "";
+
+		resultado = acciones_salvaguardas.eliminar_salvaguarda(codigo);
+		
+		return resultado;
+	}
+
 	
 }

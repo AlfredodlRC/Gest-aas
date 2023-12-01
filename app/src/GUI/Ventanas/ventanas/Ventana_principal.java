@@ -224,6 +224,7 @@ public class Ventana_principal extends JFrame {
 	public void establecer_activos() {
 		
 		List<String> activos = Principal.logica.coger_lista_activos();
+		cb_cod_activo.removeAllItems();
 		for(String elemento: activos) {
 			cb_cod_activo.addItem(elemento);
 		}
@@ -236,6 +237,7 @@ public class Ventana_principal extends JFrame {
 	public void establecer_amenazas() {
 		
 		List<String> amenazas = Principal.logica.coger_lista_amenazas();
+		cb_cod_amenaza.removeAllItems();
 		for(String elemento: amenazas) {
 			cb_cod_amenaza.addItem(elemento);
 		}
@@ -248,7 +250,7 @@ public class Ventana_principal extends JFrame {
 	public void establecer_salvaguardas() {
 
 		List<String> salvaguardas = Principal.logica.coger_lista_salvaguardas();
-		
+		cb_cod_salvaguarda.removeAllItems();
 		for(String elemento: salvaguardas) {
 			cb_cod_salvaguarda.addItem(elemento);
 		}

@@ -7,7 +7,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import aplicacion.Principal;
 import datos.POJOS.Amenaza_pojo;
+import datos.POJOS.Degradacion_amenaza_pojo;
+import datos.POJOS.Eficiencia_amenaza_pojo;
+import datos.POJOS.Eficiencia_pojo;
 import datos.POJOS.Tipo_elemento;
 
 public class CRUD_Amenazas {
@@ -112,35 +116,69 @@ public class CRUD_Amenazas {
 		String resultado = "";
 		Database base_datos = new Database();
 		String sql_pk;
-		String sql_degradacion;
-		String sql_amenaza;
 		boolean resultado_creacion;
 		
 		List<List<String>> pks;
 		String pk_amenaza;
-		String pk_degradacion;
+		int pk_degradacion;
+		int pk_eficiencia;
+		List<String> sqls = new ArrayList<String>();
+		String sql;
 		
 		sql_pk = "select max(pk)+1 from amenaza;";			
 		pks = base_datos.realizar_lectura(sql_pk);
-		pk_amenaza = pks.get(0).get(0);
+		if (pks.get(0).get(0) != null) {
+			pk_amenaza = pks.get(0).get(0); 
+		} else {
+			pk_amenaza = "1";
+		}
 		
 		sql_pk = "select max(pk)+1 from degradacion;";			
 		pks = base_datos.realizar_lectura(sql_pk);
-		pk_degradacion = pks.get(0).get(0);
-
-		sql_amenaza = "INSERT INTO amenaza (PK,cod,nombre,descripcion,fk_tipo,fecha_creacion) VALUES ("
-				+ pk_amenaza + ",'"
-				+ amenaza.getCodigo() + "','"
-				+ amenaza.getNombre() + "','"
-				+ amenaza.getDescripcion() + "',"
-				+ "(select pk from tipo_amenaza where cod='" + amenaza.getTipo() + "')"
-				+ ",current_timestamp());";
-		System.out.println(sql_amenaza);
-		sql_degradacion = "";
-
+		if (pks.get(0).get(0) != null) {
+			pk_degradacion = Integer.valueOf(pks.get(0).get(0));
+		} else {
+			pk_degradacion = 1;
+		}
 		
-		resultado_creacion = base_datos.realizar_creacion(sql_amenaza);
-		//resultado_creacion = base_datos.realizar_creacion(sql_degradacion);
+		sql_pk = "select max(pk)+1 from eficiencia;";			
+		pks = base_datos.realizar_lectura(sql_pk);
+		if (pks.get(0).get(0) != null) {
+			pk_eficiencia = Integer.valueOf(pks.get(0).get(0));
+		} else {
+			pk_eficiencia = 1;
+		}
+		
+
+		sql = "INSERT INTO amenaza (PK,cod,nombre,descripcion,fk_tipo,fecha_creacion) VALUES (" + pk_amenaza + ",'";
+		sql	+= amenaza.getCodigo() + "','" + amenaza.getNombre() + "','" + amenaza.getDescripcion() + "',";
+		sql += "(select pk from tipo_amenaza where cod='" + amenaza.getTipo() + "'),current_timestamp());";
+		
+		resultado_creacion = base_datos.realizar_creacion(sql);
+
+		for(Degradacion_amenaza_pojo elemento: amenaza.getDegradaciones()) {
+			sql = "INSERT INTO degradacion";
+			sql += "(PK,fecha_creacion,grado,probabilidad,fk_activo,fk_amenaza) VALUES (";
+			sql += pk_degradacion + ",current_timestamp()," + elemento.getDegradacion_valor() + "," + elemento.getFrecuencia_degradacion();
+			sql += ",(select pk from activo where cod='";
+			sql += Principal.logica.coger_codigo_nombre(elemento.getActivo()) + "')," + pk_amenaza + ");";
+			sqls.add(sql);
+			pk_degradacion++;
+		}
+		System.out.println("crud"+amenaza.getEficiencias());
+		for(Eficiencia_amenaza_pojo elemento: amenaza.getEficiencias()) {
+			sql = "INSERT INTO eficiencia "
+					+ "(PK,fecha_creacion,eficiencia_valor,eficiencia_frecuencia,fk_degradacion,fk_salvaguarda) VALUES ("
+					+ pk_eficiencia + ",current_timestamp(),"
+					+ elemento.getEficiencia_valor() + ","
+					+ elemento.getEficiencia_frecuencia() + ","
+					+ "(select pk from activo where cod='";
+					sql += Principal.logica.coger_codigo_nombre(elemento.getActivo()) + "'),"
+					+ "(select pk from salvaguarda where cod='" + Principal.logica.coger_codigo_nombre(elemento.getSalvaguarda()) + "'));";
+			sqls.add(sql);
+		}
+		resultado_creacion = base_datos.realizar_lote(sqls);
+
 		
 		
 		return resultado;
@@ -175,13 +213,19 @@ public class CRUD_Amenazas {
 	public String eliminar_amenaza(String codigo) {
 		String resultado = "";
 		Database base_datos = new Database();
-		String sql_activo;
+		String sql;
 		boolean resultado_consulta;
+		List<String> sqls = new ArrayList<String>();
 
-
-		sql_activo = "DELETE FROM amenaza WHERE cod='"+codigo+"';";
-		System.out.println(sql_activo);
-		resultado_consulta = base_datos.realizar_eliminacion(sql_activo);
+		sql ="DELETE FROM eficiencia where fk_degradacion in (select pk from degradacion where fk_amenaza in ";
+		sql += "(select pk from amenaza where cod = '" + codigo + "'));";
+		sqls.add(sql);
+		sql = "DELETE FROM degradacion where fk_amenaza in (select pk from amenaza where cod='" + codigo + "');";
+		sqls.add(sql);
+		sql = "DELETE FROM amenaza WHERE cod='"+codigo+"';";
+		sqls.add(sql);
+		
+		resultado_consulta = base_datos.realizar_lote(sqls);
 
 		return resultado;
 	}

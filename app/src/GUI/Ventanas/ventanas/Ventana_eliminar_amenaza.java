@@ -7,7 +7,6 @@ import javax.swing.JList;
 import javax.swing.JSpinner;
 
 import GUI.Controladores.Controlador_acciones_eliminar_amenaza;
-import GUI.Controladores.Controlador_acciones_ver_amenaza;
 import GUI.Ventanas.Herencia.Panel_amenaza_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_eliminar;
 import aplicacion.Principal;

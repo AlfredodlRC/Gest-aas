@@ -1,7 +1,6 @@
 package GUI.Ventanas.ventanas;
 
 
-import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 
@@ -10,9 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
-import GUI.Controladores.Controlador_acciones_crear_activo;
 import GUI.Controladores.Controlador_acciones_listado;
 import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;

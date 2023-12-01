@@ -1,7 +1,6 @@
 package GUI.Ventanas.ventanas;
 
 import java.awt.Color;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -19,7 +17,6 @@ import GUI.Controladores.Controlador_acciones_crear_amenaza;
 import GUI.Ventanas.Herencia.Panel_amenaza_manipulacion;
 import GUI.Ventanas.Herencia.Ventana_crear;
 import aplicacion.Principal;
-import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 
 public class Ventana_crear_amenaza extends Ventana_crear {
@@ -67,8 +64,10 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 		cargar_datos();
 
 		this.getActivos().setModel(dlm_activos);
-		this.getSalvaguardas().setModel(dlm_salvaguardas);		
-		this.panel_datos.getActivos_salvaguardas().setModel(lista_dlm_activos_salvaguardas.get(0));
+		this.getSalvaguardas().setModel(dlm_salvaguardas);
+		if (lista_dlm_activos_salvaguardas.size()>0) {
+			this.panel_datos.getActivos_salvaguardas().setModel(lista_dlm_activos_salvaguardas.get(0));
+		}
 		
 		this.getActivos().setSelectedIndex(0);
 		this.getSalvaguardas().setSelectedIndex(0);		
@@ -183,7 +182,6 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 		formato = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		System.out.println(this.cb_tipo.getSelectedItem());
 		texto_cb = Principal.logica.coger_codigo_nombre((String) this.cb_tipo.getSelectedItem());
-		System.out.println();
 
 		System.out.println(texto_cb);
 		amenaza.setTipo(texto_cb);
@@ -196,7 +194,6 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(amenaza);
 		return amenaza;
 	}
 

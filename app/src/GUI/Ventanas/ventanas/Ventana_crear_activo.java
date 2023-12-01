@@ -3,8 +3,6 @@ package GUI.Ventanas.ventanas;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -19,7 +17,6 @@ import GUI.Ventanas.Herencia.Panel_activo_manipulacion;
 import GUI.Ventanas.Herencia.Ventana_crear;
 import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
-import datos.POJOS.Relacion_activos;
 
 public class Ventana_crear_activo extends Ventana_crear {
 

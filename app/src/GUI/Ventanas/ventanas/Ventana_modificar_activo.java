@@ -3,9 +3,6 @@ package GUI.Ventanas.ventanas;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,7 +11,6 @@ import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
-import GUI.Controladores.Controlador_acciones_crear_activo;
 import GUI.Controladores.Controlador_acciones_modificar_activo;
 import GUI.Ventanas.Herencia.Panel_activo_manipulacion;
 import GUI.Ventanas.Herencia.Ventana_modificar;

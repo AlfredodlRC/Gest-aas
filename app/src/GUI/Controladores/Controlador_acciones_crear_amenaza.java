@@ -1,10 +1,7 @@
 package GUI.Controladores;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -14,7 +11,6 @@ import javax.swing.event.ListSelectionListener;
 import GUI.Ventanas.ventanas.Ventana_crear_amenaza;
 import aplicacion.Principal;
 import datos.POJOS.Degradacion_amenaza_pojo;
-import datos.POJOS.Degradacion_pojo;
 import datos.POJOS.Eficiencia_amenaza_pojo;
 
 public class Controlador_acciones_crear_amenaza implements ActionListener, ListSelectionListener {
@@ -71,7 +67,7 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 	private void crear_amenaza() {
 		String resultado_crear = "";
 
-			resultado_crear = Principal.logica.crear_amenaza(ventana.getAmenaza());
+		resultado_crear = Principal.logica.crear_amenaza(ventana.getAmenaza());
 	
 		if (resultado_crear.isEmpty() == true) {
 			Principal.gestor_ventanas.desactivar_ventana_crear_amenaza();
@@ -165,7 +161,7 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 		eficiencia.setSalvaguarda(ventana.getSalvaguardas().getSelectedValue());
 		eficiencia.setEficiencia_valor((Double) ventana.getTb_eficiencia_valor().getValue());
 		eficiencia.setEficiencia_frecuencia((Double) ventana.getTb_eficiencia_fecuencia().getValue());
-		
+
 		ventana.getAmenaza_actual().getEficiencias().add(eficiencia);
 		
 		ventana.get_tabla_eficiencias().addRow(new Object[] { ventana.getSalvaguardas().getSelectedValue(),ventana.getActivos_salvaguardas().getSelectedValue()

@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
@@ -18,9 +17,7 @@ import GUI.Controladores.Controlador_acciones_modificar_amenaza;
 import GUI.Ventanas.Herencia.Panel_amenaza_manipulacion;
 import GUI.Ventanas.Herencia.Ventana_modificar;
 import aplicacion.Principal;
-import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
-import datos.POJOS.Salvaguarda_pojo;
 
 public class Ventana_modificar_amenaza extends Ventana_modificar {
 

@@ -1,8 +1,5 @@
 package GUI.Ventanas.ventanas;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

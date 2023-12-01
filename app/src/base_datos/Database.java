@@ -232,6 +232,7 @@ public class Database {
 			for(String elemento: lista_sql) {
 				System.out.println(elemento);
 				ps = conexion_lote.prepareStatement(elemento);
+				System.out.println(elemento);
 				resultado_sql = ps.execute();
 			}
 			conexion_lote.commit();

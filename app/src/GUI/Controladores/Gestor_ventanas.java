@@ -2,6 +2,9 @@ package GUI.Controladores;
 
 import GUI.Ventanas.ventanas.Ventana_principal;
 import GUI.Ventanas.ventanas.Ventana_listados;
+
+import javax.swing.JOptionPane;
+
 import GUI.Ventanas.ventanas.Ventana_configuracion_bbdd;
 import GUI.Ventanas.ventanas.Ventana_crear_activo;
 import GUI.Ventanas.ventanas.Ventana_crear_amenaza;
@@ -15,6 +18,7 @@ import GUI.Ventanas.ventanas.Ventana_modificar_salvaguarda;
 import GUI.Ventanas.ventanas.Ventana_ver_activo;
 import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
 import GUI.Ventanas.ventanas.Ventana_ver_salvaguarda;
+import aplicacion.Principal;
 
 public class Gestor_ventanas {
 
@@ -96,6 +100,10 @@ public class Gestor_ventanas {
 	
 
 	public void activar_ventana_ver_activo() {
+		if (Principal.logica.get_activo_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana ver activo");
 		if (ventana_ver_activo == null) {
 			ventana_ver_activo = new Ventana_ver_activo();
@@ -130,6 +138,10 @@ public class Gestor_ventanas {
 	}
 
 	public void activar_ventana_modificar_activo() {
+		if (Principal.logica.get_activo_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana modificar activo");
 		if (ventana_modificar_activo == null) {
 			ventana_modificar_activo = new Ventana_modificar_activo();
@@ -147,7 +159,10 @@ public class Gestor_ventanas {
 	}
 
 	public void activar_ventana_eliminar_activo() {
-
+		if (Principal.logica.get_activo_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana eliminar activo");
 		if (ventana_eliminar_activo == null) {
 			ventana_eliminar_activo = new Ventana_eliminar_activo();
@@ -177,6 +192,10 @@ public class Gestor_ventanas {
 	
 
 	public void activar_ventana_ver_amenaza() {
+		if (Principal.logica.get_amenaza_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna amenaza","Sin amenaza", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana ver amenaza");
 		if (ventana_ver_amenaza == null) {
 			ventana_ver_amenaza = new Ventana_ver_amenaza();
@@ -212,6 +231,10 @@ public class Gestor_ventanas {
 		}
 	
 	public void activar_ventana_modificar_amenaza() {
+		if (Principal.logica.get_amenaza_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna amenaza","Sin amenaza", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana modificar amenaza");
 		if (ventana_modificar_amenaza == null) {
 			ventana_modificar_amenaza = new Ventana_modificar_amenaza();
@@ -229,6 +252,10 @@ public class Gestor_ventanas {
 	}
 	
 	public void activar_ventana_eliminar_amenaza() {
+		if (Principal.logica.get_amenaza_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna amenaza","Sin amenaza", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana eliminar amenaza");
 		if (ventana_eliminar_amenaza == null) {
 			ventana_eliminar_amenaza = new Ventana_eliminar_amenaza();
@@ -258,6 +285,10 @@ public class Gestor_ventanas {
 	
 		
 	public void activar_ventana_ver_salvaguarda() {
+		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana ver salvaguarda");
 		if (ventana_ver_salvaguarda == null) {
 			ventana_ver_salvaguarda = new Ventana_ver_salvaguarda();
@@ -295,6 +326,10 @@ public class Gestor_ventanas {
 	
 	
 	public void activar_ventana_modificar_salvaguarda() {
+		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana modificar salvaguarda");
 		if (ventana_modificar_salvaguarda == null) {
 			ventana_modificar_salvaguarda = new Ventana_modificar_salvaguarda();
@@ -314,6 +349,10 @@ public class Gestor_ventanas {
 	}
 	
 	public void activar_ventana_eliminar_salvaguarda() {
+		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("activar ventana eliminar salvaguarda");
 		if (ventana_eliminar_salvaguarda == null) {
 			ventana_eliminar_salvaguarda = new Ventana_eliminar_salvaguarda();
@@ -327,6 +366,10 @@ public class Gestor_ventanas {
 	}
 
 	public void desactivar_ventana_eliminar_salvaguarda() {
+		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		System.out.println("desactivar ventana eliminar salvaguarda");
 		ventana_eliminar_salvaguarda.setVisible(false);
 	}

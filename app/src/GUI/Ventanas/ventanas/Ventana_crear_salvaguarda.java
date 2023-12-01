@@ -5,11 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 
-import GUI.Controladores.Controlador_acciones_crear_activo;
 import GUI.Controladores.Controlador_acciones_crear_salvaguarda;
 import GUI.Ventanas.Herencia.Panel_salvaguarda_manipulacion;
 import GUI.Ventanas.Herencia.Ventana_crear;

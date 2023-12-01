@@ -8,7 +8,6 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 
 import GUI.Controladores.Controlador_acciones_eliminar_activo;
-import GUI.Controladores.Controlador_acciones_ver_activo;
 import GUI.Ventanas.Herencia.Panel_activo_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_eliminar;
 import aplicacion.Principal;

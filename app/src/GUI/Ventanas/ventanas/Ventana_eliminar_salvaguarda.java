@@ -3,13 +3,10 @@ package GUI.Ventanas.ventanas;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 
-import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JSpinner;
 
 import GUI.Controladores.Controlador_acciones_eliminar_salvaguarda;
-import GUI.Controladores.Controlador_acciones_ver_salvaguarda;
-import GUI.Ventanas.Herencia.Panel_activo_visualizacion;
 import GUI.Ventanas.Herencia.Panel_salvaguarda_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_eliminar;
 import aplicacion.Principal;

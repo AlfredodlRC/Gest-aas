@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import GUI.Ventanas.ventanas.Ventana_crear_salvaguarda;

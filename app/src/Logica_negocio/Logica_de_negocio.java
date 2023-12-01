@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aplicacion.Principal;
-import base_datos.CRUD_Activos;
 import base_datos.CRUD_Amenazas;
 import base_datos.CRUD_Salvaguardas;
-import base_datos.Database;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 import datos.POJOS.Criterio;
-import datos.POJOS.Database_pojo;
 import datos.POJOS.Escala;
 import datos.POJOS.Relacion_activos;
 import datos.POJOS.Salvaguarda_pojo;
@@ -425,6 +422,8 @@ public class Logica_de_negocio {
 		resultado = Principal.gestor_base_datos.eliminar_activo(codigo);
 		
 		datos_aplicacion.getLista_activos().remove(this.datos_aplicacion.getActivo_actual());
+		cargar_relaciones_activos();
+
 		Principal.gestor_ventanas.recargar_lista_activos();
 
 		System.out.println("activo "+codigo+" eliminado con resultado:"+resultado);
@@ -446,6 +445,7 @@ public class Logica_de_negocio {
 		resultado = Principal.gestor_base_datos.crear_activo(activo_nuevo);
 		
 		datos_aplicacion.getLista_activos().add(activo_nuevo);
+		cargar_relaciones_activos();
 		
 		Principal.gestor_ventanas.recargar_lista_activos();
 
@@ -473,6 +473,7 @@ public class Logica_de_negocio {
 		}
 		
 		Principal.gestor_ventanas.recargar_lista_activos();
+		cargar_relaciones_activos();
 
 		System.out.println("activo "+codigo+" creado con resultado:"+resultado);
 
@@ -493,9 +494,7 @@ public class Logica_de_negocio {
 		
 		datos_aplicacion.getLista_amenazas().add(amenaza_nueva);
 		
-		Principal.gestor_ventanas.recargar_lista_amenazas();
-
-		System.out.println("activo "+codigo+" creado con resultado:"+resultado);
+		System.out.println("amenaza "+codigo+" creado con resultado:"+resultado);
 
 		return resultado;
 	}
@@ -541,7 +540,7 @@ public class Logica_de_negocio {
 		resultado = acceso_amenazas.eliminar_amenaza(codigo);
 		
 		datos_aplicacion.getLista_amenazas().remove(this.datos_aplicacion.getAmenaza_actual());
-		Principal.gestor_ventanas.recargar_lista_activos();
+		Principal.gestor_ventanas.recargar_lista_amenazas();
 
 		System.out.println("amenaza "+codigo+" eliminado con resultado:"+resultado);
 

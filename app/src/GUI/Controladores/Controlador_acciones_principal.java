@@ -2,27 +2,9 @@ package GUI.Controladores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.WindowListener;
-
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import GUI.Ventanas.ventanas.Ventana_crear_activo;
-import GUI.Ventanas.ventanas.Ventana_crear_amenaza;
-import GUI.Ventanas.ventanas.Ventana_crear_salvaguarda;
-import GUI.Ventanas.ventanas.Ventana_eliminar_activo;
-import GUI.Ventanas.ventanas.Ventana_eliminar_amenaza;
-import GUI.Ventanas.ventanas.Ventana_eliminar_salvaguarda;
-import GUI.Ventanas.ventanas.Ventana_listados;
-import GUI.Ventanas.ventanas.Ventana_modificar_activo;
-import GUI.Ventanas.ventanas.Ventana_modificar_amenaza;
-import GUI.Ventanas.ventanas.Ventana_modificar_salvaguarda;
 import GUI.Ventanas.ventanas.Ventana_principal;
-import GUI.Ventanas.ventanas.Ventana_ver_activo;
-import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
-import GUI.Ventanas.ventanas.Ventana_ver_salvaguarda;
 import aplicacion.Principal;
 
 public class Controlador_acciones_principal implements ActionListener {

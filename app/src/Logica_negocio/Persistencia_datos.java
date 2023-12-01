@@ -6,7 +6,6 @@ import java.util.List;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Amenaza_pojo;
 import datos.POJOS.Criterio;
-import datos.POJOS.Database_pojo;
 import datos.POJOS.Escala;
 import datos.POJOS.Relacion_activos;
 import datos.POJOS.Salvaguarda_pojo;

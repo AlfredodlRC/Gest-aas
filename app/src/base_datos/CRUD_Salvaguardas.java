@@ -125,17 +125,23 @@ public class CRUD_Salvaguardas {
 		List<List<String>> pks;
 		String pk_salvaguarda;
 		String sql_salvaguarda ;
+		boolean resultado_creacion;
 
 		sql_pk = "select max(pk)+1 from salvaguarda;";			
 		pks = base_datos.realizar_lectura(sql_pk);
-		pk_salvaguarda = pks.get(0).get(0);
+		if (pks.get(0).get(0) != null) {
+			pk_salvaguarda = pks.get(0).get(0);
+		} else {
+			pk_salvaguarda = "1";
+		}
 		
-
 		sql_salvaguarda = "INSERT INTO salvaguarda (PK,cod,nombre,descripcion,fk_tipo,fecha_creacion) VALUE (";
 		sql_salvaguarda += pk_salvaguarda + ",'" + salvaguarda.getCodigo() + "','" + salvaguarda.getNombre() + "','"; 
 		sql_salvaguarda += salvaguarda.getDescripcion() + "',(select pk from tipo_salvaguarda where cod='" + salvaguarda.getTipo();  
-				sql_salvaguarda += "'),current_timestamp());";
-		System.out.println(sql_salvaguarda);
+		sql_salvaguarda += "'),current_timestamp());";
+				
+		resultado_creacion = base_datos.realizar_creacion(sql_salvaguarda);
+				
 		return resultado;
 	}
 	
@@ -150,14 +156,16 @@ public class CRUD_Salvaguardas {
 		
 		sql_pk = "select pk from salvaguarda where cod='" + codigo + "';";			
 		pks = base_datos.realizar_lectura(sql_pk);
+		
 		pk_salvaguarda = pks.get(0).get(0);
+		
 		sql_salvaguarda = "UPDATE salvaguarda SET "
 				+ "cod ='" + salvaguarda.getCodigo() + "', "
 				+ "nombre ='" + salvaguarda.getNombre() + "', "
 				+ "descripcion ='" + salvaguarda.getDescripcion() + "', "
 				+ "fk_tipo = (select pk from tipo_salvaguarda where cod='" + salvaguarda.getTipo() + "') "
 				+ "WHERE PK = " + pk_salvaguarda + ";";
-		System.out.println(sql_salvaguarda);
+		
 		resultado_modificacion = base_datos.realizar_modificacion(sql_salvaguarda);
 
 		return resultado;
@@ -168,9 +176,14 @@ public class CRUD_Salvaguardas {
 		Database base_datos = new Database();
 		String sql_salvaguarda;
 		boolean resultado_consulta;
-		sql_salvaguarda = "DELETE FROM salvaguarda WHERE cod='"+codigo+"';";
-		System.out.println(sql_salvaguarda);
-		resultado_consulta = base_datos.realizar_eliminacion(sql_salvaguarda);
+		List<String> sqls = new ArrayList<String>();
+		
+		sqls.add("select * from eficiencia where fk_salvaguarda=(select pk from salvaguarda where cod='" + codigo + "');");
+		sqls.add("DELETE FROM salvaguarda WHERE cod='"+codigo+"';");
+		
+		
+		resultado_consulta = base_datos.realizar_lote(sqls);
+		
 		return resultado;
 	}
 	

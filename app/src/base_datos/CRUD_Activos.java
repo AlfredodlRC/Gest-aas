@@ -505,10 +505,6 @@ public class CRUD_Activos {
 			String resultado = "";
 			Database base_datos = new Database();
 			String sql_pk;
-			String sql_valor_criterio;
-			String sql_valoracion;
-			String sql_dependencia;
-			String sql_activo;
 			boolean resultado_consulta;
 			List<String> lista_sql = new ArrayList<String>();
 
@@ -522,11 +518,11 @@ public class CRUD_Activos {
 			 *  activo
 			 */
 			sql_pk = "(select pk from activo where cod='"+codigo+"')";
-			lista_sql.add("delete from eficiencia where fk_activo="+sql_pk+";");
-			lista_sql.add("delete from degradacion where fk_activo="+sql_pk+";");
-			lista_sql.add("DELETE FROM valoracion WHERE fk_activo="+sql_pk+";");
-			lista_sql.add("DELETE FROM valor_criterio WHERE pk=(select fk_criterio from valoracion where fk_activo="+sql_pk+");");
-			lista_sql.add("DELETE FROM rel_dependencia_activos WHERE fk_inferior="+sql_pk+" or fk_superior="+sql_pk+";");
+			lista_sql.add("DELETE FROM eficiencia where fk_degradacion in (select pk from degradacion where fk_activo in "+sql_pk+");");
+			lista_sql.add("delete from degradacion where fk_activo in "+sql_pk+";");
+			lista_sql.add("DELETE FROM valoracion WHERE fk_activo in "+sql_pk+";");
+			lista_sql.add("DELETE FROM valor_criterio WHERE pk in (select fk_criterio from valoracion where fk_activo="+sql_pk+");");
+			lista_sql.add("DELETE FROM rel_dependencia_activos WHERE fk_inferior in "+sql_pk+" or fk_superior in "+sql_pk+";");
 			lista_sql.add("DELETE FROM activo WHERE cod='"+codigo+"';");
 			resultado_consulta = base_datos.realizar_lote(lista_sql);
 
