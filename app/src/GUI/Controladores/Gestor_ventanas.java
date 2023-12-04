@@ -68,12 +68,20 @@ public class Gestor_ventanas {
 	
 	public Gestor_ventanas() {
 		super();
-		ventana_principal = new GUI.Ventanas.ventanas.Ventana_principal();
-		manejador_principal = new GUI.Controladores.Controlador_acciones_principal(ventana_principal);
-		ventana_principal.establecerManejador(manejador_principal);
-
+		activar_ventana_principal();
 	}
 
+	public void activar_ventana_principal() {
+		if (ventana_principal == null) {
+			ventana_principal = new GUI.Ventanas.ventanas.Ventana_principal();
+			manejador_principal = new GUI.Controladores.Controlador_acciones_principal(ventana_principal);
+			ventana_principal.establecerManejador(manejador_principal);
+		} else {
+			ventana_principal.toFront();
+		}
+		
+	}
+	
 	public void recargar_lista_activos() {
 		ventana_principal.establecer_activos();
 	}
@@ -101,7 +109,7 @@ public class Gestor_ventanas {
 
 	public void activar_ventana_ver_activo() {
 		if (Principal.logica.get_activo_actual().getCodigo() == "") {
-			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ningún activo","Sin activo", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		System.out.println("activar ventana ver activo");
@@ -139,7 +147,7 @@ public class Gestor_ventanas {
 
 	public void activar_ventana_modificar_activo() {
 		if (Principal.logica.get_activo_actual().getCodigo() == "") {
-			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,"No se ha seleccionado ningún activo","Sin activo", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		System.out.println("activar ventana modificar activo");
@@ -390,6 +398,10 @@ public class Gestor_ventanas {
 	public void desactivar_ventana_configuracion_bbdd() {
 		System.out.println("desactivar ventana configuracion BBDD");
 		ventana_configuracion_bbdd.setVisible(false);
+	}
+	
+	public void recoger_datos_principal() {
+		ventana_principal.recoger_datos();
 	}
 	
 	

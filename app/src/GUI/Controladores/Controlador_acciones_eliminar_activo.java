@@ -25,6 +25,7 @@ public class Controlador_acciones_eliminar_activo implements ActionListener {
 		if (e.getSource() == ventana.getBtn_accion()) { 
 			resultado_eliminar = Principal.logica.eliminar_activo_actual();
 			if (resultado_eliminar.isEmpty() == true) {
+				Principal.logica.recoger_datos();
 				Principal.gestor_ventanas.desactivar_ventana_eliminar_activo();
 			} else {
 				JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_eliminar,"Error al eliminar activo", JOptionPane.ERROR_MESSAGE);	

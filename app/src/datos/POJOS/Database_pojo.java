@@ -11,7 +11,7 @@ public class Database_pojo {
 	public Database_pojo() {
 		super();
 		host = "localhost";
-		puerto = "3502";
+		puerto = "3306";
 		base_datos = "gestor_activos_amenazas_salvaguardas";
 		usuario = "root";
 		contrasenya = "Alfredo";

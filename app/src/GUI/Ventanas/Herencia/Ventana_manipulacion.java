@@ -20,7 +20,7 @@ public class Ventana_manipulacion extends Ventana_comun {
 	private void inicializar_componentes_manipulacion() {
 		
 		cb_tipo = new JComboBox<String>();
-		cb_tipo.setBounds(70,20,160,30);
+		cb_tipo.setBounds(70,20,260,30);
 		add(cb_tipo);
 
 	}

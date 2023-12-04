@@ -25,7 +25,7 @@ public class Database {
 
 		datos_bbdd = new Database_pojo();
 		
-		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + "/" + datos_bbdd.getBase_datos();
+		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + ":" + datos_bbdd.getPuerto() + "/" + datos_bbdd.getBase_datos();
 	}
 
 	
@@ -35,7 +35,7 @@ public class Database {
 
 		this.datos_bbdd = datos_bbdd;
 		
-		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + "/" + datos_bbdd.getBase_datos();
+		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + ":" + datos_bbdd.getPuerto() + "/" + datos_bbdd.getBase_datos();
 	}
 
 
@@ -254,6 +254,12 @@ public class Database {
 		cerrar_conexion(conexion_lote);
 
 		return resultado;
+	}
+
+
+
+	public String getMensaje_error() {
+		return mensaje_error;
 	}
 	
 	

@@ -70,6 +70,7 @@ public class Controlador_acciones_configuraccion_bbdd  implements ActionListener
 		
 		if (cambio == true) {
 			Principal.gestor_ventanas.desactivar_ventana_configuracion_bbdd();
+			Principal.gestor_ventanas.recargar_lista_activos();
 		}
 		
 	}

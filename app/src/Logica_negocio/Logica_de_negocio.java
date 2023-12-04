@@ -22,6 +22,10 @@ public class Logica_de_negocio {
 	public Logica_de_negocio() {
 		super();
 		datos_aplicacion = new Persistencia_datos();
+		recoger_datos();
+	}
+
+	public void recoger_datos() {
 		cargar_criterios();
 		cargar_escalas();
 		cargar_activos();
@@ -32,7 +36,14 @@ public class Logica_de_negocio {
 		cargar_tipo_amenazas();
 		cargar_tipo_salvaguardas();
 	}
-
+	
+	public boolean comprobar_bbdd() {
+		boolean resultado;
+		
+		resultado = Principal.gestor_base_datos.probar_base_datos();
+		
+		return resultado;
+	}
 	// funciones de cargar datos de la BBDD
 	public void cargar_criterios() {
 		
@@ -359,13 +370,16 @@ public class Logica_de_negocio {
 	// Establecer el activo actual desde la BBDD a partir del código
 	public void set_activo_actual(String cod_nom_activo) {
 		
+		System.out.println(cod_nom_activo);
 		Activo_pojo activo = new Activo_pojo();
 		String codigo = this.coger_codigo_nombre(cod_nom_activo);
-		
+		System.out.println(codigo);
 			
 		activo = Principal.gestor_base_datos.coger_activo(codigo);
 		System.out.println(activo.getCodigo());
+		System.out.println(datos_aplicacion.getActivo_actual());
 		datos_aplicacion.setActivo_actual(activo);
+		System.out.println(datos_aplicacion.getActivo_actual());
 	}
 
 	// Entregar la amenaza actual
@@ -461,13 +475,12 @@ public class Logica_de_negocio {
 		
 		codigo = this.datos_aplicacion.getActivo_actual().getCodigo();
 		
-		System.out.println("Creando el activo:"+codigo);
 		
 		resultado = Principal.gestor_base_datos.modificar_activo(codigo_original,activo_modificado);
 		
-		
 		for(int i=0;i<datos_aplicacion.getLista_activos().size();i++) {
-			if (datos_aplicacion.getLista_activos().get(i).getCodigo() == codigo_original) {
+			if (datos_aplicacion.getLista_activos().get(i).getCodigo().contentEquals(codigo_original)) {
+			
 				datos_aplicacion.getLista_activos().set(i, activo_modificado);
 			}
 		}
@@ -475,9 +488,7 @@ public class Logica_de_negocio {
 		Principal.gestor_ventanas.recargar_lista_activos();
 		cargar_relaciones_activos();
 
-		System.out.println("activo "+codigo+" creado con resultado:"+resultado);
 
-	
 		return resultado;
 	}
 	
@@ -494,6 +505,8 @@ public class Logica_de_negocio {
 		
 		datos_aplicacion.getLista_amenazas().add(amenaza_nueva);
 		
+		Principal.gestor_ventanas.recargar_lista_amenazas();
+
 		System.out.println("amenaza "+codigo+" creado con resultado:"+resultado);
 
 		return resultado;
@@ -511,13 +524,13 @@ public class Logica_de_negocio {
 		resultado = Principal.gestor_base_datos.modificar_amenaza(amenaza_modificado, codigo_original);
 		
 		
-		for(int i=0;i<datos_aplicacion.getLista_activos().size();i++) {
+		for(int i=0;i<datos_aplicacion.getLista_amenazas().size();i++) {
 			if (datos_aplicacion.getLista_amenazas().get(i).getCodigo() == codigo_original) {
 				datos_aplicacion.getLista_amenazas().set(i, amenaza_modificado);
 			}
 		}
 		
-		Principal.gestor_ventanas.recargar_lista_activos();
+		Principal.gestor_ventanas.recargar_lista_amenazas();
 
 		System.out.println("amenaza "+codigo+" modificado con resultado:"+resultado);
 
@@ -592,7 +605,7 @@ public class Logica_de_negocio {
 			}
 		}
 		
-		Principal.gestor_ventanas.recargar_lista_activos();
+		Principal.gestor_ventanas.recargar_lista_salvaguardas();
 
 		System.out.println("salvaguarda "+codigo+" modificado con resultado:"+resultado);
 	
@@ -612,7 +625,7 @@ public class Logica_de_negocio {
 		resultado = Principal.gestor_base_datos.eliminar_salvaguarda(codigo);
 		
 		datos_aplicacion.getLista_amenazas().remove(this.datos_aplicacion.getAmenaza_actual());
-		Principal.gestor_ventanas.recargar_lista_activos();
+		Principal.gestor_ventanas.recargar_lista_salvaguardas();
 
 		System.out.println("amenaza "+codigo+" eliminado con resultado:"+resultado);
 

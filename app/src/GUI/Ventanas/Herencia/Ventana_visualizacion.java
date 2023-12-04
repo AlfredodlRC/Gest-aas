@@ -20,7 +20,7 @@ public class Ventana_visualizacion extends Ventana_comun {
 	private void inicializar_componentes_visualizacion() {
 		
 		tb_tipo = new JTextField();
-		tb_tipo.setBounds(70,20,160,30);
+		tb_tipo.setBounds(70,20,260,30);
 		add(tb_tipo);
 		
 

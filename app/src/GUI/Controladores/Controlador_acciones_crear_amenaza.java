@@ -70,6 +70,7 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 		resultado_crear = Principal.logica.crear_amenaza(ventana.getAmenaza());
 	
 		if (resultado_crear.isEmpty() == true) {
+			Principal.logica.recoger_datos();
 			Principal.gestor_ventanas.desactivar_ventana_crear_amenaza();
 		} else {
 			JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_crear,"Error al crear activo", JOptionPane.ERROR_MESSAGE);	

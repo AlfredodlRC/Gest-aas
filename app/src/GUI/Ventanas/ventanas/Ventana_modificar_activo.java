@@ -8,6 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
@@ -57,6 +58,7 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		panel_datos.setBackground(Color.LIGHT_GRAY);
 		add(panel_datos);
 		
+
 		this.getActivos_disponibles_inferiores().setModel(modelo_activos_disponibles_inferiores);
 		this.getActivos_disponibles_superiores().setModel(modelo_activos_disponibles_superiores);
 		this.getActivos_inferiores().setModel(modelo_activos_inferiores);
@@ -221,15 +223,49 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 			if (elemento.contains(Principal.logica.get_activo_actual().getCriterio_ibl_ue()) == true) {
 				this.panel_datos.getCriterio_13().setSelectedItem(elemento);
 			}
-}
-			
-		/*
-		 * Falta cargar los activos tanto relacionados on el activo como los no relacionados
-		 */
-		System.out.println(Principal.logica.coger_lista_relaciones_activos());
-
-		for(Relacion_activos elemento: Principal.logica.coger_lista_relaciones_activos()) {
 		}
+		
+		
+		String codigo_activo = Principal.logica.get_activo_actual().getCodigo();
+
+		modelo_activos_superiores.clear();
+		modelo_activos_inferiores.clear();
+		modelo_activos_disponibles_inferiores.clear();
+		modelo_activos_disponibles_superiores.clear();
+		this.getActivo_actual().getLista_activos_superiores().clear();
+		this.getActivo_actual().getLista_activos_inferiores().clear();
+		
+		for(Relacion_activos elemento: Principal.logica.coger_lista_relaciones_activos()) {
+			if (elemento.getActivo_superior().equalsIgnoreCase(codigo_activo) == true) {
+				for(String activo_elemento: Principal.logica.coger_lista_activos()) {
+					if (activo_elemento.contains('(' + elemento.getActivo_superior() + ')') == true) {
+						modelo_activos_inferiores.addElement('(' + elemento.getActivo_inferior() + ')');
+						this.getActivo_actual().getLista_activos_inferiores().add(elemento);
+					}
+				}
+			}
+			if (elemento.getActivo_inferior().equalsIgnoreCase(codigo_activo) == true) {
+				for(String activo_elemento: Principal.logica.coger_lista_activos()) {
+					if (activo_elemento.contains('(' + elemento.getActivo_inferior() + ')') == true) {
+						modelo_activos_superiores.addElement('(' + elemento.getActivo_superior() + ')');
+						this.getActivo_actual().getLista_activos_superiores().add(elemento);
+					}
+				}
+			}
+			if (elemento.getActivo_superior().equalsIgnoreCase(codigo_activo) == false && 
+				elemento.getActivo_inferior().equalsIgnoreCase(codigo_activo) == false) {
+				modelo_activos_disponibles_inferiores.addElement('(' + elemento.getActivo_superior() + ')');
+				modelo_activos_disponibles_superiores.addElement('(' + elemento.getActivo_superior() + ')');
+			}				
+			
+			
+		}
+		System.out.println("inferiores"+modelo_activos_inferiores);
+		System.out.println("superiores"+modelo_activos_superiores);
+		System.out.println("disponibles inferiores"+modelo_activos_disponibles_inferiores);
+		System.out.println("disponibles superiores"+modelo_activos_disponibles_superiores);
+		System.out.println("act inferiores"+this.getActivo_actual().getLista_activos_inferiores());
+		System.out.println("act superiores"+this.getActivo_actual().getLista_activos_superiores());
 
 
 
@@ -309,11 +345,11 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 	}
 	
 	public JList<String> getActivos_disponibles_superiores() {
-		return panel_datos.get_activos_inferiores();
+		return panel_datos.getActivos_disponibles_superiores();
 	}
 	
 	public JList<String> getActivos_inferiores() {
-		return panel_datos.getActivos_disponibles_inferiores();
+		return panel_datos.get_activos_inferiores();
 	}
 	
 	public JList<String> getActivos_superiores() {
@@ -356,8 +392,39 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		return modelo_activos_superiores;
 	}
 
+	public JSpinner getTB_grado_superior() {
+		return panel_datos.getTb_grado_superior();
+	}
+	
+	public JSpinner getTB_grado_inferior() {
+		return panel_datos.getTb_grado_inferior();
+	}
+	
+	public JButton getBtn_aceptar_activo_inferior() {
+		return panel_datos.getBtn_aceptar_activo_inferior();
+	}
 
-	public Activo_pojo getActivo_vacio() {
+	public JButton getBtn_cancelar_activo_inferior() {
+		return panel_datos.getBtn_cancelar_activo_inferior();
+	}
+	
+	public JButton getBtn_aceptar_activo_superior() {
+		return panel_datos.getBtn_aceptar_activo_superior();
+	}
+
+	public JButton getBtn_cancelar_activo_superior() {
+		return panel_datos.getBtn_cancelar_activo_superior();
+	}
+	
+	public JPanel get_panel_confirmacion_activo_superior() {
+		return panel_datos.get_panel_confirmacion_activo_superior();
+	}
+	
+	public JPanel get_panel_confirmacion_activo_inferior() {
+		return panel_datos.get_panel_confirmacion_activo_inferior();
+	}
+
+	public Activo_pojo getActivo_actual() {
 		return activo;
 	}
 	

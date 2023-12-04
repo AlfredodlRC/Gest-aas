@@ -3,9 +3,11 @@ package GUI.Ventanas.ventanas;
 import java.awt.Font;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -33,9 +35,14 @@ public class Ventana_principal extends JFrame {
 	private JMenuItem submenu_login,submenu_logout;
 	
 	private JLabel label_cod_activo,label_cod_amenaza,label_cod_salvaguarda;
-	private JComboBox<String> cb_cod_activo,cb_cod_amenaza,cb_cod_salvaguarda;
+	private JList<String> cb_cod_activo,cb_cod_amenaza,cb_cod_salvaguarda;
+	
+	private DefaultListModel<String> activos;
+	private DefaultListModel<String> amenazas;
+	private DefaultListModel<String> salvaguardas;
 	
 	public Ventana_principal() {
+		
 		setTitle("Gestor AAS - Ventana principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(900, 500);
@@ -158,29 +165,38 @@ public class Ventana_principal extends JFrame {
  
         
         // elementos de códigos
-        label_cod_activo = new JLabel("Código del activo:");
-        label_cod_activo.setBounds(100,100,300,30);
+        
+        label_cod_activo = new JLabel("Activos");
+        label_cod_activo.setBounds(100,10,100,30);
         add(label_cod_activo);
         
-        label_cod_amenaza = new JLabel("Código de la amenaza:");
-        label_cod_amenaza.setBounds(100,150,300,30);
+        label_cod_amenaza = new JLabel("Amenazas");
+        label_cod_amenaza.setBounds(385,10,100,30);
         add(label_cod_amenaza);
 
-        label_cod_salvaguarda = new JLabel("Codigo de la salvaguarda:");
-        label_cod_salvaguarda.setBounds(100,200,300,30);
+        label_cod_salvaguarda = new JLabel("Salvaguardas");
+        label_cod_salvaguarda.setBounds(670,10,100,30);
         add(label_cod_salvaguarda);
         
+        activos = new DefaultListModel<String>();
         
-        cb_cod_activo = new JComboBox<String>();
-        cb_cod_activo.setBounds(300,100,300,30);
+        cb_cod_activo = new JList<String>();
+        cb_cod_activo.setBounds(50,50,200,300);
+        cb_cod_activo.setModel(activos);
         add(cb_cod_activo);
         
-        cb_cod_amenaza = new JComboBox<String>();
-        cb_cod_amenaza.setBounds(300,150,300,30);
+        amenazas = new DefaultListModel<String>();
+
+        cb_cod_amenaza = new JList<String>();
+        cb_cod_amenaza.setBounds(335,50,200,300);
+        cb_cod_amenaza.setModel(amenazas);
         add(cb_cod_amenaza);
 
-        cb_cod_salvaguarda = new JComboBox<String>();
-        cb_cod_salvaguarda.setBounds(300,200,300,30);
+        salvaguardas = new DefaultListModel<String>();
+
+        cb_cod_salvaguarda = new JList<String>();
+        cb_cod_salvaguarda.setBounds(620,50,200,300);
+        cb_cod_salvaguarda.setModel(salvaguardas);
         add(cb_cod_salvaguarda);
 	}
 	
@@ -206,12 +222,12 @@ public class Ventana_principal extends JFrame {
 	    submenu_probar_conexion_BBDD.addActionListener(manejador);
 	    submenu_login.addActionListener(manejador);
 	    submenu_logout.addActionListener(manejador);
-	    cb_cod_activo.addActionListener(manejador);
-	    cb_cod_amenaza.addActionListener(manejador);
-	    cb_cod_salvaguarda.addActionListener(manejador);
+	    cb_cod_activo.addListSelectionListener(manejador);
+	    cb_cod_amenaza.addListSelectionListener(manejador);
+	    cb_cod_salvaguarda.addListSelectionListener(manejador);
 	}
 	
-	private void recoger_datos() {
+	public void recoger_datos() {
 
 		establecer_activos();
 
@@ -223,41 +239,47 @@ public class Ventana_principal extends JFrame {
 	
 	public void establecer_activos() {
 		
-		List<String> activos = Principal.logica.coger_lista_activos();
-		cb_cod_activo.removeAllItems();
-		for(String elemento: activos) {
-			cb_cod_activo.addItem(elemento);
+		List<String> lista_activos = Principal.logica.coger_lista_activos();
+
+		activos.clear();
+		for (String elemento: lista_activos) {
+			activos.addElement(elemento);
 		}
-		if (cb_cod_activo.getItemCount() > 0) {
+		
+		if (activos.size() > 0) {
 			cb_cod_activo.setSelectedIndex(0);
-			Principal.logica.set_activo_actual(getCB_cod_activo().getSelectedItem().toString());
+			Principal.logica.set_activo_actual(getCB_cod_activo().getSelectedValue());
 		}
 	}
 	
 	public void establecer_amenazas() {
 		
-		List<String> amenazas = Principal.logica.coger_lista_amenazas();
-		cb_cod_amenaza.removeAllItems();
-		for(String elemento: amenazas) {
-			cb_cod_amenaza.addItem(elemento);
+		List<String> lista_amenazas = Principal.logica.coger_lista_amenazas();
+		
+		amenazas.clear();
+		for(String elemento: lista_amenazas) {
+			amenazas.addElement(elemento);
 		}
-		if (cb_cod_amenaza.getItemCount() > 0) {
+		if (amenazas.size() > 0) {
 			cb_cod_amenaza.setSelectedIndex(0);
-			Principal.logica.set_amenaza_actual(getCB_cod_amenaza().getSelectedItem().toString());
-		}	
+			Principal.logica.set_amenaza_actual(getCB_cod_amenaza().getSelectedValue());
+		}
+			
 	}
 	
 	public void establecer_salvaguardas() {
 
-		List<String> salvaguardas = Principal.logica.coger_lista_salvaguardas();
-		cb_cod_salvaguarda.removeAllItems();
-		for(String elemento: salvaguardas) {
-			cb_cod_salvaguarda.addItem(elemento);
+		List<String> lista_salvaguardas = Principal.logica.coger_lista_salvaguardas();
+		
+		salvaguardas.clear();
+		
+		for(String elemento: lista_salvaguardas) {
+			salvaguardas.addElement(elemento);
 		}
 		
-		if (cb_cod_salvaguarda.getItemCount() > 0) {
+		if (salvaguardas.size() > 0) {
 			cb_cod_salvaguarda.setSelectedIndex(0);
-			Principal.logica.set_salvaguarda_actual(getCB_cod_salvaguarda().getSelectedItem().toString());
+			Principal.logica.set_salvaguarda_actual(getCB_cod_salvaguarda().getSelectedValue());
 		}
 		
 
@@ -352,15 +374,15 @@ public class Ventana_principal extends JFrame {
 		return submenu_logout;
 	}
 
-	public JComboBox<String> getCB_cod_activo() {
+	public JList<String> getCB_cod_activo() {
 		return cb_cod_activo;
 	}
 
-	public JComboBox<String> getCB_cod_amenaza() {
+	public JList<String> getCB_cod_amenaza() {
 		return cb_cod_amenaza;
 	}
 
-	public JComboBox<String> getCB_cod_salvaguarda() {
+	public JList<String> getCB_cod_salvaguarda() {
 		return cb_cod_salvaguarda;
 	}
 	

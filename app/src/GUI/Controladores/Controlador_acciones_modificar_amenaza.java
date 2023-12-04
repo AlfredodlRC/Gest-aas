@@ -53,6 +53,7 @@ public class Controlador_acciones_modificar_amenaza implements ActionListener {
 		resultado_modificar = Principal.logica.modificar_amenaza_actual(ventana.getAmenaza(),ventana.getCodigo_original());
 		
 		if (resultado_modificar.isEmpty() == true) {
+			Principal.logica.recoger_datos();
 			Principal.gestor_ventanas.desactivar_ventana_modificar_amenaza();
 		} else {
 			JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_modificar,"Error al modificar activo", JOptionPane.ERROR_MESSAGE);	

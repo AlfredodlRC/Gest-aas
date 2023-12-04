@@ -40,6 +40,7 @@ public class Controlador_acciones_modificar_salvaguarda implements ActionListene
 		resultado_crear = Principal.logica.modificar_salvaguarda_actual(ventana.getCodigo_original(), ventana.getSalvaguarda());
 
 		if (resultado_crear.isEmpty() == true) {
+			Principal.logica.recoger_datos();
 			Principal.gestor_ventanas.desactivar_ventana_modificar_salvaguarda();
 		} else {
 			JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_crear,"Error al crear activo", JOptionPane.ERROR_MESSAGE);	

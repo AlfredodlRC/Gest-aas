@@ -1,13 +1,16 @@
 package GUI.Controladores;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import GUI.Ventanas.ventanas.Ventana_principal;
 import aplicacion.Principal;
 
-public class Controlador_acciones_principal implements ActionListener {
+public class Controlador_acciones_principal implements ActionListener, ListSelectionListener {
 	
 	private Ventana_principal ventana;
 	
@@ -15,6 +18,28 @@ public class Controlador_acciones_principal implements ActionListener {
 		this.ventana = ventana;
 	}
 	
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		if (e.getSource() == ventana.getCB_cod_activo()) {
+			if (ventana.getCB_cod_activo().getSelectedValue() != null) {
+				Principal.logica.set_activo_actual(ventana.getCB_cod_activo().getSelectedValue().toString());
+			}
+		}
+		if (e.getSource() == ventana.getCB_cod_amenaza()) {
+			if (ventana.getCB_cod_amenaza().getSelectedValue() != null) {
+				Principal.logica.set_amenaza_actual(ventana.getCB_cod_amenaza().getSelectedValue().toString());
+			}
+		}
+		if (e.getSource() == ventana.getCB_cod_salvaguarda()) {
+			if (ventana.getCB_cod_salvaguarda().getSelectedValue() != null) {
+				Principal.logica.set_salvaguarda_actual(ventana.getCB_cod_salvaguarda().getSelectedValue().toString());
+			}
+		}
+
+		
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -70,15 +95,6 @@ public class Controlador_acciones_principal implements ActionListener {
 		if (e.getSource() == ventana.getSubmenu_login()) { login(); }
 		if (e.getSource() == ventana.getSubmenu_logout()) { logout(); }
 		
-		if (e.getSource() == ventana.getCB_cod_activo()) {
-			Principal.logica.set_activo_actual(ventana.getCB_cod_activo().getSelectedItem().toString());
-		}
-		if (e.getSource() == ventana.getCB_cod_amenaza()) {
-			Principal.logica.set_amenaza_actual(ventana.getCB_cod_amenaza().getSelectedItem().toString());		
-		}
-		if (e.getSource() == ventana.getCB_cod_salvaguarda()) {
-			Principal.logica.set_salvaguarda_actual(ventana.getCB_cod_salvaguarda().getSelectedItem().toString());
-		}
 	}
 
 	

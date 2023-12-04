@@ -65,25 +65,25 @@ public class Ventana_comun extends JFrame {
 		add(lbl_fecha);
 		
 		lbl_descripcion = new JLabel("Descripción");
-		lbl_descripcion.setBounds(260,20,70,30);
+		lbl_descripcion.setBounds(360,20,70,30);
 		add(lbl_descripcion);
 
 		tb_codigo = new JTextField();
-		tb_codigo.setBounds(70,50,160,30);
+		tb_codigo.setBounds(70,50,260,30);
 		add(tb_codigo);
 
 		
 		tb_nombre = new JTextField();
-		tb_nombre.setBounds(70,80,160,30);
+		tb_nombre.setBounds(70,80,260,30);
 		add(tb_nombre);
 
 		
 		tb_fecha = new JTextField();
-		tb_fecha.setBounds(70,110,160,30);
+		tb_fecha.setBounds(70,110,260,30);
 		add(tb_fecha);
 		
 		tb_descripcion = new JTextArea();
-		tb_descripcion.setBounds(260,50,620,90);
+		tb_descripcion.setBounds(360,50,520,90);
 		add(tb_descripcion);
 		
 		btn_cancelar = new JButton("Cancelar");

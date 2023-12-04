@@ -179,9 +179,6 @@ public class Ventana_crear_activo extends Ventana_crear {
 
 	}
 
-
-	
-
 	public JTextField getTb_valor_repercutido() {
 		return panel_datos.getTb_valor_repercutido();
 	}

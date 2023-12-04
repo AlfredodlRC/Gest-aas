@@ -1,7 +1,5 @@
 package aplicacion;
 
-import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import GUI.Controladores.Gestor_ventanas;

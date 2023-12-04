@@ -34,6 +34,7 @@ public class Controlador_acciones_eliminar_salvaguarda implements ActionListener
 		if(e.getSource() == ventana.getBtn_accion()) { 
 			resultado_eliminar = Principal.logica.eliminar_salvaguarda_actual();
 			if (resultado_eliminar.isEmpty() == true) {
+				Principal.logica.recoger_datos();
 				Principal.gestor_ventanas.desactivar_ventana_eliminar_salvaguarda();
 			} else {
 				JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_eliminar,"Error al eliminar salvagarda", JOptionPane.ERROR_MESSAGE);	
