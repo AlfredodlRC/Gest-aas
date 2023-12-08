@@ -19,6 +19,10 @@ import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Relacion_activos;
 
+/**
+ *  Clase destinada a modificar los datos del activo actual
+ *  Es una clase hija de Ventana_modificar
+ */
 public class Ventana_modificar_activo extends Ventana_modificar {
 
 
@@ -27,18 +31,44 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 	 */
 	private static final long serialVersionUID = 8916131888468125891L;
 	
+	/**
+	 * Panel que contiene los componentes con los valores especificos del activo
+	 */
 	private Panel_activo_manipulacion panel_datos;
 
+	/**
+	 * 
+	 */
 	private String codigo_original;
 
-	DefaultListModel<String> modelo_activos_disponibles_inferiores = new DefaultListModel<>();
-	DefaultListModel<String> modelo_activos_disponibles_superiores = new DefaultListModel<>();
-	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
-	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
+	/**
+	 * 
+	 */
+	private DefaultListModel<String> modelo_activos_disponibles_inferiores = new DefaultListModel<>();
 
+	/**
+	 * 
+	 */
+	private DefaultListModel<String> modelo_activos_disponibles_superiores = new DefaultListModel<>();
 
-	Activo_pojo activo;
+	/**
+	 * 
+	 */
+	private DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
 
+	/**
+	 * 
+	 */
+	private DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
+
+	/**
+	 * 
+	 */
+	private Activo_pojo activo;
+
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_modificar_activo() {
 		super();
 
@@ -66,6 +96,9 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 
 	}
 
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_modificar_activo manejador) {
 		btn_accion.addActionListener(manejador);
 		btn_cancelar.addActionListener(manejador);
@@ -79,7 +112,9 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		panel_datos.getBtn_cancelar_activo_superior().addActionListener(manejador);
 	}
 	
-
+	/**
+	 * Función encargada de recoger los datos del activo actual
+	 */
 	public void cargar_datos() {
 
 		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
@@ -99,6 +134,9 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		System.out.println(Principal.logica.get_activo_actual().getTipo());
 	}
 		
+	/**
+	 * 
+	 */
 	public void cargar_lista_datos() {
 
 		this.cb_tipo.removeAllItems();
@@ -260,17 +298,8 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 			
 			
 		}
-		System.out.println("inferiores"+modelo_activos_inferiores);
-		System.out.println("superiores"+modelo_activos_superiores);
-		System.out.println("disponibles inferiores"+modelo_activos_disponibles_inferiores);
-		System.out.println("disponibles superiores"+modelo_activos_disponibles_superiores);
-		System.out.println("act inferiores"+this.getActivo_actual().getLista_activos_inferiores());
-		System.out.println("act superiores"+this.getActivo_actual().getLista_activos_superiores());
-
-
 
 	}
-
 
 	public JTextField getTb_valor_repercutido() {
 		return panel_datos.getTb_valor_repercutido();
@@ -424,10 +453,16 @@ public class Ventana_modificar_activo extends Ventana_modificar {
 		return panel_datos.get_panel_confirmacion_activo_inferior();
 	}
 
+	/**
+	 * Función que devuelve el estado actual del activo de la ventana
+	 */
 	public Activo_pojo getActivo_actual() {
 		return activo;
 	}
 	
+	/**
+	 * Función que devuelve el activo de la ventana con todos los datos
+	 */
 	public Activo_pojo getActivo() {
 		
 		String texto_cb;

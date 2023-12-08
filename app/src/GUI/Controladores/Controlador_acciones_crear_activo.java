@@ -11,15 +11,26 @@ import GUI.Ventanas.ventanas.Ventana_crear_activo;
 import aplicacion.Principal;
 import datos.POJOS.Relacion_activos;
 
+/**
+ * 
+ */
 public class Controlador_acciones_crear_activo implements ActionListener, ItemListener {
 	
+	/**
+	 * 
+	 */
 	private Ventana_crear_activo ventana;
 	
+	/**
+	 * 
+	 */
 	public Controlador_acciones_crear_activo(Ventana_crear_activo ventana) {
 		this.ventana = ventana;
 	}
 	
-	
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -56,13 +67,18 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
+		
+	/**
+	 * 
+	 */
 	private void crear_activo() {
 		
 		String resultado_crear = "";
@@ -78,6 +94,9 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 			
 	}
 
+	/**
+	 * 
+	 */
 	private void agregar_activo_inferior() { 
 		String valor;
 		int indice = -1;
@@ -92,6 +111,9 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		ventana.get_panel_confirmacion_activo_inferior().setVisible(true);
 	}
 
+	/**
+	 * 
+	 */
 	private void desagregar_activo_inferior() {
 		String valor;
 		int indice_seleccionado;
@@ -121,6 +143,9 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		ventana.getTB_grado_inferior().setValue(0.5);
 	}
 	
+	/**
+	 * 
+	 */
 	private void agregar_activo_superior() { 
 		String valor;
 		int indice = -1;
@@ -135,6 +160,9 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		ventana.get_panel_confirmacion_activo_superior().setVisible(true);
 	}
 	
+	/**
+	 * 
+	 */
 	private void desagregar_activo_superior() {
 		String valor;
 		int indice_seleccionado;
@@ -169,6 +197,9 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		
 	}
 	
+	/**
+	 * 
+	 */
 	private void aceptar_activo_inferior() {
 		String valor;
 		Relacion_activos nueva_relacion;
@@ -196,11 +227,17 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		ventana.getTB_grado_inferior().setValue(0.5);
 	}
 	
+	/**
+	 * 
+	 */
 	private void cancelar_activo_inferior() {
 		ventana.get_panel_confirmacion_activo_inferior().setVisible(false);
 		ventana.getTB_grado_inferior().setValue(0.5);
 	}
 	
+	/**
+	 * 
+	 */
 	private void aceptar_activo_superior() {
 		
 		String valor;
@@ -234,12 +271,12 @@ public class Controlador_acciones_crear_activo implements ActionListener, ItemLi
 		ventana.getTB_grado_superior().setValue(0.5);
 	}
 	
+	/**
+	 * 
+	 */
 	private void cancelar_activo_superior() {
 		ventana.get_panel_confirmacion_activo_superior().setVisible(false);
 		ventana.getTB_grado_superior().setValue(0.5);
 	}
-
-	
-	
 	
 }

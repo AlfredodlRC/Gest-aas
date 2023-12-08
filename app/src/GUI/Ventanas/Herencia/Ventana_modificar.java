@@ -1,5 +1,9 @@
 package GUI.Ventanas.Herencia;
 
+/**
+ * Clase ventana_modificar. Se utilizará para factorizar las ventanas de manipulación
+ * hereda de ventana_manipulación 
+ */
 public class Ventana_modificar extends Ventana_manipulacion {
 
 	/**

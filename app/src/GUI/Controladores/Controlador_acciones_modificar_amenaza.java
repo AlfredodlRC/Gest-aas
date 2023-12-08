@@ -11,19 +11,28 @@ import aplicacion.Principal;
 import datos.POJOS.Degradacion_amenaza_pojo;
 import datos.POJOS.Eficiencia_amenaza_pojo;
 
+/**
+ * 
+ */
 public class Controlador_acciones_modificar_amenaza implements ActionListener {
 
+	/**
+	 * 
+	 */
 	private Ventana_modificar_amenaza ventana;
-
 	
-	
+	/**
+	 * 
+	 */
 	public Controlador_acciones_modificar_amenaza(Ventana_modificar_amenaza ventana_modificar_amenaza) {
 		super();
 		this.ventana = ventana_modificar_amenaza;
 		System.out.println("++``dfdsaf");
 	}
 
-
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getSource());
@@ -47,6 +56,9 @@ public class Controlador_acciones_modificar_amenaza implements ActionListener {
 		}	
 	}
 	
+	/**
+	 * 
+	 */
 	private void modificar_amenaza() {
 		String resultado_modificar;
 
@@ -61,6 +73,9 @@ public class Controlador_acciones_modificar_amenaza implements ActionListener {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	private void anyadir_degradacion() {
 		
 		Degradacion_amenaza_pojo degradacion;
@@ -88,6 +103,9 @@ public class Controlador_acciones_modificar_amenaza implements ActionListener {
 		ventana.get_datos_activos().removeElement(ventana.getActivos().getSelectedValue());
 	}
 	
+	/**
+	 * 
+	 */
 	private void eliminar_degradacion() {
 		int fila_seleccionada;
 		int i;
@@ -124,6 +142,9 @@ public class Controlador_acciones_modificar_amenaza implements ActionListener {
 	
 	}
 
+	/**
+	 * 
+	 */
 	private void anyadir_eficiencia() { 
 		int indice_salvaguarda;
 		int indice_activo;
@@ -155,6 +176,9 @@ public class Controlador_acciones_modificar_amenaza implements ActionListener {
 		
 	}			
 	
+	/**
+	 * 
+	 */
 	private void eliminar_eficiencia() {
 		int fila_seleccionada;
 		int indice;

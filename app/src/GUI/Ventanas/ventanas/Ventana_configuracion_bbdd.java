@@ -9,6 +9,9 @@ import javax.swing.JTextField;
 import GUI.Controladores.Controlador_acciones_configuraccion_bbdd;
 import aplicacion.Principal;
 
+/**
+ *  Clase destinada a cambiar los datos de la configuración de la bbdd
+ */
 public class Ventana_configuracion_bbdd  extends JFrame {
 
 	/**
@@ -22,6 +25,9 @@ public class Ventana_configuracion_bbdd  extends JFrame {
 	JPasswordField tbcontrasenya,tbcontrasenya_repetida;
 	JButton btncancelar,btnaceptar;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_configuracion_bbdd() {
 		super();
 		 
@@ -35,6 +41,9 @@ public class Ventana_configuracion_bbdd  extends JFrame {
 
 	}
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	private void inicializarComponentes() {
 		lblhost = new JLabel("Host:");
 		lblhost.setBounds(20, 10, 150,30);
@@ -80,13 +89,19 @@ public class Ventana_configuracion_bbdd  extends JFrame {
 		add(btnaceptar);
 	}
 
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_configuraccion_bbdd manejador) {
 		btnaceptar.addActionListener(manejador);
 		btncancelar.addActionListener(manejador);
 	}
-	
+
+	/**
+	 * Función encargada de recoger los datos de la conexión a la bbdd
+	 */
 	public void cargar_datos() {
-		
+
 		tbhost.setText(Principal.gestor_base_datos.getDatos_bbdd().getHost());
 		tbpuerto.setText(Principal.gestor_base_datos.getDatos_bbdd().getPuerto());
 		tbnombre_base_datos.setText(Principal.gestor_base_datos.getDatos_bbdd().getBase_datos());
@@ -99,65 +114,109 @@ public class Ventana_configuracion_bbdd  extends JFrame {
 		return tbhost;
 	}
 
+	/**
+	 * 
+	 */
 	public JTextField getTbpuerto() {
 		return tbpuerto;
 	}
 
+	/**
+	 * 
+	 */
 	public JTextField getTbnombre_base_datos() {
 		return tbnombre_base_datos;
 	}
 
+	/**
+	 * 
+	 */
 	public JTextField getTbusuario() {
 		return tbusuario;
 	}
 
+	/**
+	 * 
+	 */
 	public JPasswordField getTbcontrasenya() {
 		return tbcontrasenya;
 	}
 
+	/**
+	 * 
+	 */
 	public JPasswordField getTbcontrasenya_repetida() {
 		return tbcontrasenya_repetida;
 	}
 
+	/**
+	 * 
+	 */
 	public JButton getBtncancelar() {
 		return btncancelar;
 	}
 
+	/**
+	 * 
+	 */
 	public JButton getBtnaceptar() {
 		return btnaceptar;
 	}
 
+	/**
+	 * 
+	 */
 	public void setTbhost(JTextField tbhost) {
 		this.tbhost = tbhost;
 	}
 
+	/**
+	 * 
+	 */
 	public void setTbpuerto(JTextField tbpuerto) {
 		this.tbpuerto = tbpuerto;
 	}
 
+	/**
+	 * 
+	 */
 	public void setTbnombre_base_datos(JTextField tbnombre_base_datos) {
 		this.tbnombre_base_datos = tbnombre_base_datos;
 	}
 
+	/**
+	 * 
+	 */
 	public void setTbusuario(JTextField tbusuario) {
 		this.tbusuario = tbusuario;
 	}
 
+	/**
+	 * 
+	 */
 	public void setTbcontrasenya(JPasswordField tbcontrasenya) {
 		this.tbcontrasenya = tbcontrasenya;
 	}
 
+	/**
+	 * 
+	 */
 	public void setTbcontrasenya_repetida(JPasswordField tbcontrasenya_repetida) {
 		this.tbcontrasenya_repetida = tbcontrasenya_repetida;
 	}
 
+	/**
+	 * 
+	 */
 	public void setBtncancelar(JButton btncancelar) {
 		this.btncancelar = btncancelar;
 	}
 
+	/**
+	 * 
+	 */
 	public void setBtnaceptar(JButton btnaceptar) {
 		this.btnaceptar = btnaceptar;
 	}
-
 
 }

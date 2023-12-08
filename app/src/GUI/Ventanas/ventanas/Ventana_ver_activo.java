@@ -14,18 +14,35 @@ import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Relacion_activos;
 
+/**
+ *  Clase destinada a mostrar los datos de la salvaguarda actual
+ *  Es una clase hija de Ventana_mostrar
+ */
 public class Ventana_ver_activo extends Ventana_mostrar {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5497666672167069220L;
-	
+
+	/**
+	 * Panel que contiene los componentes con los valores especificos del activo
+	 */
 	private Panel_activo_visualizacion panel_datos;
 
+	/**
+	 * Lista de activos disponibles para ser seleccionados para ser activos inferiores al actual
+	 */
 	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
+	
+	/**
+	 * Lista de activos disponibles para ser seleccionados para ser activos superiores al actual
+	 */
 	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
 
+	/**
+	 * Constructor genérico de la clase
+	 */
 	public Ventana_ver_activo() {
 		super();
 
@@ -36,6 +53,9 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		
 	}
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	private void establecerComponentes() {
 		btn_accion.setText("cerrar");
 		btn_cancelar.setVisible(false);
@@ -71,11 +91,17 @@ public class Ventana_ver_activo extends Ventana_mostrar {
 		
 	}
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_ver_activo manejador) {
 	    btn_cancelar.addActionListener(manejador);
 	    btn_accion.addActionListener(manejador);
 	}
 
+	/**
+	 * Función encargada de recoger los datos del activo actual
+	 */
 	public void cargar_activo() {
 		Activo_pojo activo = Principal.logica.get_activo_actual();
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");

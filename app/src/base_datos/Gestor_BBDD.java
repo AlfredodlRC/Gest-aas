@@ -12,14 +12,34 @@ import datos.POJOS.Relacion_activos;
 import datos.POJOS.Salvaguarda_pojo;
 import datos.POJOS.Tipo_elemento;
 
+/**
+ *  Clase para la gestión de la base de datos.
+ */
 public class Gestor_BBDD {
 
+	/**
+	 * Objeto que realiza las acciones sobre los activos
+	 */
 	private CRUD_Activos acciones_activos;
+
+	/**
+	 * Objeto que realiza las acciones sobre las amenazas
+	 */
 	private CRUD_Amenazas acciones_amenazas;
+
+	/**
+	 * Objeto que realiza las acciones sobre las salvaguardas
+	 */
 	private CRUD_Salvaguardas acciones_salvaguardas;
-	
+
+	/**
+	 * Objeto que se conectará a la base de datos
+	 */
 	private Database base_datos;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public Gestor_BBDD() {
 		super();
 		acciones_activos = new CRUD_Activos();
@@ -28,7 +48,9 @@ public class Gestor_BBDD {
 		base_datos = new Database();
 	}
 	
-	//Función para probar la conexión a la base de datos
+	/**
+	 * Se prueba la conexión con los datos de conexión actuales
+	 */
 	public boolean probar_base_datos() {
 		boolean resultado;
 	
@@ -36,7 +58,10 @@ public class Gestor_BBDD {
 	
 		return resultado;
 	}
-	
+
+	/**
+	 * Se prueba la conexión con los datos de conexión facilitados
+	 */
 	public boolean probar_base_datos(Database_pojo datos_nueva_bbdd) {
 		boolean resultado = false;
 		
@@ -47,6 +72,9 @@ public class Gestor_BBDD {
 		return resultado;
 	}
 	
+	/**
+	 * se cambia los datos de conexión de la base de datos
+	 */
 	public String cambiar_datos_conexion_bbdd(Database_pojo datos_nueva_bbdd) {
 		String resultado = "";
 		
@@ -55,10 +83,16 @@ public class Gestor_BBDD {
 		return resultado;
 	}
 
+	/**
+	 * Devuelve los datos de conexión de la base de datos
+	 */
 	public Database_pojo getDatos_bbdd() {
 		return base_datos.getDatos_bbdd();
 	}
 
+	/**
+	 * Función para recoger activos según tipo de amenaza 
+	 */
 	public List<String> coger_lista_activos_tipo_amenaza(String codigo) {
 		List<String> resultado = new ArrayList<String>();
 		List<Activo_pojo> lista;
@@ -70,7 +104,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 * Función para recoger los criterios
+	 */
 	public List<Criterio> coger_todos_criterios() {
 		
 		List<Criterio> resultado = null;
@@ -80,6 +117,9 @@ public class Gestor_BBDD {
 		return resultado;
 	}
 	
+	/**
+	 * Función para recoger las escalas 
+	 */
 	public List<Escala> coger_todas_escalas() {
 		List<Escala> resultado = null;
 		
@@ -88,6 +128,9 @@ public class Gestor_BBDD {
 		return resultado;
 	}
 	
+	/**
+	 *  Función para recoger los activos
+	 */
 	public List<Activo_pojo> coger_lista_activos() {
 		List<Activo_pojo> resultado = null;
 		
@@ -96,6 +139,9 @@ public class Gestor_BBDD {
 		return resultado;
 	}
 	
+	/**
+	 * Función para recoger las amenazas
+	 */
 	public List<Amenaza_pojo> coger_lista_amenazas() {
 		List<Amenaza_pojo>resultado = null;
 		
@@ -103,6 +149,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
+
+	/**
+	 * Función para recoger las salvaguardas
+	 */
 	public List<Salvaguarda_pojo> coger_listas_salvaguardas() {
 		List<Salvaguarda_pojo> resultado = null;
 		
@@ -111,6 +161,9 @@ public class Gestor_BBDD {
 		return resultado;
 	}
 	
+	/**
+	 *  Función para recoger los tipos de activos 
+	 */
 	public List<Tipo_elemento> coger_lista_tipo_activos() {
 		List<Tipo_elemento> resultado = null;
 		
@@ -118,7 +171,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 *  Función para recoger las relaciones entre activos
+	 */
 	public List<Relacion_activos> coger_lista_relaciones_activos() {
 		List<Relacion_activos> resultado = null;
 		
@@ -126,7 +182,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 *  Función para recoger los tipos de amenazas
+	 */
 	public List<Tipo_elemento> coger_lista_tipo_amenazas() {
 		List<Tipo_elemento> resultado = null;
 	
@@ -135,7 +194,10 @@ public class Gestor_BBDD {
 		return resultado;
 
 	}
-	
+
+	/**
+	 *  Función para recoger los tipos de salvaguardas
+	 */
 	public List<Tipo_elemento> coger_lista_tipo_salvaguardas() {
 		List<Tipo_elemento> resultado = null;
 		
@@ -143,15 +205,21 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 *  Función para recoger un activo a partir de un código de activo
+	 */
 	public Activo_pojo coger_activo(String codigo) {
 		Activo_pojo resultado = null;
-		System.out.println("**"+codigo);
+
 		resultado = acciones_activos.cargar_activo_codigo(codigo);
-		System.out.println("**"+resultado);
+
 		return resultado;
 	}
-	
+
+	/**
+	 *  Función para recoger una amenaza a partir de un códgo de amenaza
+	 */
 	public Amenaza_pojo coger_amenaza(String codigo) {
 		Amenaza_pojo resultado = null;
 		
@@ -159,14 +227,20 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 *  Función para recoger a partir de un código de salvaguarda
+	 */
 	public Salvaguarda_pojo coger_salvaguarda(String codigo) {
 		Salvaguarda_pojo resultado = null;
 		
 		resultado = acciones_salvaguardas.cargar_salvaguarda_codigo(codigo);
 		return resultado;
 	}
-	
+
+	/**
+	 *   Se crea un activo
+	 */
 	public String crear_activo(Activo_pojo activo_nuevo) {
 		String resultado = "";
 		
@@ -174,7 +248,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 * Se modifica un activo
+	 */
 	public String modificar_activo(String codigo_original,Activo_pojo activo_modificado) {
 		String resultado = "";
 		
@@ -182,7 +259,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 * Se elimina un activo
+	 */
 	public String eliminar_activo(String codigo) {
 		String resultado = "";
 		
@@ -191,7 +271,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-	
+
+	/**
+	 * Se crea una amenaza
+	 */
 	public String crear_amenaza(Amenaza_pojo amenaza) {
 		String resultado = "";
 		
@@ -199,7 +282,10 @@ public class Gestor_BBDD {
 				
 		return resultado;
 	}
-	
+
+	/**
+	 * Se modifica una amenaza
+	 */
 	public String modificar_amenaza(Amenaza_pojo amenaza_modificado,String codigo_original) {
 		String resultado = "";
 
@@ -207,7 +293,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}	
-	
+
+	/**
+	 * Se elimina una amenaza
+	 */
 	public String eliminar_amenaza(String codigo) {
 		String resultado = "";
 
@@ -216,7 +305,9 @@ public class Gestor_BBDD {
 		return resultado;
 	}
 
-	
+	/**
+	 * Se crea una salvaguarda
+	 */
 	public String crear_salvaguarda(Salvaguarda_pojo salvaguarda) {
 		String resultado = "";
 		
@@ -224,7 +315,10 @@ public class Gestor_BBDD {
 				
 		return resultado;
 	}
-	
+
+	/**
+	 * Se modifica una amenaza
+	 */
 	public String modificar_amenaza(Salvaguarda_pojo salvaguarda_modificado,String codigo_original) {
 		String resultado = "";
 
@@ -232,7 +326,10 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}	
-	
+
+	/**
+	 * Seelimina una salvaguarda
+	 */
 	public String eliminar_salvaguarda(String codigo) {
 		String resultado = "";
 
@@ -240,6 +337,5 @@ public class Gestor_BBDD {
 		
 		return resultado;
 	}
-
 	
 }

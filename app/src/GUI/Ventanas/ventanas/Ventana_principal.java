@@ -16,6 +16,9 @@ import javax.swing.JMenuItem;
 import GUI.Controladores.Controlador_acciones_principal;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Ventana_principal extends JFrame {
 
 	/**
@@ -23,24 +26,84 @@ public class Ventana_principal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-    private JMenuBar menu_principal;
-    private JMenu menu_archivo,menu_activos,menu_amenazas,menu_salvaguardas,menu_BBDD,menu_usuario;
-    private JMenuItem submenu_importar,submenu_salir;
-    private JMenuItem submenu_listar_activo,submenu_listar_amenaza,submenu_listar_salvaguarda;
-    private JMenuItem submenu_ver_activo,submenu_ver_amenaza,submenu_ver_salvaguarda;
-    private JMenuItem submenu_crear_activo,submenu_crear_amenaza,submenu_crear_salvaguarda;
-    private JMenuItem submenu_modificar_activo,submenu_modificar_amenaza,submenu_modificar_salvaguarda;
-    private JMenuItem submenu_eliminar_activo,submenu_eliminar_amenaza,submenu_eliminar_salvaguarda;
-    private JMenuItem submenu_configuracion_BBDD,submenu_probar_conexion_BBDD;
+    /**
+	 * 
+	 */
+	private JMenuBar menu_principal;
+    
+	/**
+	 * 
+	 */
+	private JMenu menu_archivo,menu_activos,menu_amenazas,menu_salvaguardas,menu_BBDD,menu_usuario;
+    
+	/**
+	 * 
+	 */
+	private JMenuItem submenu_importar,submenu_salir;
+    
+	/**
+	 * 
+	 */
+	private JMenuItem submenu_listar_activo,submenu_listar_amenaza,submenu_listar_salvaguarda;
+    
+	/**
+	 * 
+	 */
+	private JMenuItem submenu_ver_activo,submenu_ver_amenaza,submenu_ver_salvaguarda;
+    
+	/**
+	 * 
+	 */
+	private JMenuItem submenu_crear_activo,submenu_crear_amenaza,submenu_crear_salvaguarda;
+    
+	/**
+	 * 
+	 */
+	private JMenuItem submenu_modificar_activo,submenu_modificar_amenaza,submenu_modificar_salvaguarda;
+    
+	/**
+	 * 
+	 */
+	private JMenuItem submenu_eliminar_activo,submenu_eliminar_amenaza,submenu_eliminar_salvaguarda;
+    
+	/**
+	 * 
+	 */
+	private JMenuItem submenu_configuracion_BBDD,submenu_probar_conexion_BBDD;
+	
+	/**
+	 * 
+	 */
 	private JMenuItem submenu_login,submenu_logout;
 	
+	/**
+	 * 
+	 */
 	private JLabel label_cod_activo,label_cod_amenaza,label_cod_salvaguarda;
+	
+	/**
+	 * 
+	 */
 	private JList<String> cb_cod_activo,cb_cod_amenaza,cb_cod_salvaguarda;
 	
+	/**
+	 * 
+	 */
 	private DefaultListModel<String> activos;
+	
+	/**
+	 * 
+	 */
 	private DefaultListModel<String> amenazas;
+	
+	/**
+	 * 
+	 */
 	private DefaultListModel<String> salvaguardas;
 	
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_principal() {
 		
 		setTitle("Gestor AAS - Ventana principal");
@@ -53,6 +116,9 @@ public class Ventana_principal extends JFrame {
 		setVisible(true);
 	}
 	
+	/**
+	 * Función que inicializa los componentes de la pantalla 
+	 */
 	private void inicializarComponentes() {
 		
 		menu_principal = new JMenuBar();
@@ -200,6 +266,9 @@ public class Ventana_principal extends JFrame {
         add(cb_cod_salvaguarda);
 	}
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_principal manejador) {
 	    submenu_importar.addActionListener(manejador);
 	    submenu_salir.addActionListener(manejador);
@@ -227,6 +296,9 @@ public class Ventana_principal extends JFrame {
 	    cb_cod_salvaguarda.addListSelectionListener(manejador);
 	}
 	
+	/**
+	 * Función encargada de coger los datos.
+	 */
 	public void recoger_datos() {
 
 		establecer_activos();
@@ -237,6 +309,9 @@ public class Ventana_principal extends JFrame {
 		
 	}
 	
+	/**
+	 * Función que carga la lista de activos
+	 */
 	public void establecer_activos() {
 		
 		List<String> lista_activos = Principal.logica.coger_lista_activos();
@@ -252,6 +327,9 @@ public class Ventana_principal extends JFrame {
 		}
 	}
 	
+	/**
+	 * Función que carga la lista de amenazas 
+	 */
 	public void establecer_amenazas() {
 		
 		List<String> lista_amenazas = Principal.logica.coger_lista_amenazas();
@@ -267,6 +345,9 @@ public class Ventana_principal extends JFrame {
 			
 	}
 	
+	/**
+	 * Función que carga la lista de salvaguardas
+	 */
 	public void establecer_salvaguardas() {
 
 		List<String> lista_salvaguardas = Principal.logica.coger_lista_salvaguardas();
@@ -285,7 +366,10 @@ public class Ventana_principal extends JFrame {
 
 	}
 
-	
+	/**
+	 * Función que configura graficamente los submenus
+	 * @param elemento
+	 */
 	private void configurar_submenu(JMenuItem elemento) {
 		elemento.setFont(new Font("Roboto", Font.BOLD, 18));
 	}

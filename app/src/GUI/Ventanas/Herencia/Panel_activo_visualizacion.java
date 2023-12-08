@@ -7,6 +7,10 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
+/**
+ * Clase para poder visualizar los datos especificos de los activos
+ * Hereda de la clase panel_activo
+*/
 public class Panel_activo_visualizacion extends Panel_activo {
 
 	/**
@@ -14,28 +18,93 @@ public class Panel_activo_visualizacion extends Panel_activo {
 	 */
 	private static final long serialVersionUID = 4754313472310009701L;
 
+	/**
+	 * Componente que muestra el valor económico del activo
+	 */
 	protected JTextField tb_economico;
+
+	/**
+	 * Componente que muestra el nivel de valoración del activo
+	 */
 	protected JTextField nivel_valor;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_1;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_2;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_3;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_4;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_5;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_6;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_7;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_8;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_9;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_10;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_11;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_12;
+
+	/**
+	 * Componente que muestra el nivel del criterio del activo
+	 */
 	protected JTextField criterio_13;
 	
+	/**
+	 * Constructor de la clase
+	 */
 	public Panel_activo_visualizacion() {
 		super();
 		
 		establecer_componentes_visualizacion();
 	}
 	
+	/**
+	 * Función para inicializar los componentes propios del panel 
+	 */
 	private void establecer_componentes_visualizacion() {
 
 		
@@ -135,62 +204,122 @@ public class Panel_activo_visualizacion extends Panel_activo {
 
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getTb_economico() {
 		return tb_economico;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getNivel_valor() {
 		return nivel_valor;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_1() {
 		return criterio_1;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_2() {
 		return criterio_2;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_3() {
 		return criterio_3;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_4() {
 		return criterio_4;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_5() {
 		return criterio_5;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_6() {
 		return criterio_6;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_7() {
 		return criterio_7;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_8() {
 		return criterio_8;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_9() {
 		return criterio_9;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_10() {
 		return criterio_10;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_11() {
 		return criterio_11;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_12() {
 		return criterio_12;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public JTextField getCriterio_13() {
 		return criterio_13;
 	}

@@ -10,16 +10,35 @@ import java.util.List;
 
 import datos.POJOS.Database_pojo;
 
+
+/**
+* Clase que controla el acceso directo a la base de datos
+*/
 public class Database {
-
+ 	
+	/**
+	 * Objeto con los datos de la conexión
+	 */
 	private Database_pojo datos_bbdd;
-
+ 	
+	/**
+	 * Cadena de conexión generada para poder acceder a la BBDD
+	 */
 	private String cadena_conexion;
-
+ 	
+	/**
+	 * numero de filas afectadas por las operaciones de escritura/lectura
+	 */
 	private int numero_filas_afectadas;
-	
+ 	
+	/**
+	 * mensaje de error que se pública si al realizar alguna operación se produce un error
+	 */
 	private String mensaje_error;
-
+ 	
+	/**
+	 * Constructor genérico de la clase
+	 */
 	public Database() {
 		super();
 
@@ -27,9 +46,10 @@ public class Database {
 		
 		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + ":" + datos_bbdd.getPuerto() + "/" + datos_bbdd.getBase_datos();
 	}
-
-	
-	
+ 	
+	/**
+	 * Constructor con un objeto de datos de base de datos
+	 */
 	public Database(Database_pojo datos_bbdd) {
 		super();
 
@@ -37,18 +57,24 @@ public class Database {
 		
 		cadena_conexion = "jdbc:mysql://" +datos_bbdd.getHost() + ":" + datos_bbdd.getPuerto() + "/" + datos_bbdd.getBase_datos();
 	}
-
-
-
+ 	
+	/**
+	 * 
+	 */
 	public Database_pojo getDatos_bbdd() {
 		return datos_bbdd;
 	}
-
+ 	
+	/**
+	 * 
+	 */
 	public void setDatos_bbdd(Database_pojo datos_bbdd) {
 		this.datos_bbdd = datos_bbdd;
 	}
-
-
+ 	
+	/**
+	 * Función que permite devuelve una conexión a la base de datos
+	 */
 	private Connection crear_conexion() {
 
 		Connection conexion = null;
@@ -62,7 +88,10 @@ public class Database {
 		
 		return conexion;
 	}
-	
+ 	
+	/**
+	 * Función que cierra la conexión a la base de datos
+	 */
 	private boolean cerrar_conexion(Connection conexion) {
 		boolean resultado;
 		
@@ -79,7 +108,10 @@ public class Database {
 		
 		return resultado;
 	}
-	
+ 	
+	/**
+	 * Función para probar que se puede acceder a la base de datos
+	 */
 	public boolean probar_conexion() {
 		boolean resultado = true;
 		Connection conexion = crear_conexion();
@@ -92,7 +124,10 @@ public class Database {
 		
 		return resultado;
 	}
-	
+ 	
+	/**
+	 * Función para ejecutar instrucciones de lectura de datos
+	 */
 	public List<List<String>> realizar_lectura(String sql) {
 		List<List<String>> resultado = new ArrayList<List<String>>();
 		List<String> fila;
@@ -129,7 +164,10 @@ public class Database {
 
 		return resultado;
 	}
-
+ 	
+	/**
+	 * Función para ejecutar instrucciones de inserción de datos
+	 */
 	public boolean realizar_creacion(String sql) {
 		boolean resultado;
 		Connection conexion_creacion;
@@ -156,7 +194,10 @@ public class Database {
 
 		return resultado;
 	}
-	
+ 	
+	/**
+	 * Función para ejecutar instrucciones de modificación de datos
+	 */
 	public int realizar_modificacion(String sql) {
 		int resultado;
 		Connection conexion_modificacion;
@@ -183,7 +224,10 @@ public class Database {
 		
 		return resultado;
 	}
-	
+ 	
+	/**
+	 * Función para ejecutar instrucciones de borrado de datos
+	 */
 	public boolean realizar_eliminacion(String sql) {
 		boolean resultado;
 		Connection conexion_eliminacion;
@@ -210,7 +254,13 @@ public class Database {
 
 		return resultado;
 	}
-	
+ 	
+	/**
+	 * Función que ejecuta una secuencia de instrucciones sql
+	 * si todas se ejecutan sin problemas se actualizará la base de datos
+	 * Si existe algún fallo al ejecutar alguna sql se dejará de ejecutar
+	 * las instrucciones y de desecharan los resultados de las anteriores sql
+	 */
 	public boolean realizar_lote(List<String> lista_sql) {
 		boolean resultado;
 		Connection conexion_lote;
@@ -255,9 +305,10 @@ public class Database {
 
 		return resultado;
 	}
-
-
-
+ 	
+	/**
+	 * 
+	 */
 	public String getMensaje_error() {
 		return mensaje_error;
 	}

@@ -9,21 +9,36 @@ import GUI.Ventanas.ventanas.Ventana_configuracion_bbdd;
 import aplicacion.Principal;
 import datos.POJOS.Database_pojo;
 
+/**
+ * 
+ */
 public class Controlador_acciones_configuraccion_bbdd  implements ActionListener{
 
+	/**
+	 * 
+	 */
 	private Ventana_configuracion_bbdd ventana;
 
+	/**
+	 * 
+	 */
 	public Controlador_acciones_configuraccion_bbdd(Ventana_configuracion_bbdd ventana) {
 		super();
 		this.ventana = ventana;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventana.getBtnaceptar()) { cambiar_datos_bbdd();}
 		if (e.getSource() == ventana.getBtncancelar()) { Principal.gestor_ventanas.desactivar_ventana_configuracion_bbdd(); }
 	}
 	
+	/**
+	 * 
+	 */
 	private void cambiar_datos_bbdd() {
 		String host, puerto, base_datos, usuario, contrasenya;
 				
@@ -74,6 +89,10 @@ public class Controlador_acciones_configuraccion_bbdd  implements ActionListener
 		}
 		
 	}
+
+	/**
+	 * 
+	 */
 	private boolean comprobar_contrasenyas(char[] contrasenya_1,char[] contrasenya_2 ) {
 		boolean resultado = true;
 		int i;

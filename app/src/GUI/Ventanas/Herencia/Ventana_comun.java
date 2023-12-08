@@ -12,6 +12,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 
+/**
+ * Clase tipo JFrame de la cual heredan todas las ventanas que realizan acciones sobre los elementos 
+ */
 public class Ventana_comun extends JFrame {
 
 	/**
@@ -19,16 +22,54 @@ public class Ventana_comun extends JFrame {
 	 */
 	private static final long serialVersionUID = 4304796865813473200L;
 	
+	/**
+	 * Atributo que determina el tipo de elemento correspondiente a la ventana
+	 */
 	protected String elemento;
+	
+	/**Atributo que determina la acción de la ventana
+	 * 
+	 */
 	protected String accion;
 	
+	/**
+	 * 
+	 */
 	private JLabel lbl_tipo,lbl_codigo,lbl_nombe,lbl_descripcion,lbl_fecha;
-	protected JTextField tb_codigo,tb_nombre;
+	
+	/**
+	 *  Campo de texto que muestra el código del elemento
+	 */
+	protected JTextField tb_codigo;
+
+	/**
+	 *  Campo de texto que muestra el nombre del elemento
+	 */
+	protected JTextField tb_nombre;
+	
+	/**
+	 *  Campo de texto que muestra la descripción del elemento
+	 */
 	protected JTextArea tb_descripcion;
+	
+	/**
+	 * Campo de texto que muestra la hora de creación del elemento
+	 */
 	protected JTextField tb_fecha;
+	
+	/**
+	 * Botón que cierra la ventana
+	 */
 	protected JButton btn_cancelar;
+	
+	/**
+	 * Botón que realiza la acción que le corresponde a la ventana
+	 */
 	protected JButton btn_accion;
 	
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_comun() {
 		super();
 		
@@ -41,7 +82,10 @@ public class Ventana_comun extends JFrame {
 		setVisible(true);
 
 	}
-
+	
+	/**
+	 * 
+	 */
 	private void inicializarComponentes() {
 				
 		elemento = "";
@@ -95,51 +139,87 @@ public class Ventana_comun extends JFrame {
 		add(btn_accion);
 		
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JTextField getTb_codigo() {
 		return tb_codigo;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void setTb_codigo(JTextField tb_codigo) {
 		this.tb_codigo = tb_codigo;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JTextField getTb_nombre() {
 		return tb_nombre;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void setTb_nombre(JTextField tb_nombre) {
 		this.tb_nombre = tb_nombre;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JTextArea getTb_descripcion() {
 		return tb_descripcion;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void setTb_descripcion(JTextArea tb_descripcion) {
 		this.tb_descripcion = tb_descripcion;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JTextField getTb_fecha() {
 		return tb_fecha;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void setTb_fecha(JTextField tb_fecha) {
 		this.tb_fecha = tb_fecha;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JButton getBtn_cancelar() {
 		return btn_cancelar;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void setBtn_cancelar(JButton btn_cancelar) {
 		this.btn_cancelar = btn_cancelar;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JButton getBtn_accion() {
 		return btn_accion;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void setBtn_accion(JButton btn_accion) {
 		this.btn_accion = btn_accion;
 	}

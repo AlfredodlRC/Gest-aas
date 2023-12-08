@@ -1,0 +1,9 @@
+module:aplicacion
+aplicacion
+base_datos
+datos.POJOS
+datos.XMLs
+GUI.Controladores
+GUI.Ventanas.Herencia
+GUI.Ventanas.ventanas
+Logica_negocio

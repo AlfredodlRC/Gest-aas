@@ -20,57 +20,192 @@ import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
 import GUI.Ventanas.ventanas.Ventana_ver_salvaguarda;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Gestor_ventanas {
 
+	/**
+	 * 
+	 */
 	private Ventana_principal ventana_principal;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_principal manejador_principal;
 
+	/**
+	 * 
+	 */
 	private Ventana_listados ventana_listado_activos;
 	
+	/**
+	 * 
+	 */
 	private Ventana_ver_activo ventana_ver_activo;
+
+	/**
+	 * 
+	 */
 	private Ventana_crear_activo ventana_crear_activo;
+
+	/**
+	 * 
+	 */
 	private Ventana_modificar_activo ventana_modificar_activo;
+
+	/**
+	 * 
+	 */
 	private Ventana_eliminar_activo ventana_eliminar_activo;
 	
+	/**
+	 * 
+	 */
 	private Controlador_acciones_listado manejador_listado_activo;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_crear_activo manejador_crear_activo;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_ver_activo manejador_ver_activo;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_eliminar_activo manejador_eliminar_activo;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_modificar_activo manejador_modificar_activo;
 	
+	/**
+	 * 
+	 */
 	private Ventana_listados ventana_listado_amenaza;
+
+	/**
+	 * 
+	 */
 	private Ventana_ver_amenaza ventana_ver_amenaza;
+
+	/**
+	 * 
+	 */
 	private Ventana_crear_amenaza ventana_crear_amenaza;
+
+	/**
+	 * 
+	 */
 	private Ventana_modificar_amenaza ventana_modificar_amenaza;
+
+	/**
+	 * 
+	 */
 	private Ventana_eliminar_amenaza ventana_eliminar_amenaza;
 
+	/**
+	 * 
+	 */
 	private Controlador_acciones_listado manejador_listado_amenaza; 
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_ver_amenaza manejador_ver_amenaza;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_crear_amenaza manejador_crear_amenaza;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_modificar_amenaza manejador_modificar_amenaza;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_eliminar_amenaza manejador_eliminar_amenaza;
 	
+	/**
+	 * 
+	 */
 	private Ventana_listados ventana_listado_salvaguarda;
+
+	/**
+	 * 
+	 */
 	private Ventana_ver_salvaguarda ventana_ver_salvaguarda;
+
+	/**
+	 * 
+	 */
 	private Ventana_crear_salvaguarda ventana_crear_salvaguarda;
+
+	/**
+	 * 
+	 */
 	private Ventana_modificar_salvaguarda ventana_modificar_salvaguarda;
+
+	/**
+	 * 
+	 */
 	private Ventana_eliminar_salvaguarda ventana_eliminar_salvaguarda;
 	
+	/**
+	 * 
+	 */
 	private Controlador_acciones_listado manejador_listado_salvaguarda; 
-	private Controlador_acciones_ver_salvaguarda manejador_ver_salvaguarda;
-	private Controlador_acciones_crear_salvaguarda manejador_crear_salvaguarda;
-	private Controlador_acciones_modificar_salvaguarda manejador_modificar_salvaguarda;
-	private Controlador_acciones_eliminar_salvaguarda manejador_eliminar_salvaguarda;
 
+	/**
+	 * 
+	 */
+	private Controlador_acciones_ver_salvaguarda manejador_ver_salvaguarda;
+
+	/**
+	 * 
+	 */
+	private Controlador_acciones_crear_salvaguarda manejador_crear_salvaguarda;
+
+	/**
+	 * 
+	 */
+	private Controlador_acciones_modificar_salvaguarda manejador_modificar_salvaguarda;
+
+	/**
+	 * 
+	 */
+	private Controlador_acciones_eliminar_salvaguarda manejador_eliminar_salvaguarda;
 	
+	/**
+	 * 
+	 */
 	private Ventana_configuracion_bbdd ventana_configuracion_bbdd;
+
+	/**
+	 * 
+	 */
 	private Controlador_acciones_configuraccion_bbdd manejador_configuraccion_bbdd;
 	
+	/**
+	 * 
+	 */
 	public Gestor_ventanas() {
 		super();
 		activar_ventana_principal();
 	}
 
+	/**
+	 * 
+	 */
 	public void activar_ventana_principal() {
 		if (ventana_principal == null) {
 			ventana_principal = new GUI.Ventanas.ventanas.Ventana_principal();
@@ -82,31 +217,47 @@ public class Gestor_ventanas {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void recargar_lista_activos() {
 		ventana_principal.establecer_activos();
 	}
 
+	/**
+	 * 
+	 */
 	public void recargar_lista_amenazas() {
 		ventana_principal.establecer_amenazas();
 	}
 
+	/**
+	 * 
+	 */
 	public void recargar_lista_salvaguardas() {
 		ventana_principal.establecer_salvaguardas();
 	}
 
-
+	/**
+	 * 
+	 */
 	public void activar_ventana_listado_activos() {
-
 		ventana_listado_activos = new Ventana_listados("activo");
 		manejador_listado_activo = new Controlador_acciones_listado(ventana_listado_activos);
 		ventana_listado_activos.establecerManejador(manejador_listado_activo);
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_listado_activos() {
 		ventana_listado_activos.setVisible(false);
 	}
 	
 
+	/**
+	 * 
+	 */
 	public void activar_ventana_ver_activo() {
 		if (Principal.logica.get_activo_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ningún activo","Sin activo", JOptionPane.INFORMATION_MESSAGE);
@@ -124,10 +275,16 @@ public class Gestor_ventanas {
 		ventana_ver_activo.cargar_activo();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_ver_activo() {
 		ventana_ver_activo.setVisible(false);
 	}
 
+	/**
+	 * 
+	 */
 	public void activar_ventana_crear_activo() {
 		System.out.println("activar ventana crear activo");
 		if (ventana_crear_activo == null) {
@@ -141,10 +298,16 @@ public class Gestor_ventanas {
 		ventana_crear_activo.cargar_datos();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_crear_activo() {
 		ventana_crear_activo.setVisible(false);
 	}
 
+	/**
+	 * 
+	 */
 	public void activar_ventana_modificar_activo() {
 		if (Principal.logica.get_activo_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ningún activo","Sin activo", JOptionPane.INFORMATION_MESSAGE);
@@ -162,10 +325,16 @@ public class Gestor_ventanas {
 		ventana_modificar_activo.cargar_datos();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_modificar_activo() {
 		ventana_modificar_activo.setVisible(false);
 	}
 
+	/**
+	 * 
+	 */
 	public void activar_ventana_eliminar_activo() {
 		if (Principal.logica.get_activo_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
@@ -183,22 +352,33 @@ public class Gestor_ventanas {
 		ventana_eliminar_activo.cargar_activo();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_eliminar_activo() {
 		ventana_eliminar_activo.setVisible(false);
 	}
 
 
+	/**
+	 * 
+	 */
 	public void activar_ventada_listado_amenaza() {
 		ventana_listado_amenaza = new Ventana_listados("amenaza");
 		manejador_listado_amenaza = new Controlador_acciones_listado(ventana_listado_amenaza);
 		ventana_listado_amenaza.establecerManejador(manejador_listado_amenaza);
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_listado_amenaza() {
 		ventana_listado_amenaza.setVisible(false);
 	}
 	
-
+	/**
+	 * 
+	 */
 	public void activar_ventana_ver_amenaza() {
 		if (Principal.logica.get_amenaza_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna amenaza","Sin amenaza", JOptionPane.INFORMATION_MESSAGE);
@@ -216,28 +396,40 @@ public class Gestor_ventanas {
 		ventana_ver_amenaza.cargar_amenaza();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_ver_amenaza() {
 		System.out.println("desactivar ventana ver amenaza");
 		ventana_ver_amenaza.setVisible(false);
 	}
 	
+	/**
+	 * 
+	 */
 	public void activar_ventana_crear_amenaza() {
-			System.out.println("activar ventana crear activo");
-			if (ventana_crear_amenaza == null) {
-				ventana_crear_amenaza = new Ventana_crear_amenaza();
-				manejador_crear_amenaza = new Controlador_acciones_crear_amenaza(ventana_crear_amenaza);
-				ventana_crear_amenaza.establecerManejador(manejador_crear_amenaza);
+		System.out.println("activar ventana crear amenaza");
+		if (ventana_crear_amenaza == null) {
+			ventana_crear_amenaza = new Ventana_crear_amenaza();
+			manejador_crear_amenaza = new Controlador_acciones_crear_amenaza(ventana_crear_amenaza);
+			ventana_crear_amenaza.establecerManejador(manejador_crear_amenaza);
 			} else {
-				ventana_crear_amenaza.toFront();
-			}	
-			ventana_crear_amenaza.setVisible(true);
-			ventana_crear_amenaza.cargar_datos();
-		}
+			ventana_crear_amenaza.toFront();
+		}	
+		ventana_crear_amenaza.setVisible(true);
+		ventana_crear_amenaza.cargar_datos();
+	}
 
-		public void desactivar_ventana_crear_amenaza() {
-			ventana_crear_amenaza.setVisible(false);
-		}
+	/**
+	 * 
+	 */
+	public void desactivar_ventana_crear_amenaza() {
+		ventana_crear_amenaza.setVisible(false);
+	}
 	
+	/**
+	 * 
+		*/
 	public void activar_ventana_modificar_amenaza() {
 		if (Principal.logica.get_amenaza_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna amenaza","Sin amenaza", JOptionPane.INFORMATION_MESSAGE);
@@ -255,10 +447,16 @@ public class Gestor_ventanas {
 		ventana_modificar_amenaza.cargar_datos();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_modificar_amenaza() {
 		ventana_modificar_amenaza.setVisible(false);
 	}
 	
+	/**
+	 * 
+	 */
 	public void activar_ventana_eliminar_amenaza() {
 		if (Principal.logica.get_amenaza_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna amenaza","Sin amenaza", JOptionPane.INFORMATION_MESSAGE);
@@ -276,22 +474,34 @@ public class Gestor_ventanas {
 		ventana_eliminar_amenaza.cargar_amenaza();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_eliminar_amenaza() {
 		System.out.println("desactivar ventana eliminar amenaza");
 		ventana_eliminar_amenaza.setVisible(false);
 	}
 
+	/**
+	 * 
+	 */
 	public void activar_ventada_listado_salvaguarda() {
 		ventana_listado_salvaguarda = new Ventana_listados("salvaguarda");
 		manejador_listado_salvaguarda = new Controlador_acciones_listado(ventana_listado_salvaguarda);
 		ventana_listado_salvaguarda.establecerManejador(manejador_listado_salvaguarda);
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_listado_salvaguarda() {
 		ventana_listado_salvaguarda.setVisible(false);
 	}
 	
 		
+	/**
+	 * 
+	 */
 	public void activar_ventana_ver_salvaguarda() {
 		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
@@ -309,11 +519,17 @@ public class Gestor_ventanas {
 		ventana_ver_salvaguarda.cargar_salvaguarda();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_ver_salvaguarda() {
 		System.out.println("desactivar ventana ver salvaguarda");
 		ventana_ver_salvaguarda.setVisible(false);
 	}
 	
+	/**
+	 * 
+	 */
 	public void activar_ventana_crear_salvaguarda() {
 		System.out.println("activar ventana crear salvaguarda");
 		if (ventana_crear_salvaguarda == null) {
@@ -327,12 +543,18 @@ public class Gestor_ventanas {
 		ventana_crear_salvaguarda.cargar_datos();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_crear_salvaguarda() {
 		System.out.println("desactivar ventana crear salvaguarda");
 		ventana_crear_salvaguarda.setVisible(false);
 	}
 	
 	
+	/**
+	 * 
+	 */
 	public void activar_ventana_modificar_salvaguarda() {
 		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
@@ -350,12 +572,18 @@ public class Gestor_ventanas {
 		ventana_modificar_salvaguarda.setVisible(true);
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_modificar_salvaguarda() {
 		System.out.println("desactivar ventana modificar salvaguarda");
 		//ventana_modificar_salvaguarda.setVisible(false);
 		ventana_modificar_salvaguarda.dispose();
 	}
 	
+	/**
+	 * 
+	 */
 	public void activar_ventana_eliminar_salvaguarda() {
 		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
@@ -373,6 +601,9 @@ public class Gestor_ventanas {
 		ventana_eliminar_salvaguarda.cargar_salvaguarda();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_eliminar_salvaguarda() {
 		if (Principal.logica.get_salvaguarda_actual().getCodigo() == "") {
 			JOptionPane.showMessageDialog(null,"No se ha seleccionado ninguna salvaguarda","Sin salvaguarda", JOptionPane.INFORMATION_MESSAGE);
@@ -382,6 +613,9 @@ public class Gestor_ventanas {
 		ventana_eliminar_salvaguarda.setVisible(false);
 	}
 	
+	/**
+	 * 
+	 */
 	public void activar_ventana_configuracion_bbdd() {
 		System.out.println("activar ventana configuracion BBDD");
 		if (ventana_configuracion_bbdd == null) {
@@ -395,11 +629,17 @@ public class Gestor_ventanas {
 		ventana_configuracion_bbdd.cargar_datos();
 	}
 
+	/**
+	 * 
+	 */
 	public void desactivar_ventana_configuracion_bbdd() {
 		System.out.println("desactivar ventana configuracion BBDD");
 		ventana_configuracion_bbdd.setVisible(false);
 	}
 	
+	/**
+	 * 
+	 */
 	public void recoger_datos_principal() {
 		ventana_principal.recoger_datos();
 	}

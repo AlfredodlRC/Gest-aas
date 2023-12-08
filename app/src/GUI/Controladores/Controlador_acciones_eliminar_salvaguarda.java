@@ -10,21 +10,35 @@ import javax.swing.JOptionPane;
 import GUI.Ventanas.ventanas.Ventana_eliminar_salvaguarda;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_eliminar_salvaguarda implements ActionListener, ItemListener  {
 
+	/**
+	 * 
+	 */
 	private Ventana_eliminar_salvaguarda ventana;
 
+	/**
+	 * 
+	 */
 	public Controlador_acciones_eliminar_salvaguarda(Ventana_eliminar_salvaguarda ventana) {
 		super();
 		this.ventana = ventana;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String resultado_eliminar;

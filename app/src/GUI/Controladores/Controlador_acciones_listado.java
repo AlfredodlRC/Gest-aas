@@ -6,16 +6,27 @@ import java.awt.event.ActionListener;
 import GUI.Ventanas.ventanas.Ventana_listados;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_listado implements ActionListener{
 
+	/**
+	 * 
+	 */
 	private Ventana_listados ventana;
-
 	
+	/**
+	 * 
+	 */
 	public Controlador_acciones_listado(Ventana_listados ventana) {
 		super();
 		this.ventana = ventana;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventana.getBtn_cerrar()) {

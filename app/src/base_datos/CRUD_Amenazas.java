@@ -14,12 +14,22 @@ import datos.POJOS.Eficiencia_amenaza_pojo;
 import datos.POJOS.Eficiencia_pojo;
 import datos.POJOS.Tipo_elemento;
 
+/**
+ * Clase encargada para las operaciones de creación, lectura, actualización y
+ * eliminación de las amenazas
+ */
 public class CRUD_Amenazas {
 
+	/**
+ 	* Constructor de la clase
+ 	*/
 	public CRUD_Amenazas() {
 		super();
 	}
 			
+	/**
+	 *  Función para cargar una lista de las amenazas
+ 	*/
 	public List<Amenaza_pojo> cargar_lista_amenazas() {
 		List<Amenaza_pojo> resultado = new ArrayList<Amenaza_pojo>();
 
@@ -55,6 +65,9 @@ public class CRUD_Amenazas {
 
 	}
 	
+	/**
+	 * Función para cargar una amenaza a partir de un código de amenaza
+ 	*/
 	public Amenaza_pojo cargar_amenaza_codigo(String codigo) {
 		
 		Amenaza_pojo resultado = new Amenaza_pojo();
@@ -88,6 +101,9 @@ public class CRUD_Amenazas {
 		return resultado;
 	}
 
+	/**
+	 * Función para cargar una lista con los tipos de amenazas
+ 	*/
 	public List<Tipo_elemento> cargar_lista_tipo_amenazas() {
 		
 		List<Tipo_elemento> resultado = new ArrayList<Tipo_elemento>();
@@ -112,6 +128,9 @@ public class CRUD_Amenazas {
 
 	}
 	
+	/**
+ 	* Función para crear una amenaza y las degradacines y eficiencias asociadas a esta amenaza 
+ 	*/
 	public String crear_amenaza(Amenaza_pojo amenaza) {
 		String resultado = "";
 		Database base_datos = new Database();
@@ -184,6 +203,9 @@ public class CRUD_Amenazas {
 		return resultado;
 	}
 
+	/**
+ 	* Función para modificar una amenaza y las degradacines y eficiencias asociadas a esta amenaza 
+ 	*/
 	public String modificar_amenaza(String codigo,Amenaza_pojo amenaza) {
 		String resultado = "";
 		Database base_datos = new Database();
@@ -210,6 +232,9 @@ public class CRUD_Amenazas {
 		return resultado;
 	}
 	
+	/**
+ 	* Función para eliminar una amenaza y las degradacines y eficiencias asociadas a esta amenaza 
+ 	*/
 	public String eliminar_amenaza(String codigo) {
 		String resultado = "";
 		Database base_datos = new Database();

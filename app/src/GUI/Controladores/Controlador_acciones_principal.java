@@ -10,14 +10,26 @@ import javax.swing.event.ListSelectionListener;
 import GUI.Ventanas.ventanas.Ventana_principal;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_principal implements ActionListener, ListSelectionListener {
 	
+	/**
+	 * 
+	 */
 	private Ventana_principal ventana;
 	
+	/**
+	 * 
+	 */
 	public Controlador_acciones_principal(Ventana_principal ventana) {
 		this.ventana = ventana;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getSource() == ventana.getCB_cod_activo()) {
@@ -40,6 +52,9 @@ public class Controlador_acciones_principal implements ActionListener, ListSelec
 	}
 
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -98,16 +113,28 @@ public class Controlador_acciones_principal implements ActionListener, ListSelec
 	}
 
 	
+	/**
+	 * 
+	 */
 	private void importar() { }
 	
+	/**
+	 * 
+	 */
 	private void salir() { 
 		ventana.dispose();
 	}
 	
+	/**
+	 * 
+	 */
 	private void configuracion_BBDD() {
 		Principal.gestor_ventanas.activar_ventana_configuracion_bbdd();
 	}
 
+	/**
+	 * 
+	 */
 	private void probar_conexion_BBDD() { 
 		boolean resultado;
 		
@@ -120,7 +147,14 @@ public class Controlador_acciones_principal implements ActionListener, ListSelec
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void login() { }
+	
+/**
+ * 
+ */
 	private void logout() { }
 
 }

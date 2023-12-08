@@ -19,6 +19,10 @@ import GUI.Ventanas.Herencia.Ventana_crear;
 import aplicacion.Principal;
 import datos.POJOS.Amenaza_pojo;
 
+/**
+ *  Clase destinada a mostrar los datos de la amenaza actual
+ *  Es una clase hija de Ventana_crear
+ */
 public class Ventana_crear_amenaza extends Ventana_crear {
 
 	/**
@@ -26,17 +30,44 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 	 */
 	private static final long serialVersionUID = 3146255165341114903L;
 	
+	/**
+	 * Panel que contiene los componentes con los valores especificos de la amenaza
+ 	*/
 	private Panel_amenaza_manipulacion panel_datos;
 	
+	/**
+	 * Objeto amenaza con el cual trabajara la ventana
+	 */
 	private Amenaza_pojo amenaza;
 
+	/**
+	 * lista generica de activos
+	 */
 	private DefaultListModel<String> dlm_activos; 
+	
+	/**
+	 * lista genericas de salvaguardas
+	 */
 	private DefaultListModel<String> dlm_salvaguardas; 
+
+	/**
+	 * lista con la listas de activos asociadas a cada degradación
+	 */
 	private List<DefaultListModel<String>> lista_dlm_activos_salvaguardas; 
+	
+	/**
+	 * tabla con las degradaciones asociadas a la amenaza
+	 */
 	private DefaultTableModel tabla_degradaciones;
+	
+	/**
+	 * tabla con las eficiencias asociadas a la amenaza
+	 */
 	private DefaultTableModel tabla_eficiencias;
 
-
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_crear_amenaza() {
 		super();
 		
@@ -44,7 +75,6 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 		accion = "crear";
 		
 		amenaza= new Amenaza_pojo();
-
 
 		btn_accion.setText(accion);
 
@@ -76,10 +106,11 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 		this.getDegradaciones().setModel(tabla_degradaciones);
 		this.getEficiencias().setModel(tabla_eficiencias);
 
-		
-
 }
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_crear_amenaza manejador) {
 		this.btn_accion.addActionListener(manejador);
 		this.btn_cancelar.addActionListener(manejador);
@@ -90,6 +121,9 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 		this.getSalvaguardas().addListSelectionListener(manejador);
 	}
 	
+	/**
+	 * Función encargada de recoger los datos de la amenaza actual
+	 */
 	public void cargar_datos() {
 		Amenaza_pojo amenaza = new Amenaza_pojo();
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
@@ -107,6 +141,9 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 		
 	}
 	
+	/**
+	 * Función encargada de recoger las listas de datos de la amenaza actual
+	 */
 	public void cargar_lista_datos() {
 		String codigo;
 		List<String> lista_activos;
@@ -171,10 +208,16 @@ public class Ventana_crear_amenaza extends Ventana_crear {
 
 	}
 
+	/**
+	 * Función que devuelve el estado actual del objeto amenaza de la ventana
+	 */
 	public Amenaza_pojo getAmenaza_actual() {
 		return amenaza;
 	}
 	
+	/**
+	 * Función que devuelve el objeto amenaza con todos los datos de la ventana
+	 */
 	public Amenaza_pojo getAmenaza() {
 		SimpleDateFormat formato;
 		String texto_cb;

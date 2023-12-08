@@ -15,46 +15,154 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/**
+ * Panel con los elementos comunes de los datos especificos de los activos
+ */
 public class Panel_activo extends JPanel {
 
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 346860977012883873L;
 	
+	/**
+	 * Panel para contener las diferentes pestañas de los datos
+	 */
 	private JTabbedPane panel_tabulador;
 	
+	/**
+	 * Pestaña con los elementos de valoración del activos
+	 */
 	protected JComponent panel_tab_Valoracion;
-	protected JComponent panel_tab_Criterios;
-	protected JComponent panel_tab_Activos_superiores;
-	protected JComponent panel_tab_Activos_inferiores;
-
-
-	private JLabel lbl_valor_economico,lbl_valor_nivel_valor;
-	private JLabel lbl_criterio_1;
-	private JLabel lbl_criterio_2;
-	private JLabel lbl_criterio_3;
-	private JLabel lbl_criterio_4;
-	private JLabel lbl_criterio_5;
-	private JLabel lbl_criterio_6;
-	private JLabel lbl_criterio_7;
-	private JLabel lbl_criterio_8;
-	private JLabel lbl_criterio_9;
-	private JLabel lbl_criterio_10;
-	private JLabel lbl_criterio_11;
-	private JLabel lbl_criterio_12;
-	private JLabel lbl_criterio_13;
-	private JLabel lbl_valor_repercutido;
-	private JLabel lbl_valor_acumulado;
-	protected JList<String> activos_disponibles_superiores;
-	protected JList<String> activos_disponibles_inferiores;
-	private JTextField tb_valor_repercutido,tb_valor_acumulado;
-
 	
+	/**
+	 * Pestaña con los criterios de valoración del activo
+	 */
+	protected JComponent panel_tab_Criterios;
+	
+	/**
+	 * Pestaña para los activos superiores del activo
+	 */
+	protected JComponent panel_tab_Activos_superiores;
+	
+	/**
+	 * Pestaña para los activos inferiores del activo
+	 */
+	protected JComponent panel_tab_Activos_inferiores;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_valor_economico,lbl_valor_nivel_valor;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_1;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_2;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_3;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_4;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_5;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_6;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_7;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_8;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_9;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_10;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_11;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_12;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_criterio_13;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_valor_repercutido;
+	
+	/**
+	 * 
+	 */
+	private JLabel lbl_valor_acumulado;
+	
+	/**
+	 * Componente que contendrá los activos superiores del activo
+	 */
+	protected JList<String> activos_disponibles_superiores;
+	
+	/**
+	 * Componente que contendrá los activos inferiores del activo
+	 */
+	protected JList<String> activos_disponibles_inferiores;
+	
+	/**
+	 * componente que posee el valor repercutido del activo 
+	 */
+	private JTextField tb_valor_repercutido;
+	
+	/**
+	 * componente que posee el valor acumulado del activo
+	 */
+	private JTextField tb_valor_acumulado;
+
+	/**
+	 * Constructor de la clase
+	 */
 	public Panel_activo() {
 		super(new GridLayout(1, 1));
 		setSize(890,295);
 		inicializarComponentes();
 	}
 
+	/**
+	 * Función que inicializa los componentes del panel
+	 */
 	private void inicializarComponentes() {
 		Dimension lbl_tamanyo = new Dimension(100,30);
 		Point pos_criterio_1 = new Point(10,10);
@@ -132,67 +240,67 @@ public class Panel_activo extends JPanel {
 		lbl_criterio_1 = new JLabel("carácter personal");
 		lbl_criterio_1.setSize(lbl_tamanyo);
 		lbl_criterio_1.setLocation(pos_criterio_1);
-		lbl_criterio_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_1.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_1);
 		lbl_criterio_2 = new JLabel("obligación legal");
 		lbl_criterio_2.setSize(lbl_tamanyo);
 		lbl_criterio_2.setLocation(pos_criterio_2);
-		lbl_criterio_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_2.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_2);
 		lbl_criterio_3 = new JLabel("seguridad");
 		lbl_criterio_3.setSize(lbl_tamanyo);
 		lbl_criterio_3.setLocation(pos_criterio_3);
-		lbl_criterio_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_3.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_3);
 		lbl_criterio_4 = new JLabel("comercial");
 		lbl_criterio_4.setSize(lbl_tamanyo);
 		lbl_criterio_4.setLocation(pos_criterio_4);
-		lbl_criterio_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_4.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_4);
 		lbl_criterio_5 = new JLabel("int. servicio");
 		lbl_criterio_5.setSize(lbl_tamanyo);
 		lbl_criterio_5.setLocation(pos_criterio_5);
-		lbl_criterio_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_5.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_5);
 		lbl_criterio_6 = new JLabel("orden público");
 		lbl_criterio_6.setSize(lbl_tamanyo);
 		lbl_criterio_6.setLocation(pos_criterio_6);
-		lbl_criterio_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_6.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_6);
 		lbl_criterio_7 = new JLabel("operaciones");
 		lbl_criterio_7.setSize(lbl_tamanyo);
 		lbl_criterio_7.setLocation(pos_criterio_7);
-		lbl_criterio_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_7.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_7);
 		lbl_criterio_8 = new JLabel("admin. y gestión");
 		lbl_criterio_8.setSize(lbl_tamanyo);
 		lbl_criterio_8.setLocation(pos_criterio_8);
-		lbl_criterio_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_8.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_8);
 		lbl_criterio_9 = new JLabel("reputación");
 		lbl_criterio_9.setSize(lbl_tamanyo);
 		lbl_criterio_9.setLocation(pos_criterio_9);
-		lbl_criterio_9.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_9.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_9);
 		lbl_criterio_10 = new JLabel("delitos");
 		lbl_criterio_10.setSize(lbl_tamanyo);
 		lbl_criterio_10.setLocation(pos_criterio_10);
-		lbl_criterio_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_10.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_10);
 		lbl_criterio_11 = new JLabel("t. recuperación");
 		lbl_criterio_11.setSize(lbl_tamanyo);
 		lbl_criterio_11.setLocation(pos_criterio_11);
-		lbl_criterio_11.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_11.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_11);
 		lbl_criterio_12 = new JLabel("info nacional");
 		lbl_criterio_12.setSize(lbl_tamanyo);
 		lbl_criterio_12.setLocation(pos_criterio_12);
-		lbl_criterio_12.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_12.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_12);
 		lbl_criterio_13 = new JLabel("info UE");
 		lbl_criterio_13.setSize(lbl_tamanyo);
 		lbl_criterio_13.setLocation(pos_criterio_13);
-		lbl_criterio_13.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_criterio_13.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_tab_Criterios.add(lbl_criterio_13);
 		
 		activos_disponibles_superiores = new JList<String>();
@@ -208,18 +316,30 @@ public class Panel_activo extends JPanel {
         add(panel_tabulador);
 	}
 
+	/**
+	 * 
+	*/
 	public JList<String> getActivos_disponibles_superiores() {
 		return activos_disponibles_superiores;
 	}
 
+	/**
+	 * 
+	*/
 	public JList<String> getActivos_disponibles_inferiores() {
 		return activos_disponibles_inferiores;
 	}
 
+	/**
+	 * 
+	*/
 	public JTextField getTb_valor_repercutido() {
 		return tb_valor_repercutido;
 	}
 
+	/**
+	 * 
+	*/
 	public JTextField getTb_valor_acumulado() {
 		return tb_valor_acumulado;
 	}	

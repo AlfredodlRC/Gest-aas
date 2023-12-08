@@ -14,19 +14,36 @@ import GUI.Ventanas.Herencia.Ventana_modificar;
 import aplicacion.Principal;
 import datos.POJOS.Salvaguarda_pojo;
 
+/**
+ *  Clase destinada a mostrar los datos de la salvaguarda actual
+ *  Es una clase hija de Ventana_modificar
+ */
 public class Ventana_modificar_salvaguarda extends Ventana_modificar {
 
 	/**
-	 * 
+	 *  Clase destinada a modificar los datos de la salvaguarda actual
+ 	 *  Es una clase hija de Ventana_modificar
 	 */
 	private static final long serialVersionUID = -3158964126972151032L;
 
+	/**
+	 * Panel que contiene los componentes con los valores especificos de la salvaguarda
+	 */
 	private Panel_salvaguarda_manipulacion panel_datos;
 
+	/**
+	 * Objecto salvaguarda local.
+	 */
 	Salvaguarda_pojo salvaguarda;
 	
+	/**
+	 * Código inicial de la salvaguarda
+	 */
 	private String codigo_original;
 
+	/**
+	 *  Constructor de la clase
+	 */
 	public Ventana_modificar_salvaguarda() {
 		super();
 
@@ -46,11 +63,17 @@ public class Ventana_modificar_salvaguarda extends Ventana_modificar {
 		add(panel_datos);
 	}
 
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_modificar_salvaguarda manejador) {
 		this.btn_accion.addActionListener(manejador);
 		this.btn_cancelar.addActionListener(manejador);
 	}
 	
+	/**
+	 * Función encargada de recoger los datos de la salvaguarda actual
+	 */
 	public void cargar_datos() {
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
@@ -66,6 +89,9 @@ public class Ventana_modificar_salvaguarda extends Ventana_modificar {
 		
 	}
 	
+	/**
+	 * Función encargada de recoger las listas de datos de la salvaguarda actual
+	 */
 	public void cargar_lista_datos() {
 		this.cb_tipo.removeAllItems();
 

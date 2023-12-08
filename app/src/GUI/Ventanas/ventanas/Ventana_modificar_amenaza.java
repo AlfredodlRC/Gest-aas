@@ -19,6 +19,10 @@ import GUI.Ventanas.Herencia.Ventana_modificar;
 import aplicacion.Principal;
 import datos.POJOS.Amenaza_pojo;
 
+/**
+ *  Clase destinada a modificar los datos de la amenaza actual
+ *  Es una clase hija de Ventana_modificar
+ */
 public class Ventana_modificar_amenaza extends Ventana_modificar {
 
 	/**
@@ -26,18 +30,49 @@ public class Ventana_modificar_amenaza extends Ventana_modificar {
 	 */
 	private static final long serialVersionUID = 2110111460465951492L;
 	
+	/**
+	 * Panel que contiene los datos especificos de la amenaza
+	 */
 	private Panel_amenaza_manipulacion panel_datos;
 
+	/**
+	 * Código inicial de ña amenaza
+	 */
 	private String codigo_original;
 	
+	/**
+	 * Objecto amenaza asociado a la ventana
+	 */
 	private Amenaza_pojo amenaza;
 	
+	/**
+	 * listado de activos no asociados a la amenaza
+	 */
 	private DefaultListModel<String> dlm_activos; 
+
+	/**
+	 *  listado genericos de salvaguardas
+	 */
 	private DefaultListModel<String> dlm_salvaguardas; 
+
+	/**
+	 * listado de activos que degrada la salvaguarda
+	 */
 	private List<DefaultListModel<String>> lista_dlm_activos_salvaguardas; 
+
+	/**
+	 * tabla de datos con las degradaciones asociada a la amenaza
+	 */
 	private DefaultTableModel tabla_degradaciones;
+
+	/**
+	 * tabla de datos con las eficiencias asociada a la amenaza
+	 */
 	private DefaultTableModel tabla_eficiencias;
 	
+	/**
+	 * Constructor de la lase
+	 */
 	public Ventana_modificar_amenaza() {
 		super();
 		
@@ -72,12 +107,18 @@ public class Ventana_modificar_amenaza extends Ventana_modificar {
 	}
 
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_modificar_amenaza manejador) {
 		btn_accion.addActionListener(manejador);
 		btn_cancelar.addActionListener(manejador);
 	}
 	
 
+	/**
+	 * Función encargada de recoger los datos de la amenaza actual
+	 */
 	public void cargar_datos() {
 		SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
@@ -105,6 +146,9 @@ public class Ventana_modificar_amenaza extends Ventana_modificar {
 
 	}
 	
+	/**
+	 * Función encargada de recoger la listas de datos de la amenaza actual
+	 */
 	public void cargar_lista_datos() {
 
 		this.cb_tipo.removeAllItems();
@@ -195,11 +239,18 @@ public class Ventana_modificar_amenaza extends Ventana_modificar {
 	}
 
 
-	
+	/**
+	 * Función que devuelve el estado actual de la amenaza de la ventana
+	 * @return Estado actual de la amenaza de la ventana
+	 */
 	public Amenaza_pojo getAmenaza_actual() {
 		return amenaza;
 	}
 	
+	/**
+	 * Función que devuelve la amenaza de la ventana con todos los datos
+	 * @return Amenaza asociada a la ventana
+	 */
 	public Amenaza_pojo getAmenaza() {
 	
 		String texto_cb = "";

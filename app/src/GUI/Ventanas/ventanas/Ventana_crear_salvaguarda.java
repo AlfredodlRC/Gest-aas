@@ -14,6 +14,10 @@ import GUI.Ventanas.Herencia.Ventana_crear;
 import aplicacion.Principal;
 import datos.POJOS.Salvaguarda_pojo;
 
+/**
+ *  Clase destinada a mostrar los datos de la amenaza actual
+ *  Es una clase hija de Ventana_mostrar
+ */
 public class Ventana_crear_salvaguarda extends Ventana_crear{
 
 	/**
@@ -21,10 +25,19 @@ public class Ventana_crear_salvaguarda extends Ventana_crear{
 	 */
 	private static final long serialVersionUID = -3225550956840590330L;
 
+	/**
+	 * Panel que contiene los componentes con los valores especificos de la salvaguarda
+	 */
 	private Panel_salvaguarda_manipulacion panel_datos;
 
+	/**
+	 * Objeto salvaguarda con el cual trabajara la ventana
+	 */
 	private Salvaguarda_pojo salvaguarda;
 	
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_crear_salvaguarda() {
 		super();
 
@@ -42,6 +55,9 @@ public class Ventana_crear_salvaguarda extends Ventana_crear{
 		add(panel_datos);
 	}
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_crear_salvaguarda manejador) {
 		btn_accion.addActionListener(manejador);
 		btn_cancelar.addActionListener(manejador);
@@ -50,6 +66,9 @@ public class Ventana_crear_salvaguarda extends Ventana_crear{
 		
 	}
 	
+	/**
+	 * Función encargada de recoger los datos de la salvaguarda actual
+	 */
 	public void cargar_datos() {
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
@@ -65,6 +84,9 @@ public class Ventana_crear_salvaguarda extends Ventana_crear{
 		
 	}
 		
+	/**
+	 * Función encargada de recoger las listas de datos de la salvaguarda actual
+	 */
 	public void cargar_lista_datos() {
 		this.cb_tipo.removeAllItems();
 

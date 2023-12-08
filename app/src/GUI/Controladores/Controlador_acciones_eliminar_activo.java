@@ -8,15 +8,27 @@ import javax.swing.JOptionPane;
 import GUI.Ventanas.ventanas.Ventana_eliminar_activo;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_eliminar_activo implements ActionListener {
 
+	/**
+	 * 
+	 */
 	private Ventana_eliminar_activo ventana;
 
+	/**
+	 * 
+	 */
 	public Controlador_acciones_eliminar_activo(Ventana_eliminar_activo ventana) {
 		super();
 		this.ventana = ventana;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String resultado_eliminar;

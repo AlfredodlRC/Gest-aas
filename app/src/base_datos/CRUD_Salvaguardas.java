@@ -14,13 +14,23 @@ import datos.POJOS.Amenaza_pojo;
 import datos.POJOS.Salvaguarda_pojo;
 import datos.POJOS.Tipo_elemento;
 
+/**
+ * Clase encargada para las operaciones de creación, lectura, actualización y
+ * eliminación de las salvaguardas
+ */
 public class CRUD_Salvaguardas {
-
+	
+	/**
+	 * Constructor de la clase 
+	 */
 	public CRUD_Salvaguardas() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	/**
+	 *  Función para cargar una lista de las salvaguardas
+	 */
 	public List<Salvaguarda_pojo> cargar_lista_salvaguardas() {
 		
 		List<Salvaguarda_pojo> resultado = new ArrayList<Salvaguarda_pojo>();
@@ -57,7 +67,10 @@ public class CRUD_Salvaguardas {
 		return resultado;
 
 	}
-
+	
+	/**
+	 * Función para cargar una lista con los tipos de salvaguarda
+	 */
 	public List<Tipo_elemento> cargar_lista_tipo_salvaguardas() {
 		
 		List<Tipo_elemento> resultado = new ArrayList<Tipo_elemento>();
@@ -81,7 +94,9 @@ public class CRUD_Salvaguardas {
 
 	}
 	
-
+	/**
+	 * Función para cargar una salvaguarda a partir de un código de salvaguarda
+	 */
 	public Salvaguarda_pojo cargar_salvaguarda_codigo(String codigo) {
 		
 		Salvaguarda_pojo resultado = new Salvaguarda_pojo();
@@ -117,7 +132,10 @@ public class CRUD_Salvaguardas {
 		
 		return resultado;
 	}
-
+	
+	/**
+	 * Función para crear una salvaguarda y las eficiencias asocidas a la salvaguarda 
+	 */
 	public String crear_salvaguarda(Salvaguarda_pojo salvaguarda) {
 		String resultado = "";
 		Database base_datos = new Database();
@@ -145,6 +163,9 @@ public class CRUD_Salvaguardas {
 		return resultado;
 	}
 	
+	/**
+	 * Función para modifica una salvaguarda y las eficiencias asocidas a la salvaguarda 
+	 */	
 	public String modificar_salvaguarda(String codigo, Salvaguarda_pojo salvaguarda) {
 		String resultado = "";
 		Database base_datos = new Database();
@@ -171,6 +192,9 @@ public class CRUD_Salvaguardas {
 		return resultado;
 	}
 
+	/**
+	 * Función para eliminar una salvaguarda y las eficiencias asocidas a la salvaguarda 
+	 */
 	public String eliminar_salvaguarda(String codigo) {
 		String resultado = "";
 		Database base_datos = new Database();

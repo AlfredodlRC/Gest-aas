@@ -1,5 +1,9 @@
 package GUI.Ventanas.Herencia;
 
+/**
+ * Clase ventana_crear. Se utilizará para factorizar las ventanas de creación
+ * hereda de ventana_manipulación 
+ */
 public class Ventana_crear extends Ventana_manipulacion {
 
 	/**

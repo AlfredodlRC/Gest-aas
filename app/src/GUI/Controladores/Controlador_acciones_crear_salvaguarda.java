@@ -10,21 +10,36 @@ import javax.swing.JOptionPane;
 import GUI.Ventanas.ventanas.Ventana_crear_salvaguarda;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_crear_salvaguarda implements ActionListener, ItemListener  {
 
+	/**
+	 * 
+	 */
 	private Ventana_crear_salvaguarda ventana;
 
+	/**
+	 * 
+	 */
 	public Controlador_acciones_crear_salvaguarda(Ventana_crear_salvaguarda ventana) {
 		super();
 		this.ventana = ventana;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventana.getBtn_cancelar()) { Principal.gestor_ventanas.desactivar_ventana_crear_salvaguarda();}

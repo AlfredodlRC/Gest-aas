@@ -8,16 +8,27 @@ import javax.swing.JOptionPane;
 import GUI.Ventanas.ventanas.Ventana_eliminar_amenaza;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_eliminar_amenaza implements ActionListener {
 
+	/**
+	 * 
+	 */
 	Ventana_eliminar_amenaza ventana;
 
+	/**
+	 * 
+	 */
 	public Controlador_acciones_eliminar_amenaza(Ventana_eliminar_amenaza ventana) {
 		super();
 		this.ventana = ventana;
 	}
-	
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String resultado_eliminar;

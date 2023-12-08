@@ -18,6 +18,10 @@ import GUI.Ventanas.Herencia.Ventana_crear;
 import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
 
+/**
+ *  Clase destinada a mostrar los datos del activo actual
+ *  Es una clase hija de Ventana_crear
+ */
 public class Ventana_crear_activo extends Ventana_crear {
 
 	/**
@@ -25,15 +29,40 @@ public class Ventana_crear_activo extends Ventana_crear {
 	 */
 	private static final long serialVersionUID = -6745262481224451116L;
 	
+	/**
+	 * Panel que contiene los componentes con los valores especificos del activo
+	 */
 	private Panel_activo_manipulacion panel_datos;
 
-	DefaultListModel<String> modelo_activos_disponibles_inferiores = new DefaultListModel<>();
-	DefaultListModel<String> modelo_activos_disponibles_superiores = new DefaultListModel<>();
-	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
-	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
+	/**
+	 * lista de activos que pueden ser asignados como activos inferiores
+	 */
+	private DefaultListModel<String> modelo_activos_disponibles_inferiores = new DefaultListModel<>();
 
-	Activo_pojo activo;
+	/**
+	 * lista de activos que pueden ser asignados como activos superiores
+	 */
 	
+	private DefaultListModel<String> modelo_activos_disponibles_superiores = new DefaultListModel<>();
+
+	/**
+	 *  lista de activos inferiores
+	 */
+	private DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
+	
+	/**
+	 *  lista de activos superiores
+	 */
+	private DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
+
+	/**
+	 * Objeto Activoque utiliza la ventana
+	 */
+	private Activo_pojo activo;
+	
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_crear_activo() {
 		super();
 		
@@ -48,6 +77,9 @@ public class Ventana_crear_activo extends Ventana_crear {
 		
 	}
 	
+	/**
+	 * Inicialización de los componentes de la ventana
+	 */
 	private void establecer_componentes_creacion() {
 
 		btn_accion.setText(accion);
@@ -64,6 +96,9 @@ public class Ventana_crear_activo extends Ventana_crear {
 
 	}
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_crear_activo manejador) {
 		btn_accion.addActionListener(manejador);
 		btn_cancelar.addActionListener(manejador);
@@ -77,8 +112,10 @@ public class Ventana_crear_activo extends Ventana_crear {
 		panel_datos.getBtn_cancelar_activo_superior().addActionListener(manejador);
 	}
 	
+	/**
+	 * Función encargada de recoger los datos del activo actual
+	 */
 	public void cargar_datos() {
-		//Activo_pojo activo = new Activo_pojo();
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 
 		String texto_fecha;
@@ -95,6 +132,9 @@ public class Ventana_crear_activo extends Ventana_crear {
 		panel_datos.getTb_economico().setValue(5.00);
 	}
 		
+	/**
+	 * Función encargada de recoger las listas con datos del activo actual
+	 */
 	public void cargar_lista_datos() {
 		this.cb_tipo.removeAllItems();
 		for(String elemento: Principal.logica.coger_lista_tipo_activos()) {
@@ -328,10 +368,16 @@ public class Ventana_crear_activo extends Ventana_crear {
 		return modelo_activos_superiores;
 	}
 
+	/**
+	 * Función que devuelve el estado actual del activo de la ventana 
+	 */
 	public Activo_pojo getActivo_actual() {
 		return activo;
 	}
 	
+	/**
+	 * Función que devuelve el objeto activo con los datos de la ventana 
+	 */
 	public Activo_pojo getActivo() {
 		
 		String texto_cb;

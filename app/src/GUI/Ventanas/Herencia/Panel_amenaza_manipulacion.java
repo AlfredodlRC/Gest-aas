@@ -15,25 +15,48 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * Clase para poder manipular los datos especificos de las amenazas
+ * Hereda de la clase panel_activo
+ */
 public class Panel_amenaza_manipulacion extends Panel_amenaza {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3279920129695670780L;
-
+	
+	/**
+	 * Componente tipo botón para agregar la valoración de la degradación de la amenaza sobre un activo
+	 */
 	private JButton btn_valorar_degradacion;
+	
+	/**
+	 * Componente tipo botón para quitar la valoración de la degradación de la amenaza sobre un activo
+	 */
 	private JButton btn_quitar_degradacion;
-
+	
+	/**
+	 * Componente tipo botón para agregar la valoración de la eficiencia de una salvaguarda sobre la amenaza
+	 */
 	private JButton btn_valorar_eficiencia;
+	
+	/**
+	 * Componente tipo botón para quitar la valoración de la eficiencia de una salvaguarda sobre la amenaza
+	 */
 	private JButton btn_quitar_eficiencia;
 	
-
+	/**
+	 * Constructor de la clase
+	 */
 	public Panel_amenaza_manipulacion() {
 		super();
 		inicializar_componentes_manipulacion();
 	}
-
+	
+	/**
+	 * Función para inicializar los componentes propios del panel 
+	 */
 	private void inicializar_componentes_manipulacion() {
 		Dimension btn_tamanyo = new Dimension(200,30);
 		Point posicion_valorar = new Point(550,200);
@@ -125,19 +148,31 @@ public class Panel_amenaza_manipulacion extends Panel_amenaza {
 
 
 }
-
+	
+	/**
+	 * 
+	 */
 	public JButton getBtn_valorar_degradacion() {
 		return btn_valorar_degradacion;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JButton getBtn_valorar_eficiencia() {
 		return btn_valorar_eficiencia;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JButton getBtn_quitar_degradacion() {
 		return btn_quitar_degradacion;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JButton getBtn_quitar_eficiencia() {
 		return btn_quitar_eficiencia;
 	}

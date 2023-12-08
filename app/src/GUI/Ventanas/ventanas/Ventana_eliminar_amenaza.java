@@ -12,16 +12,25 @@ import GUI.Ventanas.Herencia.Ventana_eliminar;
 import aplicacion.Principal;
 import datos.POJOS.Amenaza_pojo;
 
+/**
+ * 
+ */
 public class Ventana_eliminar_amenaza extends Ventana_eliminar {
 
 	/**
-	 * 
+	 *  Clase destinada a mostrar los datos de la amenaza actual
+	 *  Es una clase hija de Ventana_eliminar
 	 */
 	private static final long serialVersionUID = 8091236811833234491L;
 	
+	/**
+	 * Panel que contiene los componentes con los valores especificos de la amenaza
+	 */
 	private Panel_amenaza_visualizacion panel_datos;
 
-
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_eliminar_amenaza() {
 		super();
 		
@@ -37,12 +46,17 @@ public class Ventana_eliminar_amenaza extends Ventana_eliminar {
 		add(panel_datos);
 	}
 
-	public void establecerManejador(Controlador_acciones_eliminar_amenaza manejador) {
-		
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
+	public void establecerManejador(Controlador_acciones_eliminar_amenaza manejador) {		
 	    btn_cancelar.addActionListener(manejador);
 	    btn_accion.addActionListener(manejador);
 	}
 
+	/**
+	 * Función encargada de recoger los datos de la amenaza actual
+	 */
 	public void cargar_amenaza() {
 		Amenaza_pojo amenaza = Principal.logica.get_amenaza_actual();
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");

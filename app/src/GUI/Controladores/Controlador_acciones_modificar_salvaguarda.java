@@ -10,19 +10,34 @@ import javax.swing.JOptionPane;
 import GUI.Ventanas.ventanas.Ventana_modificar_salvaguarda;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_modificar_salvaguarda implements ActionListener, ItemListener  {
 
+	/**
+	 * 
+	 */
 	private Ventana_modificar_salvaguarda ventana;
 
+	/**
+	 * 
+	 */
 	public Controlador_acciones_modificar_salvaguarda(Ventana_modificar_salvaguarda ventana) {
 		super();
 		this.ventana = ventana;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventana.getBtn_cancelar()) { Principal.gestor_ventanas.desactivar_ventana_modificar_salvaguarda();}
@@ -34,6 +49,9 @@ public class Controlador_acciones_modificar_salvaguarda implements ActionListene
 		
 	}
 
+	/**
+	 * 
+	 */
 	private void modificar_salvaguarda() { 
 		String resultado_crear = "";
 
@@ -46,9 +64,25 @@ public class Controlador_acciones_modificar_salvaguarda implements ActionListene
 			JOptionPane.showMessageDialog(null,"Se ha producido el error :"+resultado_crear,"Error al crear activo", JOptionPane.ERROR_MESSAGE);	
 		}
 	}
+	
+	/**
+	 * 
+	 */
 	private void guardar_eficiencia_activo() { }
+	
+	/**
+	 * 
+	 */
 	private void guargar_eficiencia_amenaza() { }
+	
+	/**
+	 * 
+	 */
 	private void eliminar_eficiencia_activo() { }
+	
+/**
+ * 
+ */
 	private void eliminar_eficiencia_amenaza() { }
 	
 }

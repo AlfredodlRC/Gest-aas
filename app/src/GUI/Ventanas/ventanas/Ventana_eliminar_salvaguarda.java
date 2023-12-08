@@ -11,6 +11,10 @@ import GUI.Ventanas.Herencia.Panel_salvaguarda_visualizacion;
 import GUI.Ventanas.Herencia.Ventana_eliminar;
 import aplicacion.Principal;
 
+/**
+ *  Clase destinada a mostrar los datos de la amenaza actual
+ *  Es una clase hija de Ventana_mostrar
+ */
 public class Ventana_eliminar_salvaguarda extends Ventana_eliminar {
 
 	/**
@@ -18,8 +22,14 @@ public class Ventana_eliminar_salvaguarda extends Ventana_eliminar {
 	 */
 	private static final long serialVersionUID = -8642468843067228697L;
 
+	/**
+	 * Panel que contiene los componentes con los valores especificos de la salvaguarda
+	 */
 	private Panel_salvaguarda_visualizacion panel_datos;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_eliminar_salvaguarda() {
 		super();
 
@@ -36,11 +46,17 @@ public class Ventana_eliminar_salvaguarda extends Ventana_eliminar {
 				
 	}
 	
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_eliminar_salvaguarda manejador) {
 		this.btn_accion.addActionListener(manejador);
 		this.btn_cancelar.addActionListener(manejador);
 	}
 	
+	/**
+	 * Función encargada de recoger los datos de la salvaguarda actual
+	 */
 	public void cargar_salvaguarda() {
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 

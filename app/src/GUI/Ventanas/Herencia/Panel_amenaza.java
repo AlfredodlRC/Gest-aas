@@ -18,6 +18,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * Panel con los elementos comunes de los datos especificos de las amenazas
+ */
 public class Panel_amenaza extends JPanel {
 
 	/**
@@ -25,34 +28,105 @@ public class Panel_amenaza extends JPanel {
 	 */
 	private static final long serialVersionUID = 8619224390809051069L;
 
+
+	/**
+	 * Panel para contener las diferentes pestañas de los datos
+	 */
 	protected JTabbedPane panel_tabulador;
-	
+
+	/**
+	 * 
+	 */
 	protected JComponent panel_tab_activos;
+
+	/**
+	 * 
+	 */
 	protected JList<String> activos;
+
+	/**
+	 * 
+	 */
 	protected JLabel lbl_degradacion_valor;
 
+	/**
+	 * 
+	 */
 	protected JLabel lbl_degradacion_fecuencia;
+
+	/**
+	 * 
+	 */
 	protected JSpinner tb_degradacion_valor;
+
+	/**
+	 * 
+	 */
 	protected JSpinner tb_degradacion_fecuencia;
-	
+
+	/**
+	 * 
+	 */
 	protected JComponent panel_tab_salvalguardas;
+
+	/**
+	 * 
+	 */
 	protected JList<String> salvaguardas;
+
+	/**
+	 * 
+	 */
 	protected JLabel lbl_eficiencia_valor;
 
+	/**
+	 * 
+	 */
 	protected JLabel lbl_eficiencia_fecuencia;
+
+	/**
+	 * 
+	 */
 	protected JSpinner tb_eficiencia_valor;
+
+	/**
+	 * 
+	 */
 	protected JSpinner tb_eficiencia_fecuencia;
 
+	/**
+	 * 
+	 */
 	protected JComponent panel_tab_degradaciones;
+
+	/**
+	 * 
+	 */
 	protected JTable degradaciones;
 
+	/**
+	 * 
+	 */
 	protected JComponent panel_tab_eficiencias;
+
+	/**
+	 * 
+	 */
 	protected JTable eficiencias;
 
+	/**
+	 * 
+	 */
 	private JList<String> activos_salvaguardas;
+
+	/**
+	 * 
+	 */
 	private JLabel lblactivos_salvaguardas;
 
-
+	/**
+	 * 
+	 */
 	public Panel_amenaza() {
 
 		super(new GridLayout(1, 1));
@@ -60,7 +134,10 @@ public class Panel_amenaza extends JPanel {
 		inicializar_componentes();
          
 	}
-	
+
+	/**
+	 * 
+	 */
 	private void inicializar_componentes() {
 
 		Dimension tb_tamanyo = new Dimension(200,30);
@@ -169,45 +246,68 @@ public class Panel_amenaza extends JPanel {
         
 	}
 
+	/**
+	 * 
+	 */
 	public JList<String> getActivos() {
 		return activos;
 	}
 
+	/**
+	 * 
+	 */
 	public JSpinner getTb_degradacion_valor() {
 		return tb_degradacion_valor;
 	}
 
+	/**
+	 * 
+	 */
 	public JSpinner getTb_degradacion_fecuencia() {
 		return tb_degradacion_fecuencia;
 	}
 
+	/**
+	 * 
+	 */
 	public JList<String> getSalvaguardas() {
 		return salvaguardas;
 	}
 
-
+	/**
+	 * 
+	 */
 	public JSpinner getTb_eficiencia_valor() {
 		return tb_eficiencia_valor;
 	}
 
+	/**
+	 * 
+	 */
 	public JSpinner getTb_eficiencia_fecuencia() {
 		return tb_eficiencia_fecuencia;
 	}
 
+	/**
+	 * 
+	 */
 	public JTable getDegradaciones() {
 		return degradaciones;
 	}
 
+	/**
+	 * 
+	 */
 	public JTable getEficiencias() {
 		return eficiencias;
 	}
-
+	
+	/**
+	 * 
+	 */
 	public JList<String> getActivos_salvaguardas() {
 		return activos_salvaguardas;
 	}
-
-
-
-	   
+   
 
 }

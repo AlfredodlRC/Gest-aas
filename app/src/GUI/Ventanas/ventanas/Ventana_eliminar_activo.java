@@ -14,6 +14,10 @@ import aplicacion.Principal;
 import datos.POJOS.Activo_pojo;
 import datos.POJOS.Relacion_activos;
 
+/**
+ *  Clase destinada a mostrar los datos del activo actual
+ *  Es una clase hija de Ventana_eliminar
+ */
 public class Ventana_eliminar_activo extends Ventana_eliminar {
 
 	/**
@@ -21,11 +25,24 @@ public class Ventana_eliminar_activo extends Ventana_eliminar {
 	 */
 	private static final long serialVersionUID = -5960536906610090156L;
 	
+	/**
+	 * Panel que contiene los componentes con los valores especificos del activo
+	 */
 	private Panel_activo_visualizacion panel_datos;
 
+	/**
+	 * 
+	 */
 	DefaultListModel<String> modelo_activos_inferiores = new DefaultListModel<>();
+
+	/**
+	 * 
+	 */
 	DefaultListModel<String> modelo_activos_superiores = new DefaultListModel<>();
 
+	/**
+	 * Constructor de la clase
+	 */
 	public Ventana_eliminar_activo() {
 		super();
 
@@ -36,6 +53,9 @@ public class Ventana_eliminar_activo extends Ventana_eliminar {
 		
 	}
 
+	/**
+	 * Función pública destinada a establecer los componentes de la ventana.
+	 */
 	private void establecerComponentes() {
 		btn_accion.setText(accion);
 
@@ -70,11 +90,17 @@ public class Ventana_eliminar_activo extends Ventana_eliminar {
 		
 	}
 
+	/**
+	 * Función pública destinada a establecer el manejador que controlará las acciones de la ventana.
+	 */
 	public void establecerManejador(Controlador_acciones_eliminar_activo manejador) {
 	    btn_cancelar.addActionListener(manejador);
 	    btn_accion.addActionListener(manejador);
 	}
 
+	/**
+	 * Función encargada de recoger los datos del activo actual
+	 */
 	public void cargar_activo() {
 		Activo_pojo activo = Principal.logica.get_activo_actual();
         SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy hh:mm");

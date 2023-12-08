@@ -6,15 +6,27 @@ import java.awt.event.ActionListener;
 import GUI.Ventanas.ventanas.Ventana_ver_amenaza;
 import aplicacion.Principal;
 
+/**
+ * 
+ */
 public class Controlador_acciones_ver_amenaza implements ActionListener {
 
+	/**
+	 * 
+	 */
 	Ventana_ver_amenaza ventana;
 
+	/**
+	 * 
+	 */
 	public Controlador_acciones_ver_amenaza(Ventana_ver_amenaza ventana_ver_amenaza) {
 		super();
 		this.ventana = ventana_ver_amenaza;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 

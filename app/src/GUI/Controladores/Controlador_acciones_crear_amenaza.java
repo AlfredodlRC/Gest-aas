@@ -13,18 +13,27 @@ import aplicacion.Principal;
 import datos.POJOS.Degradacion_amenaza_pojo;
 import datos.POJOS.Eficiencia_amenaza_pojo;
 
+/**
+ * 
+ */
 public class Controlador_acciones_crear_amenaza implements ActionListener, ListSelectionListener {
 
+	/**
+	 * 
+	 */
 	private Ventana_crear_amenaza ventana;
 	
-
+	/**
+	 * 
+	 */
 	public Controlador_acciones_crear_amenaza(Ventana_crear_amenaza ventana) {
 		super();
 		this.ventana = ventana;
 	}
 
-
-
+	/**
+	 * 
+	 */
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		int indice;
@@ -40,7 +49,9 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 		
 	}
 
-	// Eventos pulsación de elementos
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ventana.getBtn_cancelar()) { 
@@ -64,6 +75,9 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 
 	}
 
+	/**
+	 * 
+	 */
 	private void crear_amenaza() {
 		String resultado_crear = "";
 
@@ -77,6 +91,9 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void anyadir_degradacion() {
 		
 		Degradacion_amenaza_pojo degradacion;
@@ -104,6 +121,9 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 		ventana.get_datos_activos().removeElement(ventana.getActivos().getSelectedValue());
 	}
 	
+	/**
+	 * 
+	 */
 	private void eliminar_degradacion() {
 		int fila_seleccionada;
 		int i;
@@ -140,6 +160,9 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 	
 	}
 
+	/**
+	 * 
+	 */
 	private void anyadir_eficiencia() { 
 		int indice_salvaguarda;
 		int indice_activo;
@@ -171,6 +194,9 @@ public class Controlador_acciones_crear_amenaza implements ActionListener, ListS
 		
 	}			
 	
+	/**
+	 * 
+	 */
 	private void eliminar_eficiencia() {
 		int fila_seleccionada;
 		int indice;
